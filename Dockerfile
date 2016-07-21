@@ -1,5 +1,5 @@
 # Using a compact OS
-FROM ubuntu:14.04
+FROM ubuntu:latest
 
 MAINTAINER Liangchaob <liangchaob@163.com> 
 
