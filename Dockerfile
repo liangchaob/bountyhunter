@@ -20,5 +20,5 @@ RUN pip install -r /bountyhunter/requirements.txt
 # Open Ports
 EXPOSE 80
 
-WORKDIR /wheniwas18/
+WORKDIR /bountyhunter/
 CMD python web.py 
