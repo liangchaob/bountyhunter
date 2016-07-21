@@ -12,3 +12,4 @@ sys.path.append("./")
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
+print 'hello'
