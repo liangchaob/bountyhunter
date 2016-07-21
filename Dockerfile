@@ -14,7 +14,7 @@ RUN apt-get install -y python-setuptools
 RUN apt-get install -y python-pip
 
 # pip
-RUN pip install -r requirements.txt
+RUN pip install -r /bountyhunter/requirements.txt
 
 
 # Open Ports
