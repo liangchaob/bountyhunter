@@ -106,6 +106,26 @@ def wechat_auth():
                     'description': u'第三条新闻描述',
                     'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
                     'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第三条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第三条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第三条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第三条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
                 }
             ])
             return feedback
