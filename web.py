@@ -81,14 +81,32 @@ def wechat_auth():
             # print rec_raw
             print "信息内容:"+str(rec_content)
 
-            feedback = wechat.response_text(content=
-                "消息id:"+str(rec_id)+
-                "\n公众号id:"+str(rec_target)+
-                "\n用户openid:"+str(rec_source)+
-                "\n时间戳:"+str(rec_time)+
-                "\n消息类型:"+str(rec_type)+
-                "\n信息内容:"+str(rec_content)
-                )
+            # feedback = wechat.response_text(content=
+            #     "消息id:"+str(rec_id)+
+            #     "\n公众号id:"+str(rec_target)+
+            #     "\n用户openid:"+str(rec_source)+
+            #     "\n时间戳:"+str(rec_time)+
+            #     "\n消息类型:"+str(rec_type)+
+            #     "\n信息内容:"+str(rec_content)
+            #     )
+            # return feedback
+
+            feedback = wechat.response_news([
+                {
+                    'title': u'第一条新闻标题',
+                    'description': u'第一条新闻描述，这条新闻没有预览图',
+                    'url': u'http://www.baidu.com/',
+                }, {
+                    'title': u'第二条新闻标题, 这条新闻无描述',
+                    'picurl': u'http://o7m541j22.bkt.clouddn.com/biznetwork.png',
+                    'url': u'http://www.github.com/',
+                }, {
+                    'title': u'第三条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                }
+            ])
             return feedback
 
         except ParseError:
