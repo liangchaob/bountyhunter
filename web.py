@@ -93,36 +93,71 @@ def wechat_auth():
 
             feedback = wechat.response_news([
                 {
-                    'title': u'第一条新闻标题',
+                    'title': u'第1条新闻标题',
                     'picurl': u'http://o7m541j22.bkt.clouddn.com/biznetwork.png',
                     'description': u'第一条新闻描述，这条新闻没有预览图',
                     'url': u'http://www.baidu.com/',
                 }, {
-                    'title': u'第二条新闻标题, 这条新闻无描述',
+                    'title': u'第2条新闻标题, 这条新闻无描述',
                     'picurl': u'http://o7m541j22.bkt.clouddn.com/biznetwork.png',
                     'url': u'http://www.github.com/',
                 }, {
-                    'title': u'第三条新闻标题',
+                    'title': u'第3条新闻标题',
                     'description': u'第三条新闻描述',
                     'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
                     'url': u'http://www.v2ex.com/',
                 },{
-                    'title': u'第三条新闻标题',
+                    'title': u'第4条新闻标题',
                     'description': u'第三条新闻描述',
                     'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
                     'url': u'http://www.v2ex.com/',
                 },{
-                    'title': u'第三条新闻标题',
+                    'title': u'第5条新闻标题',
                     'description': u'第三条新闻描述',
                     'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
                     'url': u'http://www.v2ex.com/',
                 },{
-                    'title': u'第三条新闻标题',
+                    'title': u'第6条新闻标题',
                     'description': u'第三条新闻描述',
                     'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
                     'url': u'http://www.v2ex.com/',
                 },{
-                    'title': u'第三条新闻标题',
+                    'title': u'第7条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第8条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第9条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第10条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第11条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第12条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第13条新闻标题',
+                    'description': u'第三条新闻描述',
+                    'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
+                    'url': u'http://www.v2ex.com/',
+                },{
+                    'title': u'第14条新闻标题',
                     'description': u'第三条新闻描述',
                     'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
                     'url': u'http://www.v2ex.com/',
