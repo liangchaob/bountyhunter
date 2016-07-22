@@ -73,14 +73,23 @@ def wechat_auth():
             rec_type = wechat.message.type      # 对应于 XML 中的 MsgType
             # rec_raw = wechat.message.raw        # 原始 XML 文本，方便进行其他分析
             rec_content = wechat.message.content # post的文本信息
-            print rec_id
-            print rec_target
-            print rec_source
-            print rec_time
-            print rec_type
+            print "消息id:"+str(rec_id)
+            print "公众号id:"+str(rec_target)
+            print "用户openid:"+str(rec_source)
+            print "时间戳:"+str(rec_time)
+            print "消息类型:"+str(rec_type)
             # print rec_raw
-            print rec_content
-            return 'anything'
+            print "信息内容:"+str(rec_content)
+
+            feedback = wechat.response_text(content=
+                "消息id:"+str(rec_id)+
+                "\n公众号id:"+str(rec_target)+
+                "\n用户openid:"+str(rec_source)+
+                "\n时间戳:"+str(rec_time)+
+                "\n消息类型:"+str(rec_type)+
+                "\n信息内容:"+str(rec_content)
+                )
+            return feedback
 
         except ParseError:
             print 'Invalid Body Text'
