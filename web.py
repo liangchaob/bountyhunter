@@ -78,7 +78,7 @@ def wechat_auth():
             print rec_source
             print rec_time
             print rec_type
-            print rec_raw
+            # print rec_raw
             print rec_content
             return 'anything'
 
