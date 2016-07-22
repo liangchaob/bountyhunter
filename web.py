@@ -62,6 +62,7 @@ def wechat_auth():
             return 'nothing happend!'
     elif request.method == 'POST':
         rec_text = request.stream.read()
+        print rec_text
         # try:
         #     wechat.parse_data(rec_text)
         #     rec_id = wechat.message.id          # 对应于 XML 中的 MsgId
