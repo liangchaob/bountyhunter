@@ -51,6 +51,7 @@ def wechat_auth():
             return echostr
         else:
             print 'Wrong'
+            return 'nothing happend!'
 
 
 
