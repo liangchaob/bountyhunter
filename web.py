@@ -19,6 +19,14 @@ import hashlib
 from wechat_sdk import WechatConf
 # 微信接口类
 from wechat_sdk import WechatBasic
+# 微信xml解析类
+from wechat_sdk.exceptions import ParseError
+
+
+
+
+
+
 
 # 配置参数
 conf = WechatConf(
@@ -53,9 +61,29 @@ def wechat_auth():
             print 'Wrong'
             return 'nothing happend!'
     elif request.method == 'POST':
-        rec = request.stream.read()
-        print rec
-        return rec
+        rec_text = request.stream.read()
+        try:
+            wechat.parse_data(rec_text)
+            rec_id = wechat.message.id          # 对应于 XML 中的 MsgId
+            rec_target = wechat.message.target  # 对应于 XML 中的 ToUserName
+            rec_source = wechat.message.source  # 对应于 XML 中的 FromUserName
+            rec_time = wechat.message.time      # 对应于 XML 中的 CreateTime
+            rec_type = wechat.message.type      # 对应于 XML 中的 MsgType
+            rec_raw = wechat.message.raw        # 原始 XML 文本，方便进行其他分析
+            print rec_id
+            print rec_target
+            print rec_source
+            print rec_time
+            print rec_type
+            print rec_raw
+            return 'anything'
+
+        except ParseError:
+            print 'Invalid Body Text'
+            return 'nothing'
+
+
+
 
 
 
