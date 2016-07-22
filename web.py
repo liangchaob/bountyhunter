@@ -94,6 +94,7 @@ def wechat_auth():
             feedback = wechat.response_news([
                 {
                     'title': u'第一条新闻标题',
+                    'picurl': u'http://o7m541j22.bkt.clouddn.com/biznetwork.png',
                     'description': u'第一条新闻描述，这条新闻没有预览图',
                     'url': u'http://www.baidu.com/',
                 }, {
