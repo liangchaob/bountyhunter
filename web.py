@@ -52,6 +52,10 @@ def wechat_auth():
         else:
             print 'Wrong'
             return 'nothing happend!'
+    elif request.method == 'POST':
+        rec = request.stream.read()
+        print rec
+        return rec
 
 
 
