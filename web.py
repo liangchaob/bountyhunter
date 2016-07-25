@@ -23,8 +23,6 @@ from wechat_sdk import WechatBasic
 from wechat_sdk.exceptions import ParseError
 
 
-
-
 # 配置参数
 conf = WechatConf(
     token='g7824tgfhew0g', 
@@ -40,28 +38,22 @@ wechat = WechatBasic(conf=conf)
 menu_data = {
     "button": [
         {
-            "type": "click", 
+            "type": "view", 
             "name": "发任务", 
-            "url": "www.baidu.com"
+            "url": "http://www.baidu.com"
         }, 
         {
-            "type": "click", 
+            "type": "view", 
             "name": "接任务", 
-            "url": "www.baidu.com"
+            "url": "http://www.baidu.com"
+        }, 
+        {
+            "type": "view", 
+            "name": "设置", 
+            "url": "http://www.baidu.com"
         }
     ]
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 # flask实例化
@@ -109,7 +101,11 @@ def wechat_auth():
             if rec_type == 'subscribe':  # 关注事件(包括普通关注事件和扫描二维码造成的关注事件)
                 key = wechat.message.key                        # 对应于 XML 中的 EventKey (普通关注事件时此值为 None)
                 ticket = wechat.message.ticket                  # 对应于 XML 中的 Ticket (普通关注事件时此值为 None)
-            
+                return wechat.response_text(
+                    '''
+                    欢迎加入赏金猎人组织！
+                    '''
+                    )
             elif rec_type == 'text':
                 rec_content = wechat.message.content
                 print "消息id:"+str(rec_id)
