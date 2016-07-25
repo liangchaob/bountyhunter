@@ -81,8 +81,6 @@ def wechat_auth():
         # 验证
         if wechat.check_signature(signature, timestamp, nonce):
             print 'Accept'
-            # 建立菜单
-            wechat.create_menu(menu_data)
             return echostr
         else:
             print 'Wrong'
