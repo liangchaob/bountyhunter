@@ -22,12 +22,6 @@ from wechat_sdk import WechatBasic
 # 微信xml解析类
 from wechat_sdk.exceptions import ParseError
 
-import urllib
-import urllib2
-from urllib import urlencode
-import json
-
-
 
 
 
