@@ -21,4 +21,4 @@ RUN pip install -r /bountyhunter/requirements.txt
 EXPOSE 80
 
 WORKDIR /bountyhunter/
-CMD python web.py 
+CMD python api.py 
