@@ -21,11 +21,25 @@ import pymongo
 # flask实例化
 app = Flask(__name__)
 
+# 测试
+# MONGODB_ADDR = '172.16.191.163'
+# MONGODB_PORT = 27017
+# MONGODB_DB = 'local'
+
+# 生产
+MONGODB_ADDR = '10.10.72.139'
+MONGODB_PORT = 27017
+MONGODB_DB = 'dlR8NJgeiK3TsOkj'
 
 # 设置数据库地址
-client = pymongo.MongoClient('172.16.191.163', 27017)
+client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
+
 # 设置数据库名
-db = client['local']
+db = client[MONGODB_DB]
+
+# 生产认证
+db.authenticate("udkIqOwPYlfMZAXn","psfuF7gNhBriTZHWl")
+
 # 设置表名,建立为索引
 collection_user = db['user']
 collection_user.ensure_index('openid', unique=True)
@@ -38,8 +52,6 @@ collection_skill.ensure_index('skillid', unique=True)
 
 collection_tag = db['tag']
 collection_tag.ensure_index('tagid', unique=True)
-
-
 
 # 单用户
 @app.route('/user/<openid>', methods = ['GET', 'POST'])
@@ -98,7 +110,6 @@ def users():
             return 'insert failed!'      
     else:
         return 'nothing happend!'
-
 
 # 任务
 @app.route('/mission/<missionid>', methods = ['GET', 'POST'])
@@ -167,8 +178,6 @@ def missions():
     else:
         return 'nothing happend!'
 
-
-
 # 技能
 @app.route('/skill/<skillid>', methods = ['GET', 'POST'])
 def skill(skillid):
@@ -227,7 +236,6 @@ def skills():
     else:
         return 'nothing happend!'
 
-
 # 标签
 @app.route('/tag/<tagid>', methods = ['GET', 'POST'])
 def tag(tagid):
@@ -283,5 +291,7 @@ def tags():
 
 # 运行主函数
 if __name__ == '__main__':
-    # 对外开放80端口
-    app.run(host='0.0.0.0',port=8080,debug=True)
+    # 测试
+    # app.run(host='0.0.0.0',port=8080,debug=True)
+    # 生产
+    app.run(host='0.0.0.0',port=80,debug=False)
