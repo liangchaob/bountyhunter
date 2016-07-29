@@ -13,7 +13,7 @@ reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
 import time  
-from flask import Flask,request, make_response  
+from flask import Flask,request, make_response  ,render_template
 import hashlib  
 # 微信配置类
 from wechat_sdk import WechatConf
