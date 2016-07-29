@@ -194,7 +194,7 @@ def wechat_auth():
 # 菜单函数
 # 微信验证
 @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
-def wechat_auth():
+def new_mission():
     if request.method == 'GET':
         return render_template('new_mission.html')
     elif request.method == 'POST':
