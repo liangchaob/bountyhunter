@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/Users/alan/denv/bountyhunter/static/css/bootstrap.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-datetimepicker.css',_external=True) }}">
+    <!-- <link rel="stylesheet" href="/Users/alan/denv/bountyhunter/static/css/bootstrap-datetimepicker.css"> -->
+
+<!--     <style>blockquote,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}body{font-family:"Microsoft YaHei",Helvetica,"Hiragino Sans GB",Arial,sans-serif;font-size:13px;line-height:18px;color:#737373;background-color:#fff;margin:10px 13px 10px 13px}table{margin:10px 0 15px 0;border-collapse:collapse}td,th{border:1px solid #ddd;padding:3px 10px}th{padding:5px 10px}a{color:#0069d6}a:hover{color:#0050a3;text-decoration:none}a img{border:none}p{margin-bottom:13px;font-family:"Microsoft YaHei"}h1,h2,h3,h4,h5,h6{color:#404040;line-height:36px}h1{margin-bottom:18px;font-size:30px}h2{font-size:24px}h3{font-size:18px}h4{font-size:16px}h5{font-size:14px}h6{font-size:13px}hr{margin:0 0 19px;border:0;border-bottom:1px solid #ccc}blockquote{padding:13px 13px 21px 15px;margin-bottom:18px;font-family:georgia,serif;font-style:italic}blockquote:before{content:"\201C";font-size:40px;margin-left:-10px;font-family:georgia,serif;color:#eee}blockquote p{font-size:16px;font-weight:300;line-height:18px;margin-bottom:0;font-style:italic}code,pre{font-family:Monaco,Andale Mono,Courier New,monospace}code{background-color:#fee9cc;color:rgba(0,0,0,.75);padding:1px 3px;font-size:12px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}pre{display:block;padding:14px;margin:0 0 18px;line-height:16px;font-size:11px;border:1px solid #d9d9d9;white-space:pre-wrap;word-wrap:break-word}pre code{background-color:#fff;color:#737373;font-size:11px;padding:0}sup{font-size:.83em;vertical-align:super;line-height:0}*{-webkit-print-color-adjust:exact}@media screen and (min-width:914px){body{width:854px;margin:10px auto}}@media print{body,code,h1,h2,h3,h4,h5,h6,pre code{color:#000}pre,table{page-break-inside:avoid}}</style> -->
+    <title>新任务</title>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<!-- <script src="/Users/alan/denv/bountyhunter/static/js/jquery.js"></script> -->
+<!-- <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script> -->
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!-- <script src="/Users/alan/denv/bountyhunter/static/js/bootstrap.js"></script> -->
+<!-- <script src="{{ url_for('static',filename='js/bootstrap.js',_external=True) }}"></script> -->
+
+<script src="{{ url_for('static',filename='js/bootstrap-datetimepicker.js',_external=True) }}"></script>
+
+<script src="{{ url_for('static',filename='js/bootstrap-datetimepicker.zh-CN.js',_external=True) }}"></script>
+
+
+
+</head>
+<body>
+<!-- 
+    <h2>微信web开发者工具</h2>
+    <hr>
+
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-2"></div>
+          <div class="col-xs-8"></div>
+          <div class="col-xs-1"></div>
+        </div>
+    </div> -->
+<!-- 外围框 -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+        <br>
+        <form class="form-horizontal">
+        <!-- 任务名称 -->
+          <div class="form-group">
+            <div class="row">          
+                <label for="inputEmail3" class="col-xs-4 control-label"><h4>任务名称</h4></label>
+                <div class="col-xs-8">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="请尽可能精简">
+                </div>                   
+            </div>
+          </div>
+          <!-- 任务类型 -->
+          <div class="form-group">
+            <div class="row">              
+                <label for="inputPassword3" class="col-xs-4 control-label"><h4>任务类型</h4></label>
+                <div class="col-xs-8">
+                <select class="form-control">
+                  <option>IT</option>
+                  <option>非IT</option>
+                </select>
+                </div>        
+            </div>
+          </div>
+
+
+
+        <div class="form-group">
+            <div class="row">
+                
+                <label for="inputPassword3" class="col-xs-4 control-label"><h4>完成时间</h4></label>
+                <div class="input-group date form_datetime col-xs-8" data-date="2016-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1" style="padding:0 15px;">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+        </div>
+
+
+
+
+
+          <!-- 任务描述 -->
+          <div class="form-group">
+              <div class="row">
+                <label for="inputPassword3" class="col-xs-4 control-label"><h4>任务描述</h4></label>
+                <div class="col-xs-8"></div>          
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                    <textarea class="form-control" rows="10"></textarea>
+                </div>         
+              </div>
+          </div>
+
+          <!-- 验收要求 -->
+          <div class="form-group">
+              <div class="row">
+                <label for="inputPassword3" class="col-xs-4 control-label"><h4>任务目标</h4></label>
+                <div class="col-xs-8"></div>          
+              </div>
+              <div class="row">
+                
+                <div class="col-xs-12">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+                              
+              </div>
+          </div>
+
+          <!-- 技能需求 -->
+          <div class="form-group">
+              <div class="row">
+                
+                <label for="inputPassword3" class="col-xs-4 control-label"><h4>技能需求</h4></label>
+                <div class="col-xs-8"></div>          
+              </div>
+              <div class="row">
+                <div class="checkbox col-xs-3">
+                  <label>
+                    <input type="checkbox" value="" disabled>
+                    Cisco
+                  </label>
+                </div>
+                <div class="checkbox col-xs-3">
+                  <label>
+                    <input type="checkbox" value="" disabled>
+                    Huawei
+                  </label>
+                </div>
+                <div class="checkbox col-xs-3">
+                  <label>
+                    <input type="checkbox" value="" disabled>
+                    Oracle
+                  </label>
+                </div>
+                <div class="checkbox col-xs-3">
+                  <label>
+                    <input type="checkbox" value="">
+                    IBM
+                  </label>
+                </div>
+                <div class="checkbox col-xs-3">
+                  <label>
+                    <input type="checkbox" value="">
+                    Microsoft
+                  </label>
+                </div>
+                <div class="checkbox col-xs-3">
+                  <label>
+                    <input type="checkbox" value="">
+                    Linux
+                  </label>
+                </div>
+                <div class="checkbox col-xs-3">
+                  <label>
+                    <input type="checkbox" value="">
+                    vmware
+                  </label>
+                </div>
+                <div class="checkbox col-xs-3">
+                  <label>
+                    <input type="checkbox" value="">
+                    Citrix
+                  </label>
+                </div>
+              </div>
+          </div>
+          <br>
+
+
+        <!-- 悬赏金额 -->
+          <div class="form-group">
+            <div class="row">          
+                <label for="inputEmail3" class="col-xs-4 control-label"><h4>悬赏金额</h4></label>
+                <div class="col-xs-8">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group" style="padding:0px 15px;" >
+                  <div class="input-group-addon">￥</div>
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="0.00">
+                  <div class="input-group-addon">元</div>
+                </div>
+            </div>
+          </div>
+            <br>
+            <br>
+
+
+
+
+
+
+
+        </div>
+        <div class="col-xs-1"></div>
+    </div>    
+</div>
+
+
+
+
+
+
+<input id="navbutton" style="position:fixed;bottom:0;margin:0 auto;z-index:500;" class="btn btn-default col-xs-12" type="submit" value="Submit">
+
+
+
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+
+</script>
+
+
+</body>
+</html>
