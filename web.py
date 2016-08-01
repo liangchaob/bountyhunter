@@ -196,15 +196,28 @@ def wechat_auth():
 @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
 def new_mission():
     if request.method == 'GET':
+        # 参数接收
+        query = request.args 
+        code = query.get('code', '')  
+        state = query.get('state', '')
+        nsukey = query.get('nsukey', '')
+        print 'code:'+code
+        print 'state:'+state
+        print 'nsukey:'+nsukey
         return render_template('new_mission.html')
+        # 验证
+        # if wechat.check_signature(signature, timestamp, nonce):
+        #     print 'Accept'
+        #     return nsukey
+        # else:
+        #     print 'Wrong'
+        #     return 'nothing happend!'
+
     elif request.method == 'POST':
         return render_template('new_mission.html')
     else:
         pass
     # 菜单设置
-
-
-
 
 
 # 运行主函数
