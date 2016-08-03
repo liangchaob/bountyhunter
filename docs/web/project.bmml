@@ -10,20 +10,5 @@
         <text>%u767B%u5F55</text>
       </controlProperties>
     </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::FieldSet" x="219" y="208" w="336" h="84" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%u9879%u76EE1</text>
-      </controlProperties>
-    </control>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::FieldSet" x="219" y="298" w="336" h="84" measuredW="200" measuredH="170" zOrder="3" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%u9879%u76EE2</text>
-      </controlProperties>
-    </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::FieldSet" x="219" y="388" w="336" h="84" measuredW="200" measuredH="170" zOrder="4" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%u9879%u76EE3</text>
-      </controlProperties>
-    </control>
   </controls>
 </mockup>
