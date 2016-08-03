@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css',_external=True) }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-datetimepicker.css',_external=True) }}">
+    <link href="{{ url_for('static',filename='css/web.css',_external=True) }}" rel="stylesheet">
+    <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.js',_external=True) }}"></script>
+
+    <script src="{{ url_for('static',filename='js/bootstrap-datetimepicker.js',_external=True) }}"></script>
+
+    <script src="{{ url_for('static',filename='js/bootstrap-datetimepicker.zh-CN.js',_external=True) }}"></script>
+
+
+
+</head>
+<body>
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      </div>
+
+<form class="form-horizontal">
+<!-- 选择任务名称 -->
+  <div class="form-group">
+    <label for="exampleInputEmail1" class="col-sm-2 control-label">任务名称</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="请简单概括任务">      
+    </div>
+  </div>
+  <!-- 选择任务类型 -->
+  <div class="form-group">
+    <label class="col-sm-2 control-label">任务类型</label>
+    <div class="col-sm-10">
+      <select class="form-control">
+        <option>IT</option>
+        <option>非IT</option>
+      </select>
+    </div>
+  </div>
+  <!-- 选择任务截止日期 -->
+  <div class="form-group"> 
+    <label class="col-sm-2 control-label">完成时间</label>
+    <div class="col-sm-10">
+    <div class="input-group date form_datetime" data-date="2016-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+        <input class="form-control" size="16" type="text" value="" readonly>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+    </div>
+    </div>
+    <input type="hidden" id="dtp_input1" value="" /><br/>
+  </div>
+  <!-- 任务描述 -->
+  <div class="form-group">
+    <label for="exampleInputFile" class="col-sm-2 control-label">任务描述</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" rows="10"></textarea>      
+    </div>
+
+  </div>
+  <!-- 验收标准 -->
+  <div class="form-group">
+    <label for="exampleInputFile" class="col-sm-2 control-label">验收标准</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" rows="5"></textarea>      
+    </div>
+
+  </div>
+  <!-- 技术需求 -->
+  <div class="form-group">
+    <label for="exampleInputFile" class="col-sm-2 control-label">技能要求</label>
+    <div class="col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="">
+          Cisco
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="">
+          Huawei
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="">
+          H3C
+        </label>
+      </div>
+      <div class="checkbox disabled">
+        <label>
+          <input type="checkbox" value="">
+          IBM
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="">
+          Dell
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="">
+          Microsoft
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="">
+          Linux
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="">
+          vmware
+        </label>
+      </div>
+      
+    </div>
+
+  </div>
+
+
+  <!-- 选择任务类型 -->
+  <div class="form-group">
+    <label class="col-sm-2 control-label">悬赏金额</label>
+    <div class="col-sm-10">
+      <div class="input-group">
+        <span class="input-group-addon">￥</span>
+        <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+        <span class="input-group-addon">元</span>
+      </div>      
+    </div>
+  </div>
+
+
+
+  <form class="form-horizontal">
+    <fieldset>
+      <div id="legend" class="">
+        <legend class="">表单名</legend>
+      </div>
+    <div class="control-group">
+
+          <!-- Prepended text-->
+          <label class="control-label">Prepended text</label>
+          <div class="controls">
+            <div class="input-prepend">
+              <span class="add-on">^_^</span>
+              <input class="span2" placeholder="placeholder" id="prependedInput" type="text">
+            </div>
+            <p class="help-block">Supporting help text</p>
+          </div>
+
+        </div>
+
+    </fieldset>
+  </form>
+
+
+
+
+
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+
+
+
+
+
+
+
+    </div><!-- /.container -->
+
+
+
+
+
+
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+
+</script>
+
+
+</body>
+</html>
