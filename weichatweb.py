@@ -39,28 +39,6 @@ conf = WechatConf(
 wechat = WechatBasic(conf=conf)
 
 
-# 菜单设置
-menu_data = {
-    "button": [
-        {
-            "type": "view", 
-            "name": "发任务", 
-            "url": "http://www.baidu.com"
-        }, 
-        {
-            "type": "view", 
-            "name": "接任务", 
-            "url": "http://www.baidu.com"
-        }, 
-        {
-            "type": "view", 
-            "name": "设置", 
-            "url": "http://www.baidu.com"
-        }
-    ]
-}
-
-
 # flask实例化
 app = Flask(__name__)
 
