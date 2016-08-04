@@ -111,9 +111,31 @@ def wechat_auth():
             # print "信息内容:"+str(rec_content)
 
             if rec_type == 'subscribe':  # 关注事件(包括普通关注事件和扫描二维码造成的关注事件)
-                key = wechat.message.key                        # 对应于 XML 中的 EventKey (普通关注事件时此值为 None)
-                ticket = wechat.message.ticket                  # 对应于 XML 中的 Ticket (普通关注事件时此值为 None)
+                key = wechat.message.key           # 对应于 XML 中的 EventKey (普通关注事件时此值为 None)
+                ticket = wechat.message.ticket     # 对应于 XML 中的 Ticket (普通关注事件时此值为 None)
                 return wechat.response_text("欢迎加入赏金猎人公会!")
+
+            elif rec_type == 'click':  # 自定义菜单点击事件
+                key = wechat.message.key           # 对应于 XML 中的 EventKey
+                if key == 'TODAY_MISSIONS':
+                    feedback = wechat.response_news([
+                        {
+                            'title': u'IT类项目',
+                            'picurl': u'http://o7m541j22.bkt.clouddn.com/biznetwork.png',
+                            'description': u'Cisco、Oracle、Linux相关',
+                            'url': u'http://www.baidu.com/',
+                        },{
+                            'title': u'非IT类项目',
+                            'picurl': u'http://o7m541j22.bkt.clouddn.com/biznetwork.png',
+                            'description': u'其他和IT相关的非技术性任务',
+                            'url': u'http://www.baidu.com/',
+                        }
+
+                    ])
+                    return feedback
+                else:
+                    pass
+
             elif rec_type == 'text':
                 rec_content = wechat.message.content
                 print "消息id:"+str(rec_id)
@@ -203,7 +225,7 @@ def wechat_auth():
 
 
 
-# 菜单函数
+
 # 微信验证
 @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
 def new_mission():
@@ -218,7 +240,8 @@ def new_mission():
         print 'nsukey:'+nsukey
 
         # 通过code获取openid
-        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
+        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+
+            APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
         req_openid = requests.get(url_openid)
 
         openid = req_openid.json().get('openid')
@@ -227,11 +250,12 @@ def new_mission():
 
 
         # 通过openid获取用户资料
-        url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
+        url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+
+            "&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
         userinfo = req_userinfo.json()
-        # 处理乱码
 
+        # 从资料中提取具体信息
         nickname = userinfo.get('nickname')
         url_openid = userinfo.get('url_openid')
         url_userinfo = userinfo.get('url_userinfo')
@@ -245,16 +269,11 @@ def new_mission():
         province = codefix(province)
         city = codefix(city)
         country = codefix(country)
-        
 
-        # s = s.decode('utf-8')
-        # return str(s)
-        # return jsonify(req_userinfo.json())
-        # return render_template('t1.html',nickname = codefix(nickname),url_openid = codefix(url_openid),url_userinfo = codefix(url_userinfo),
-            # sex = codefix(sex), province = codefix(province), city=codefix(city),country = codefix(country),headimgurl = codefix(headimgurl))
 
-        return render_template('t1.html',nickname = nickname,url_openid = url_openid,url_userinfo = url_userinfo,
-            sex = sex, province = province, city=city,country = country,headimgurl = headimgurl)
+        return render_template('t1.html',nickname = nickname,url_openid = url_openid,
+            url_userinfo = url_userinfo,sex = sex, province = province, city=city,
+            country = country,headimgurl = headimgurl)
 
 
         # return url_userinfo
@@ -265,6 +284,66 @@ def new_mission():
     else:
         pass
     # 菜单设置
+
+# 微信验证
+@app.route('/wechat/myinfo', methods = ['GET', 'POST'])
+def myinfo():
+    if request.method == 'GET':
+        # 参数接收获取code
+        query = request.args 
+        code = query.get('code', '')  
+        state = query.get('state', '')
+        nsukey = query.get('nsukey', '')
+        print 'code:'+code
+        print 'state:'+state
+        print 'nsukey:'+nsukey
+
+        # 通过code获取openid
+        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+
+            APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
+        req_openid = requests.get(url_openid)
+
+        openid = req_openid.json().get('openid')
+        access_token = req_openid.json().get('access_token')
+        # return openid
+
+
+        # 通过openid获取用户资料
+        url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+
+            access_token+"&openid="+openid+"&lang=zh_CN"
+        req_userinfo = requests.get(url_userinfo)
+        userinfo = req_userinfo.json()
+
+        # 从资料中提取具体信息
+        nickname = userinfo.get('nickname')
+        url_openid = userinfo.get('url_openid')
+        url_userinfo = userinfo.get('url_userinfo')
+        sex = userinfo.get('sex')
+        province = userinfo.get('province')
+        city = userinfo.get('city')
+        country = userinfo.get('country')
+        headimgurl = userinfo.get('headimgurl')
+        # 修正编码格式
+        nickname = codefix(nickname)
+        province = codefix(province)
+        city = codefix(city)
+        country = codefix(country)
+
+        # 返回渲染页面
+        return render_template('t1.html',nickname = nickname,url_openid = url_openid,
+            url_userinfo = url_userinfo,sex = sex, province = province, city=city,
+            country = country,headimgurl = headimgurl)
+
+    elif request.method == 'POST':
+        return render_template('new_mission.html')
+    else:
+        pass
+    # 菜单设置
+
+
+
+
+
 
 
 # 运行主函数

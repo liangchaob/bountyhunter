@@ -58,6 +58,39 @@ menu_data = {
     ]
 }
 
+
+
+menu_data2 =  {
+     "button":[
+      {
+          "type": "view", 
+          "name": "发任务", 
+          "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fnew_mission&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+      },
+      {  
+          "type":"click",
+          "name":"接任务",
+          "key":"TODAY_MISSIONS"
+      },
+      {
+           "name":"设置",
+           "sub_button":[
+           {  
+               "type":"view",
+               "name":"个人中心",
+               "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmyinfo&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+            },
+            {
+               "type":"view",
+               "name":"帮助",
+               "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fhelp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+            }]
+       }]
+ }
+
+
+
+
 url2 = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token="+access_token
 
 r2 = requests.post(url2, data = menu_data, headers = headers)
