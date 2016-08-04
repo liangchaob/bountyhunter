@@ -222,7 +222,7 @@ def new_mission():
         # 通过openid获取用户资料
         url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
-        return req_userinfo.text
+        return req_userinfo.text.encoding('utf-8')
 
         # 验证
         # if wechat.check_signature(signature, timestamp, nonce):
