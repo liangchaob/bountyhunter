@@ -232,6 +232,7 @@ def new_mission():
         userinfo = req_userinfo.json()
         # 处理乱码
 
+        nickname = userinfo.get('nickname')
         url_openid = userinfo.get('url_openid')
         url_userinfo = userinfo.get('url_userinfo')
         sex = userinfo.get('sex')
