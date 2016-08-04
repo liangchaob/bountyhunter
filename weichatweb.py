@@ -240,8 +240,7 @@ def new_mission():
         print 'nsukey:'+nsukey
 
         # 通过code获取openid
-        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+
-            APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
+        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
         req_openid = requests.get(url_openid)
 
         openid = req_openid.json().get('openid')
@@ -250,8 +249,7 @@ def new_mission():
 
 
         # 通过openid获取用户资料
-        url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+
-            "&openid="+openid+"&lang=zh_CN"
+        url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
         userinfo = req_userinfo.json()
 
@@ -299,8 +297,7 @@ def myinfo():
         print 'nsukey:'+nsukey
 
         # 通过code获取openid
-        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+
-            APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
+        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
         req_openid = requests.get(url_openid)
 
         openid = req_openid.json().get('openid')
