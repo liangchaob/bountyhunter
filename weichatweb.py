@@ -65,6 +65,13 @@ menu_data = {
 app = Flask(__name__)
 
 
+
+def codefix(s):
+    s = s.encode('ISO-8859-1')
+    s = s.decode('UTF-8')
+    return s
+
+
 # 微信验证
 @app.route('/wechat_auth', methods = ['GET', 'POST'])
 def wechat_auth():
@@ -222,11 +229,8 @@ def new_mission():
         # 通过openid获取用户资料
         url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
-        userinfo = req_userinfo.text
+        userinfo = req_userinfo.json()
         # 处理乱码
-        userinfo = userinfo.encode('ISO-8859-1')
-        userinfo = userinfo.decode('UTF-8')
-        userinfo = json.loads(userinfo)
 
         url_openid = userinfo.get('url_openid')
         url_userinfo = userinfo.get('url_userinfo')
@@ -239,8 +243,8 @@ def new_mission():
         # s = s.decode('utf-8')
         # return str(s)
         # return jsonify(req_userinfo.json())
-        return render_template('t1.html',nickname = nickname,url_openid = url_openid,url_userinfo = url_userinfo,
-            sex = sex, province = province, city=city,country = country,headimgurl= headimgurl)
+        return render_template('t1.html',nickname = codefix(nickname),url_openid = codefix(url_openid),url_userinfo = codefix(url_userinfo),
+            sex = codefix(sex), province = codefix(province), city=codefix(city),country = codefix(country),headimgurl= codefix(headimgurl))
         # return url_userinfo
 
 
