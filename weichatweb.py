@@ -222,16 +222,19 @@ def new_mission():
         # 通过openid获取用户资料
         url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
-        nickname = req_userinfo.json().get('nickname')
-        nickname = nickname.encode('ISO-8859-1')
-        nickname = nickname.decode('UTF-8')
-        url_openid = req_userinfo.json().get('url_openid')
-        url_userinfo = req_userinfo.json().get('url_userinfo')
-        sex = req_userinfo.json().get('sex')
-        province = req_userinfo.json().get('province')
-        city = req_userinfo.json().get('city')
-        country = req_userinfo.json().get('country')
-        headimgurl = req_userinfo.json().get('headimgurl')
+        userinfo = req_userinfo.text
+        # 处理乱码
+        userinfo = userinfo.encode('ISO-8859-1')
+        userinfo = userinfo.decode('UTF-8')
+        userinfo = json.loads(userinfo)
+
+        url_openid = userinfo.get('url_openid')
+        url_userinfo = userinfo.get('url_userinfo')
+        sex = userinfo.get('sex')
+        province = userinfo.get('province')
+        city = userinfo.get('city')
+        country = userinfo.get('country')
+        headimgurl = userinfo.get('headimgurl')
 
         # s = s.decode('utf-8')
         # return str(s)
