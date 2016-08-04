@@ -240,6 +240,7 @@ def new_mission():
         city = userinfo.get('city')
         country = userinfo.get('country')
         headimgurl = userinfo.get('headimgurl')
+        nickname = codefix(nickname)
 
         # s = s.decode('utf-8')
         # return str(s)
