@@ -223,6 +223,7 @@ def new_mission():
         url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
         s = req_userinfo.json().get('nickname')
+        s = s.encode('utf-8')
         return str(s.decode('utf-8'))
         # return jsonify(req_userinfo.json())
         # return url_userinfo
