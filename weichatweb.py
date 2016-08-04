@@ -209,7 +209,7 @@ def new_mission():
         print 'state:'+state
         print 'nsukey:'+nsukey
         # return render_template('new_mission.html')
-        return code
+        # return code
 
         APPID = 'wxa9312a82e8138370'
         APPSECRET = '3f87fbd58c9013a0b0190bda28a4acc5'
