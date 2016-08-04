@@ -338,7 +338,7 @@ def myinfo():
 
 
 # 帮助页面
-@app.route('/wechat/apphelp', methods = ['GET', 'POST'])
+@app.route('/wechat/help', methods = ['GET', 'POST'])
 def apphelp():
     if request.method == 'GET':
         return render_template('help.html')
