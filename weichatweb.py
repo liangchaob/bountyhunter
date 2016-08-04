@@ -12,6 +12,7 @@ sys.path.append("./")
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
+import requests
 import time  
 from flask import Flask,request, make_response  ,render_template
 import hashlib  
@@ -21,6 +22,10 @@ from wechat_sdk import WechatConf
 from wechat_sdk import WechatBasic
 # 微信xml解析类
 from wechat_sdk.exceptions import ParseError
+
+
+APPID = 'wxa9312a82e8138370'
+APPSECRET = '3f87fbd58c9013a0b0190bda28a4acc5'
 
 
 # 配置参数
@@ -205,7 +210,18 @@ def new_mission():
         print 'state:'+state
         print 'nsukey:'+nsukey
         # return render_template('new_mission.html')
-        return code
+        # return code
+
+
+
+
+        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+CODE+"&grant_type=authorization_code"
+
+        r = requests.get(url_openid)
+
+        openid = r.json().get('openid')
+        return openid
+
         # 验证
         # if wechat.check_signature(signature, timestamp, nonce):
         #     print 'Accept'
