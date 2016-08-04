@@ -210,13 +210,13 @@ def new_mission():
         print 'state:'+state
         print 'nsukey:'+nsukey
         # return render_template('new_mission.html')
-        # return code
+        return code
 
 
 
 
-        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+CODE+"&grant_type=authorization_code"
-        return url_openid
+        # url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+CODE+"&grant_type=authorization_code"
+        # return url_openid
         # r = requests.get(url_openid)
 
         # openid = r.json().get('openid')
