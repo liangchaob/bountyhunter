@@ -37,33 +37,26 @@ headers = { "Accept":"text/html,application/xhtml+xml,application/xml;",
 
 
 # 菜单设置
-menu_data =  {
-     "button":[
-     {  
-          "type":"click",
-          "name":"今日歌曲",
-          "key":"V1001_TODAY_MUSIC"
-      },
-      {
-           "name":"菜单",
-           "sub_button":[
-           {    
-               "type":"view",
-               "name":"搜索",
-               "url":"http://www.soso.com/"
-            },
-            {
-               "type":"view",
-               "name":"视频",
-               "url":"http://v.qq.com/"
-            },
-            {
-               "type":"click",
-               "name":"赞一下我们",
-               "key":"V1001_GOOD"
-            }]
-       }]
- }
+menu_data =  # 菜单设置
+menu_data = {
+    "button": [
+        {
+            "type": "view", 
+            "name": "发任务", 
+            "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fnew_mission&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+        }, 
+        {
+            "type": "view", 
+            "name": "接任务", 
+            "url": "http://www.baidu.com"
+        }, 
+        {
+            "type": "view", 
+            "name": "设置", 
+            "url": "http://www.baidu.com"
+        }
+    ]
+}
 
 url2 = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token="+access_token
 

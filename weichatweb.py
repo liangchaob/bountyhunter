@@ -204,7 +204,8 @@ def new_mission():
         print 'code:'+code
         print 'state:'+state
         print 'nsukey:'+nsukey
-        return render_template('new_mission.html')
+        # return render_template('new_mission.html')
+        return code
         # 验证
         # if wechat.check_signature(signature, timestamp, nonce):
         #     print 'Accept'
