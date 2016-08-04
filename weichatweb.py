@@ -227,7 +227,7 @@ def new_mission():
         s = s.decode('utf-8')
         # return str(s)
         # return jsonify(req_userinfo.json())
-        return render_template('t1.html',nickname = s)
+        return render_template('t1.html',nickname = s,url_openid = url_openid,url_userinfo = url_userinfo)
         # return url_userinfo
 
 
