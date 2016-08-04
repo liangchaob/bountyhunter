@@ -243,8 +243,8 @@ def new_mission():
         # s = s.decode('utf-8')
         # return str(s)
         # return jsonify(req_userinfo.json())
-        return render_template('t1.html',nickname = codefix(nickname),url_openid = codefix(url_openid),url_userinfo = codefix(url_userinfo),
-            sex = codefix(sex), province = codefix(province), city=codefix(city),country = codefix(country),headimgurl= codefix(headimgurl))
+        return render_template('t1.html',nickname = nickname,url_openid = url_openid,url_userinfo = url_userinfo,
+            sex = sex, province = province, city=city,country = country,headimgurl= headimgurl)
         # return url_userinfo
 
 
