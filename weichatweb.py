@@ -306,8 +306,7 @@ def myinfo():
 
 
         # 通过openid获取用户资料
-        url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+
-            access_token+"&openid="+openid+"&lang=zh_CN"
+        url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
         userinfo = req_userinfo.json()
 
