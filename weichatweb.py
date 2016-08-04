@@ -216,11 +216,11 @@ def new_mission():
 
 
         url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+CODE+"&grant_type=authorization_code"
+        return url_openid
+        # r = requests.get(url_openid)
 
-        r = requests.get(url_openid)
-
-        openid = r.json().get('openid')
-        return openid
+        # openid = r.json().get('openid')
+        # return openid
 
         # 验证
         # if wechat.check_signature(signature, timestamp, nonce):
