@@ -222,16 +222,11 @@ def new_mission():
         # 通过openid获取用户资料
         url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
-        return jsonify(req_userinfo.json())
+        s = req_userinfo.json().get('nickname')
+        return s.decode('utf-8')
+        # return jsonify(req_userinfo.json())
         # return url_userinfo
 
-        # 验证
-        # if wechat.check_signature(signature, timestamp, nonce):
-        #     print 'Accept'
-        #     return nsukey
-        # else:
-        #     print 'Wrong'
-        #     return 'nothing happend!'
 
     elif request.method == 'POST':
         return render_template('new_mission.html')
@@ -244,22 +239,6 @@ def new_mission():
 if __name__ == '__main__':
     # 对外开放80端口
     app.run(host='0.0.0.0',port=80,debug=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
