@@ -201,7 +201,7 @@ def wechat_auth():
 @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
 def new_mission():
     if request.method == 'GET':
-        # 参数接收
+        # 参数接收获取code
         query = request.args 
         code = query.get('code', '')  
         state = query.get('state', '')
@@ -209,11 +209,20 @@ def new_mission():
         print 'code:'+code
         print 'state:'+state
         print 'nsukey:'+nsukey
-        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
-        r = requests.get(url_openid)
 
-        openid = r.json().get('openid')
-        return openid
+        # 通过code获取openid
+        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
+        req_openid = requests.get(url_openid)
+
+        openid = req_openid.json().get('openid')
+        access_token = req_openid.json().get('access_token')
+        # return openid
+
+
+        # 通过openid获取用户资料
+        url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
+        req_userinfo = requests.get(url_userinfo)
+        return req_userinfo.json()
 
         # 验证
         # if wechat.check_signature(signature, timestamp, nonce):
