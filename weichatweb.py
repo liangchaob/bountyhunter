@@ -14,7 +14,7 @@ sys.setdefaultencoding( "utf-8" )
 
 import requests
 import time  
-from flask import Flask,request, make_response  ,render_template
+from flask import Flask,request, make_response,render_template,jsonify
 import hashlib  
 # 微信配置类
 from wechat_sdk import WechatConf
@@ -222,8 +222,8 @@ def new_mission():
         # 通过openid获取用户资料
         url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
-        # return req_userinfo.text
-        return url_userinfo
+        return jsonify(req_userinfo.text)
+        # return url_userinfo
 
         # 验证
         # if wechat.check_signature(signature, timestamp, nonce):
