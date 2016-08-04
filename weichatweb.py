@@ -225,7 +225,7 @@ def new_mission():
         s = req_userinfo.json().get('nickname')
 
         s = s.encode('gb2312')
-        return s
+        return str(s)
         # return jsonify(req_userinfo.json())
         # return url_userinfo
 
