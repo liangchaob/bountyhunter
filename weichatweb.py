@@ -226,7 +226,7 @@ def wechat_auth():
 
 
 
-# 微信验证
+# 新任务
 @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
 def new_mission():
     if request.method == 'GET':
@@ -283,7 +283,7 @@ def new_mission():
         pass
     # 菜单设置
 
-# 微信验证
+# 个人中心
 @app.route('/wechat/myinfo', methods = ['GET', 'POST'])
 def myinfo():
     if request.method == 'GET':
@@ -334,9 +334,16 @@ def myinfo():
         return render_template('new_mission.html')
     else:
         pass
-    # 菜单设置
 
 
+
+# 帮助页面
+@app.route('/wechat/apphelp', methods = ['GET', 'POST'])
+def apphelp():
+    if request.method == 'GET':
+        return render_template('help.html')
+    else:
+        pass
 
 
 
