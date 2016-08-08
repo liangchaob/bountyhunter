@@ -248,61 +248,7 @@ def mission(mission_id):
 
 
 
-# 数据库查询
-def dbget(result,listobj):
-    jsonobj = {}
-    for item in listobj:
-        jsonobj.update({item:result.get(item)})
-    return jsonobj
 
-# 数据库更新
-def dbupdate(request,listobj):
-    jsonobj = {}
-    for item in listobj:
-        jsonobj.update({item:request.form(item)})
-    return jsonobj
-
-# 任务
-@app.route('/mission/<missionid>', methods = ['GET', 'POST'])
-def mission(missionid):
-    # 获取单个任务
-    if request.method == 'GET':
-        try:
-            result = collection_mission.find_one({'id':missionid})
-            # 创建查询到的json表单
-            jsonobj = dbget(result,LIST_MISSION)
-            return jsonify(jsonobj)
-        except:
-            return errcode.failed()
-    # 更改任务信息
-    elif request.method == 'POST':
-        # 参数接收
-        try:
-            collection_mission.update({'mid':mid},{
-                '$set':{
-                    'mid':request.form['mid'],
-                    'name':request.form['name'],
-                    'mtype':request.form['mtype'],
-                    'deadline':request.form['deadline'],
-                    'description':request.form['description'],
-                    'reward':request.form['reward'],
-                    'skillneed':request.form['skillneed'],
-                    'feedback':request.form['feedback'],
-                    'state':request.form['stat'],
-                    'publisher':request.form['publisher'],
-                    'bidders':request.form['bidders'],
-                    'employer':request.form['employer'],
-                    'comment':request.form['comment'],
-                    'feedback':request.form['feedback'],
-                    'publishtime':request.form['publishtime']
-                    }
-                })
-
-            return errcode.success()
-        except:
-            return errcode.failed()
-    else:
-        return 'nothing happend!'
 
 # 全部任务
 @app.route('/mission/', methods = ['GET', 'POST'])
