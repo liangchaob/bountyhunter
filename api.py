@@ -22,10 +22,6 @@ import json
 
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 # 数据库相关
 # 测试
 MONGODB_ADDR = '172.16.191.163'
@@ -53,7 +49,6 @@ collection_user.ensure_index('id', unique=True)
 
 # 任务表
 collection_mission = db['mission']
-<<<<<<< HEAD
 collection_mission.ensure_index('mission_id', unique=True)
 
 
@@ -66,23 +61,6 @@ collection_comment.ensure_index('comment_id', unique=True)
 
 collection_feedback = db['feedback']
 collection_feedback.ensure_index('feedback_id', unique=True)
-=======
-collection_mission.ensure_index('id', unique=True)
-
-# 技能表
-collection_skill = db['skill']
-collection_skill.ensure_index('id', unique=True)
-
-# 评价表
-collection_comment = db['comment']
-collection_comment.ensure_index('id', unique=True)
-
-# 留言表
-collection_message = db['message']
-collection_message.ensure_index('id', unique=True)
-
-
->>>>>>> origin/master
 
 
 
@@ -90,10 +68,7 @@ collection_message.ensure_index('id', unique=True)
 # flask实例化
 app = Flask(__name__)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
 # 设计err返回码
 class codeReturn(object):
     def success(self):
@@ -115,7 +90,6 @@ def user(openid):
     # 获取指定用户信息
     if request.method == 'GET':
         try:
-<<<<<<< HEAD
             result = collection_user.find_one({'openid':openid})
             jsonobj = {
                 'openid':result.get('openid'),
@@ -133,14 +107,6 @@ def user(openid):
                 'email':result.get('email'),
                 'mobile':result.get('mobile')
 
-=======
-            result = collection_user.find_one({'id':openid})
-            jsonobj = {
-                'id':result.get('openid'),
-                'skills':result.get('skills'),
-                'certity':result.get('certity'),
-                'state':result.get('state')
->>>>>>> origin/master
                 }
             return jsonify(jsonobj)
         except:
@@ -149,7 +115,6 @@ def user(openid):
     elif request.method == 'POST':
         # 参数接收
         try:
-<<<<<<< HEAD
             collection_user.update({'openid':openid},
                 {'$set':{
                     'openid':request.form['openid'],
@@ -168,10 +133,6 @@ def user(openid):
                     'mobile':request.form['mobile']
                     }
                 })
-=======
-            collection_user.update({'openid':openid},{'$set':{'skills':skills,'certity':certity,
-                'state':state}})
->>>>>>> origin/master
             return errcode.success()
         except:
             return errcode.failed()
@@ -211,7 +172,6 @@ def users():
     elif request.method == 'POST':
         # 参数接收
         try:
-<<<<<<< HEAD
             collection_user.insert_one({
                 'openid':request.form['openid'],
                 'intro':request.form['intro'],
@@ -229,18 +189,12 @@ def users():
                 'mobile':request.form['mobile']
                 })
             return errcode.success()
-=======
-            collection_user.insert_one({'openid':openid,'skills':skills,'certity':certity
-                ,'state':state})
-            return 'insert ok!'
->>>>>>> origin/master
         except:
             return errcode.failed()     
     else:
         return 'nothing happend!'
 
 
-<<<<<<< HEAD
 # 任务
 @app.route('/mission/<mission_id>', methods = ['GET', 'POST'])
 def mission(mission_id):
@@ -347,66 +301,6 @@ def mission(missionid):
             return errcode.success()
         except:
             return errcode.failed()
-=======
-LIST_MISSION = ['mid','name','mtype','deadline','description','reward','skillneed','feedback',
-'state','publisher','bidders','employer','comment','feedback','publishtime']
-
-
-
-# 数据库查询
-def dbget(result,listobj):
-    jsonobj = {}
-    for item in listobj:
-        jsonobj.update({item:result.get(item)})
-    return jsonobj
-
-# 数据库更新
-def dbupdate(request,listobj):
-    jsonobj = {}
-    for item in listobj:
-        jsonobj.update({item:request.form(item)})
-    return jsonobj
-
-# 任务
-@app.route('/mission/<missionid>', methods = ['GET', 'POST'])
-def mission(missionid):
-    # 获取单个任务
-    if request.method == 'GET':
-        try:
-            result = collection_mission.find_one({'id':missionid})
-            # 创建查询到的json表单
-            jsonobj = dbget(result,LIST_MISSION)
-            return jsonify(jsonobj)
-        except:
-            return errcode.failed()
-    # 更改任务信息
-    elif request.method == 'POST':
-        # 参数接收
-        try:
-            collection_mission.update({'mid':mid},{
-                '$set':{
-                    'mid':request.form['mid'],
-                    'name':request.form['name'],
-                    'mtype':request.form['mtype'],
-                    'deadline':request.form['deadline'],
-                    'description':request.form['description'],
-                    'reward':request.form['reward'],
-                    'skillneed':request.form['skillneed'],
-                    'feedback':request.form['feedback'],
-                    'state':request.form['stat'],
-                    'publisher':request.form['publisher'],
-                    'bidders':request.form['bidders'],
-                    'employer':request.form['employer'],
-                    'comment':request.form['comment'],
-                    'feedback':request.form['feedback'],
-                    'publishtime':request.form['publishtime']
-                    }
-                })
-
-            return errcode.success()
-        except:
-            return errcode.failed()
->>>>>>> origin/master
     else:
         return 'nothing happend!'
 
