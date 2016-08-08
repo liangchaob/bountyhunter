@@ -301,31 +301,36 @@ def missions():
         return 'nothing happend!'
 
 # 技能
-@app.route('/skill/<skillid>', methods = ['GET', 'POST'])
-def skill(skillid):
+@app.route('/skill/<skill_id>', methods = ['GET', 'POST'])
+def skill(skill_id):
     # 获取单个技能
     if request.method == 'GET':
         try:
-            result = collection_skill.find_one({'skillid':skillid})
-            jsonobj = {'skillid':result.get('skillid'),'name':result.get('name'),
-            'tag':result.get('tag'),'description':result.get('description'),'CA':result.get('CA')}
+            result = collection_skill.find_one({'skill_id':skill_id})
+            jsonobj = {
+                'skill_id':result.get('skill_id'),
+                'name':result.get('name'),
+                'description':result.get('description'),
+                'certification':result.get('certification')
+            }
             return jsonify(jsonobj)
         except:
-            return 'search fail!'
+            return errcode.failed()
     # 更改技能信息
     elif request.method == 'POST':
         # 参数接收
-        skillid = request.form['skillid']
-        name = request.form['name']
-        tag = request.form['tag']
-        description = request.form['description']
-        CA = request.form['CA']
         try:
-            collection_skill.update({'skillid':skillid},{'$set':{'name':name,
-                'tag':tag,'description':description,'CA':CA}})
-            return 'update ok!'
+            collection_skill.update({'skill_id':skill_id},{
+                '$set':{
+                    'skill_id':request.form['skill_id']
+                    'name':request.form['name'],
+                    'description':request.form['description'],
+                    'certification':request.form['certification']
+                    }
+                })
+            return errcode.success()
         except:
-            return 'update fail!'
+            return errcode.failed()
     # 其它
     else:
         return 'nothing happend!'
@@ -337,8 +342,12 @@ def skills():
     if request.method == 'GET':        
         jsonlist = []
         for item in collection_skill.find({}):
-            jsonlist.append({'skillid':item.get('skillid'),'name':item.get('name'),
-                'tag':item.get('tag'),'description':item.get('description'),'CA':item.get('CA')})
+            jsonlist.append({
+                'skill_id':item.get('skill_id'),
+                'name':item.get('name'),
+                'description':item.get('description'),
+                'certification':item.get('certification')
+                })
         jsonobj = {'skill':jsonlist}
         return jsonify(jsonobj)
     # post - 添加新技能
@@ -350,66 +359,166 @@ def skills():
         description = request.form['description']
         CA = request.form['CA']
         try:
-            collection_skill.insert_one({'skillid':skillid,'name':name,'tag':tag,
-                'description':description,'CA':CA})
-            return 'insert ok!'
+            collection_skill.insert_one({
+                'skill_id':request.form['skill_id']
+                'name':request.form['name'],
+                'description':request.form['description'],
+                'certification':request.form['certification']                
+                })
+            return errcode.success()
         except:
-            return 'insert failed!'      
+            return errcode.failed()
     else:
         return 'nothing happend!'
 
-# 标签
-@app.route('/tag/<tagid>', methods = ['GET', 'POST'])
-def tag(tagid):
-    # 获取单个标签
+# 留言
+@app.route('/comment/<comment_id>', methods = ['GET', 'POST'])
+def comment(comment_id):
+    # 获取单个留言
     if request.method == 'GET':
         try:
-            result = collection_tag.find_one({'tagid':tagid})
-            jsonobj = {'tagid':result.get('tagid'),'name':result.get('name'),
-            'description':result.get('description')}
+            result = collection_comment.find_one({'comment_id':comment_id})
+            jsonobj = {
+                'comment_id':result.get('comment_id'),
+                'mission_id':result.get('mission_id'),
+                'openid':result.get('openid'),
+                'content':result.get('content')
+                }
             return jsonify(jsonobj)
         except:
-            return 'search fail!'
-    # 更改标签
+            return errcode.failed()
+    # 更改留言
     elif request.method == 'POST':
         # 参数接收
-        tagid = request.form['tagid']
-        name = request.form['name']
-        description = request.form['description']
         try:
-            collection_tag.update({'tagid':tagid},{'$set':{'name':name,
-                'description':description}})
-            return 'update ok!'
+            collection_comment.update({'tagid':tagid},{
+                '$set':{
+                    'comment_id':request.form['comment_id'],
+                    'mission_id':request.form['mission_id'],
+                    'openid':request.form['openid'],
+                    'content':request.form['content']
+                    }
+                })
+            return errcode.success()
         except:
-            return 'update fail!'
+            return errcode.failed()
     # 其它
     else:
         return 'nothing happend!'
 
-# 全部标签
-@app.route('/tag/', methods = ['GET', 'POST'])
-def tags():
-    # get - 获取全部标签信息
+# 全部留言
+@app.route('/comment/', methods = ['GET', 'POST'])
+def comments():
+    # get - 获取全部留言信息
     if request.method == 'GET':        
         jsonlist = []
-        for item in collection_tag.find({}):
-            jsonlist.append({'tagid':item.get('tagid'),'name':item.get('name'),
-                'description':item.get('description'),})
-        jsonobj = {'tag':jsonlist}
+        for item in collection_comment.find({}):
+            jsonlist.append({
+                'comment_id':item.get('comment_id'),
+                'mission_id':item.get('mission_id'),
+                'openid':item.get('openid'),
+                'content':item.get('content')
+                })
+        jsonobj = {'comment':jsonlist}
         return jsonify(jsonobj)
-    # post - 添加新标签
+    # post - 添加新留言
     elif request.method == 'POST':
         # 参数接收
-        tagid = request.form['tagid']
-        name = request.form['name']
-        description = request.form['description']
         try:
-            collection_tag.insert_one({'tagid':tagid,'name':name,'description':description})
-            return 'insert ok!'
+            collection_comment.insert_one({
+                'comment_id':request.form['comment_id'],
+                'mission_id':request.form['mission_id'],
+                'openid':request.form['openid'],
+                'content':request.form['content']
+                })
+            return errcode.success()
         except:
-            return 'insert failed!'      
+            return errcode.failed()     
     else:
         return 'nothing happend!'
+
+
+
+
+
+# 评价
+@app.route('/feedback/<feedback_id>', methods = ['GET', 'POST'])
+def feedback(feedback_id):
+    # 获取单个评价
+    if request.method == 'GET':
+        try:
+            result = collection_feedback.find_one({'feedback_id':feedback_id})
+            jsonobj = {
+                'feedback_id':result.get('feedback_id'),
+                'mission_id':result.get('mission_id'),
+                'publisher':result.get('publisher'),
+                'acceptor':result.get('acceptor'),
+                'content':result.get('content'),
+                'stars':result.get('stars')
+                }
+            return jsonify(jsonobj)
+        except:
+            return errcode.failed()
+    # 更改评价
+    elif request.method == 'POST':
+        # 参数接收
+        try:
+            collection_feedback.update({'tagid':tagid},{
+                '$set':{
+                    'feedback_id':request.form['feedback_id'],
+                    'mission_id':request.form['mission_id'],
+                    'publisher':request.form['publisher'],
+                    'acceptor':request.form['acceptor'],
+                    'content':request.form['content'],
+                    'stars':request.form['stars']
+                    }
+                })
+            return errcode.success()
+        except:
+            return errcode.failed()
+    # 其它
+    else:
+        return 'nothing happend!'
+
+# 全部评价
+@app.route('/feedback/', methods = ['GET', 'POST'])
+def feedbacks():
+    # get - 获取全部评价信息
+    if request.method == 'GET':        
+        jsonlist = []
+        for item in collection_feedback.find({}):
+            jsonlist.append({
+                'feedback_id':item.get('feedback_id'),
+                'mission_id':item.get('mission_id'),
+                'publisher':item.get('publisher'),
+                'acceptor':item.get('acceptor'),
+                'content':item.get('content'),
+                'stars':item.get('stars')
+                })
+        jsonobj = {'feedback':jsonlist}
+        return jsonify(jsonobj)
+    # post - 添加新评价
+    elif request.method == 'POST':
+        # 参数接收
+        try:
+            collection_feedback.insert_one({
+                'feedback_id':request.form['feedback_id'],
+                'mission_id':request.form['mission_id'],
+                'publisher':request.form['publisher'],
+                'acceptor':request.form['acceptor'],
+                'content':request.form['content'],
+                'stars':request.form['stars']
+                })
+            return errcode.success()
+        except:
+            return errcode.failed()     
+    else:
+        return 'nothing happend!'
+
+
+
+
+
 
 # 运行主函数
 if __name__ == '__main__':
