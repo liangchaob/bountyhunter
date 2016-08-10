@@ -24,14 +24,14 @@ import json
 
 # 数据库相关
 # 测试
-MONGODB_ADDR = '172.16.191.163'
-MONGODB_PORT = 27017
+# MONGODB_ADDR = '172.16.191.163'
+# MONGODB_PORT = 27017
 MONGODB_DB = 'local'
 
 # 生产
-# MONGODB_ADDR = '10.10.72.139'
-# MONGODB_PORT = 27017
-# MONGODB_DB = 'dlR8NJgeiK3TsOkj'
+MONGODB_ADDR = '10.10.72.139'
+MONGODB_PORT = 27017
+MONGODB_DB = 'dlR8NJgeiK3TsOkj'
 
 # 设置数据库地址
 client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
@@ -40,7 +40,7 @@ client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
 db = client[MONGODB_DB]
 
 # 生产认证
-# db.authenticate("udkIqOwPYlfMZAXn","psfuF7gNhBriTZHWl")
+db.authenticate("udkIqOwPYlfMZAXn","psfuF7gNhBriTZHWl")
 
 # 设置表名,建立为索引
 # 用户表
@@ -224,7 +224,7 @@ def mission(mission_id):
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_mission.update({'missionid':missionid},{
+            collection_mission.update({'mission_id':mission_id},{
                 '$set':{
                     'mission_id':request.form['mission_id'],
                     'name':request.form['name'],
@@ -386,7 +386,7 @@ def comment(comment_id):
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_comment.update({'tagid':tagid},{
+            collection_comment.update({'comment_id':comment_id},{
                 '$set':{
                     'comment_id':request.form['comment_id'],
                     'mission_id':request.form['mission_id'],
@@ -458,7 +458,7 @@ def feedback(feedback_id):
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_feedback.update({'tagid':tagid},{
+            collection_feedback.update({'feedback_id':feedback_id},{
                 '$set':{
                     'feedback_id':request.form['feedback_id'],
                     'mission_id':request.form['mission_id'],
@@ -518,6 +518,6 @@ def feedbacks():
 # 运行主函数
 if __name__ == '__main__':
     # 测试
-    app.run(host='0.0.0.0',port=8080,debug=True)
+    # app.run(host='0.0.0.0',port=8080,debug=True)
     # 生产
-    # app.run(host='0.0.0.0',port=80,debug=False)
+    app.run(host='0.0.0.0',port=80,debug=False)
