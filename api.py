@@ -31,7 +31,7 @@ MONGODB_DB = 'local'
 # 生产
 MONGODB_ADDR = '10.10.72.139'
 MONGODB_PORT = 27017
-MONGODB_DB = 'dlR8NJgeiK3TsOkj'
+MONGODB_DB = 'MC7rOHPSiyGo9qJ4'
 
 # 设置数据库地址
 client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
@@ -40,7 +40,7 @@ client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
 db = client[MONGODB_DB]
 
 # 生产认证
-db.authenticate("udkIqOwPYlfMZAXn","psfuF7gNhBriTZHWl")
+db.authenticate("uhG05VAsSiBdRtQp","pdqBG5IHPi1E36wFC")
 
 # 设置表名,建立为索引
 # 用户表
