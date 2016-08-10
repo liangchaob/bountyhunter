@@ -42,13 +42,10 @@ wechat = WechatBasic(conf=conf)
 # flask实例化
 app = Flask(__name__)
 
-
-
 def codefix(s):
     s = s.encode('ISO-8859-1')
     s = s.decode('UTF-8')
     return s
-
 
 # 微信验证
 @app.route('/wechat_auth', methods = ['GET', 'POST'])
@@ -175,28 +172,6 @@ def wechat_auth():
                 ])
                 return feedback
 
-
-            # elif wechat.message.type == 'unsubscribe':  # 取消关注事件（无可用私有信息）
-            #     pass
-            # elif wechat.message.type == 'scan':  # 用户已关注时的二维码扫描事件
-            #     key = wechat.message.key                        # 对应于 XML 中的 EventKey
-            #     ticket = wechat.message.ticket                  # 对应于 XML 中的 Ticket
-            # elif wechat.message.type == 'location':  # 上报地理位置事件
-            #     latitude = wechat.message.latitude              # 对应于 XML 中的 Latitude
-            #     longitude = wechat.message.longitude            # 对应于 XML 中的 Longitude
-            #     precision = wechat.message.precision            # 对应于 XML 中的 Precision
-            # elif wechat.message.type == 'click':  # 自定义菜单点击事件
-            #     key = wechat.message.key                        # 对应于 XML 中的 EventKey
-            # elif wechat.message.type == 'view':  # 自定义菜单跳转链接事件
-            #     key = wechat.message.key                        # 对应于 XML 中的 EventKey
-            # elif wechat.message.type == 'templatesendjobfinish':  # 模板消息事件
-            #     status = wechat.message.status                  # 对应于 XML 中的 Status
-            # elif wechat.message.type in ['scancode_push', 'scancode_waitmsg', 'pic_sysphoto', 
-            #                              'pic_photo_or_album', 'pic_weixin', 'location_select']:  # 其他事件
-            #     key = wechat.message.key                        # 对应于 XML 中的 EventKey
-
-            
-
         except ParseError:
             print 'Invalid Body Text'
             return 'nothing'
@@ -225,7 +200,6 @@ def new_mission():
         access_token = req_openid.json().get('access_token')
         # return openid
 
-
         # 通过openid获取用户资料
         url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
@@ -245,14 +219,10 @@ def new_mission():
         province = codefix(province)
         city = codefix(city)
         country = codefix(country)
-
-
+        # 渲染
         return render_template('t1.html',nickname = nickname,url_openid = url_openid,
             url_userinfo = url_userinfo,sex = sex, province = province, city=city,
             country = country,headimgurl = headimgurl)
-
-
-        # return url_userinfo
 
 
     elif request.method == 'POST':
@@ -273,16 +243,12 @@ def myinfo():
         print 'code:'+code
         print 'state:'+state
         print 'nsukey:'+nsukey
-
         # 通过code获取openid
         url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
         req_openid = requests.get(url_openid)
-
         openid = req_openid.json().get('openid')
         access_token = req_openid.json().get('access_token')
         # return openid
-
-
         # 通过openid获取用户资料
         url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
@@ -313,8 +279,6 @@ def myinfo():
     else:
         pass
 
-
-
 # 帮助页面
 @app.route('/wechat/help', methods = ['GET', 'POST'])
 def apphelp():
@@ -322,9 +286,6 @@ def apphelp():
         return render_template('help.html')
     else:
         pass
-
-
-
 
 
 # 运行主函数
