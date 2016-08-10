@@ -322,7 +322,7 @@ def skill(skill_id):
         try:
             collection_skill.update({'skill_id':skill_id},{
                 '$set':{
-                    'skill_id':request.form['skill_id']
+                    'skill_id':request.form['skill_id'],
                     'name':request.form['name'],
                     'description':request.form['description'],
                     'certification':request.form['certification']
@@ -353,14 +353,9 @@ def skills():
     # post - 添加新技能
     elif request.method == 'POST':
         # 参数接收
-        skillid = request.form['skillid']
-        name = request.form['name']
-        tag = request.form['tag']
-        description = request.form['description']
-        CA = request.form['CA']
         try:
             collection_skill.insert_one({
-                'skill_id':request.form['skill_id']
+                'skill_id':request.form['skill_id'],
                 'name':request.form['name'],
                 'description':request.form['description'],
                 'certification':request.form['certification']                
