@@ -409,7 +409,7 @@ input.weui_btn_plain_default {
   font-size: 14px;
 }
 .weui_cell {
-  padding: 10px 15px;
+  margin: 10px 15px;
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
