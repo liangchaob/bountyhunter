@@ -236,7 +236,7 @@ def new_mission():
                 'skill_need':request.form['skill_need'],
                 'bounty':request.form['bounty']
                 }
-            return redirect("/wechat/myinfo")
+            return redirect(url_for('myinfo'))
         except:
             return 'wrong!'
 
