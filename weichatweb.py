@@ -233,7 +233,7 @@ def new_mission():
                 'skill_need':request.form['skill_need'],
                 'bounty':request.form['bounty']
                 }
-            return 'success!'
+            return redirect(url_for('myinfo'))
         except:
             return 'wrong!'
     else:
