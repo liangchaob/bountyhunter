@@ -240,8 +240,8 @@ def new_mission():
                 'publisher':12,
                 'acceptor':13
                 }
-            r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/', data=json.dumps(jsonobj))
-            return r.json()
+            # r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/', data=json.dumps(jsonobj))
+            return jsonobj.get('openid')
         except:
             return 'wrong!'
     else:
