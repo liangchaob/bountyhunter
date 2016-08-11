@@ -178,7 +178,7 @@ def wechat_auth():
 
 
 
-
+'''
 # 新任务
 @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
 def new_mission():
@@ -245,6 +245,7 @@ def new_mission():
     else:
         pass
 
+'''
 # 个人中心
 @app.route('/wechat/myinfo', methods = ['GET', 'POST'])
 def myinfo():
@@ -304,15 +305,26 @@ def myinfo():
 
 
 # 新任务
-# @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
-# def new_mission():
-#     if request.method == 'GET':
-#         return render_template('new_mission.html')
-#     elif request.method == 'POST':
-#         return render_template('new_mission.html')
-#     else:
-#         pass
-    # 菜单设置
+@app.route('/wechat/new_mission', methods = ['GET', 'POST'])
+def new_mission():
+    if request.method == 'GET':
+        return render_template('new_mission.html')
+    elif request.method == 'POST':
+        return render_template('new_mission.html')
+        try:
+            jsonobj = {
+                # 'openid':request.form['openid'],
+                'mission_name':request.form['mission_name'],
+                'mission_type':request.form['mission_type'],
+                'deadline':request.form['deadline'],
+                'description':request.form['description'],
+                'obj':request.form['obj'],
+                'skill_need':request.form['skill_need'],
+                'bounty':request.form['bounty']
+                }
+            return redirect(url_for('myinfo'))
+        except:
+            return 'wrong!'
 
 @app.route('/wechat/mission_commit', methods = ['GET', 'POST'])
 def mission_commit():
