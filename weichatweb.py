@@ -23,6 +23,8 @@ from wechat_sdk import WechatBasic
 # 微信xml解析类
 from wechat_sdk.exceptions import ParseError
 
+import json
+
 APPID = 'wxa9312a82e8138370'
 APPSECRET = '3f87fbd58c9013a0b0190bda28a4acc5'
 
