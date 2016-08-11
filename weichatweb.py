@@ -227,13 +227,18 @@ def new_mission():
         try:
             jsonobj = {
                 'openid':request.form['openid'],
-                'mission_name':request.form['mission_name'],
+                'name':request.form['mission_name'],
                 'mission_type':request.form['mission_type'],
                 'deadline':request.form['deadline'],
                 'description':request.form['description'],
                 'obj':request.form['obj'],
                 'skill_need':request.form['skill_need'],
-                'bounty':request.form['bounty']
+                'bounty':request.form['bounty'],
+                'state':1,
+                'comment':123,
+                'bidder':12,
+                'publisher':12,
+                'acceptor':13
                 }
             r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/', data=json.dumps(jsonobj))
             return r.json()
