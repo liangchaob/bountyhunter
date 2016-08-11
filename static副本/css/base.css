@@ -1,0 +1,219 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  /*padding-top: 50px;*/
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+/*.sidebar {
+  display: none;
+}*/
+.sidebar{
+  padding:20px;
+}
+/*@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; 
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}*/
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #293c55;
+}
+
+
+/*
+ * Main content
+ */
+
+.content{
+  background-color: #293c55;
+}
+
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+.content{
+  padding: 20px;
+  height: 100%;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.secondmenu > li{
+  padding-left: 10px;
+}
+
+
+.active > a:focus,
+.nav-list > .active > a{
+    color: #fff;
+    background-color: #293c55;
+}
+
+
+/*content-server*/
+
+hr{
+  margin-top: 0px;
+  margin-bottom: 4px; 
+  border-top: 2px solid #d8d8d8;
+}
+
+.node-container{
+  padding: 5px;
+}
+.nodes{
+  height: 20px;
+  background-color: #246aa7;
+  border-radius: 5px;
+  border-color: #fff
+}
+
+.node-group{
+
+}
+
+#dc-title{
+  display: inline-block;
+  margin: 10px;
+}
+#switch{
+  margin: 0px 10px 15px;
+  display: inline-block;
+}
+
+/*节点相关*/
+.nodegroup-tag{
+  margin-bottom: 2px; 
+}
+
+.node-tag{
+  display: inline-block;
+}
+
+.node-hr{
+  border-top: 3px solid #777;
+}
+
+
+/*网络相关*/
+.network-tag{
+  margin-bottom: 2px; 
+}
+.network-tag > span{
+  line-height: 0;
+  border-width: 0;
+}
+.network-hr{
+  border-top: 3px solid #5bc0de;
+}
+
+/*存储相关*/
+.storage-tag{
+  margin-bottom: 2px;
+}
+.storage-hr{
+  border-top: 3px solid #f0ad4e;
+}
+.store-info{
+  padding: 0px 0px;
+}
+
+
+
+
+.content-title{
+  color: #fff;
+}
+
+
+html,body{
+  height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-weight:normal;
+}
+
+p{
+  color: #fff;
+}

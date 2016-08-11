@@ -1,0 +1,78 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+   
+        <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script>
+        <script src="{{ url_for('static',filename='js/jquery.raty.min.js',_external=True) }}"></script>
+        <script src="{{ url_for('static',filename='js/script.js',_external=True) }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/weui.css',_external=True) }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/example.css',_external=True) }}">
+        <title>个人中心</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css',_external=True) }}">
+    </head>
+    <body>
+        <form>
+
+            <div class="hd">
+                <h1 class="page_title">任务评价</h1>
+            </div>
+            <!-- 任务名称 -->
+            <div class="weui_cell">
+              <div class="weui_cell_hd"><label class="weui_label">任务名称</label></div>
+              <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" style="text-align: right;" type="text" readonly="readonly" value="Ctrix环境部署">
+              </div>
+            </div>
+            <!-- 星级评价 -->
+            <div class="weui_cells">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>任务评价</p>
+                    </div>
+                    <div class="weui_cell_ft" id="star"></div>
+                </div>
+                <!-- 文字评价 -->
+                <div class="weui_cells">
+                    <div class="weui_cell_hd" style="padding: 0 15px;border-top: none;"><label class="weui_label">评价内容</label></div>
+                  </div>
+                  <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <textarea class="weui_textarea" placeholder="请输入评价内容" rows="3" style="font-size: 17px;border: 1px"></textarea>
+                        <div class="weui_textarea_counter"><span>0</span>/200</div>
+                    </div>
+                  </div>
+            </div>          
+        </form>
+    <div class="weui_dialog_confirm" style="display: none;" id="dialog">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">确认提示</strong></div>
+            <div class="weui_dialog_bd">确认提交当前信息么？</div>
+            <div class="weui_dialog_ft">
+                <a href="javascript:hideDialog();" class="weui_btn_dialog default">取消</a>
+                <a href="/wechat/mission_commit" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
+    <input style="position:fixed;bottom:0;margin:0 auto;z-index:500;" class="weui_btn weui_btn_primary" type="button" value="确认提交" onclick="showDialog();">
+
+
+
+
+<script type="text/javascript">
+  function showDialog(){
+    $("#dialog").css("display","block");
+  }
+  function hideDialog(){
+    $("#dialog").css("display","none");
+  }
+</script>
+        <!-- <div id="star"></div> -->
+    </body>
+    <script type="text/javascript">
+        $('#star').raty();
+        $('#star').css("width","200px");
+    </script>
+</html>

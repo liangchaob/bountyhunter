@@ -24,12 +24,18 @@
       }
     </style>
 
-    <title>新任务</title>
+    <title>确认完成</title>
 
 
 
 
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<!-- <script src="/Users/alan/denv/bountyhunter/static/js/jquery.js"></script> -->
+<!-- <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script> -->
 
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!-- <script src="/Users/alan/denv/bountyhunter/static/js/bootstrap.js"></script> -->
+<!-- <script src="{{ url_for('static',filename='js/bootstrap.js',_external=True) }}"></script> -->
 
 
 
@@ -39,28 +45,32 @@
 
 </head>
 <body>
+<!-- 
+    <h2>微信web开发者工具</h2>
+    <hr>
 
-<!-- 当前流程 -->
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-2"></div>
+          <div class="col-xs-8"></div>
+          <div class="col-xs-1"></div>
+        </div>
+    </div> -->
+<!-- 外围框 -->
 <div style="text-align: center;margin-top: 20px;">
   <button class="weui_btn weui_btn_mini weui_btn_primary">发布</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default">审核</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default">竞标</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default">工作</button>
+  <button class="weui_btn weui_btn_mini weui_btn_primary">审核</button>
+  <button class="weui_btn weui_btn_mini weui_btn_primary">竞标</button>
+  <button class="weui_btn weui_btn_mini weui_btn_primary">工作</button>
   <button class="weui_btn weui_btn_mini weui_btn_default">评价</button>
 </div>
-<!-- 外围框 -->
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
         <br>
         <form class="form-horizontal">
-
-<!-- 个人信息 -->
-        <input type="hidden" name="openid" value="{{ openid }}">
-
-
-
         <!-- 任务名称 -->
           <div class="form-group">
 
@@ -68,16 +78,16 @@
             <div class="weui_cell">
               <div class="weui_cell_hd"><label class="weui_label">任务名称</label></div>
               <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" placeholder="请尽可能精简">
+                <input class="weui_input" type="text" readonly="readonly" value="Ctrix环境部署">
               </div>
             </div>
             <!-- 任务类型 -->
             <div class="weui_cell">
               <div class="weui_cell_hd"><label class="weui_label">任务类型</label></div>
               <div class="weui_cell_bd weui_cell_primary">
-                <select class="form-control" style="width: 100px;">
+                <select class="form-control" style="width: 100px;" disabled="disabled">
                   <option>IT</option>
-                  <option>非IT</option>
+                  <option selected="selected">非IT</option>
                 </select>
               </div>
             </div>
@@ -85,10 +95,12 @@
           </div>
 
         <!-- 完成时间 -->
-        <div class="weui_cell">             
+        <div class="weui_cell">
+            
+                
                 <div class="weui_cell_hd"><label class="weui_label">完成时间</label></div>
                 <div class="demos">
-                  <input value="" class="weui_input" readonly="readonly" name="appDate" id="appDate" type="text" placeholder="请选择您的完成时间">
+                  <input class="weui_input" readonly="readonly" name="appDate" id="appDate" type="text" value="2016-10-09">
                 </div>
                 <input type="hidden" id="dtp_input1" value="" /><br/>
             
@@ -99,7 +111,7 @@
           </div>
           <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
-                <textarea class="weui_textarea" placeholder="请输入任务描述" rows="3" style="font-size: 17px;border: 1px"></textarea>
+                <textarea class="weui_textarea" placeholder="请输入任务描述" rows="3" style="font-size: 17px;border: 1px" readonly="readonly">需要安装部署一个Ctrix环境。</textarea>
                 <div class="weui_textarea_counter"><span>0</span>/200</div>
             </div>
           </div>
@@ -109,7 +121,7 @@
           </div>
           <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
-                <textarea class="weui_textarea" placeholder="请输入任务目标" rows="3" style="font-size: 17px;"></textarea>
+                <textarea class="weui_textarea" placeholder="请输入任务目标" rows="3" style="font-size: 17px;"readonly="readonly">需要安装部署一个Ctrix环境。</textarea>
                 <div class="weui_textarea_counter"><span>0</span>/200</div>
             </div>
           </div>
@@ -123,7 +135,7 @@
                 <div class="weui_cells weui_cells_checkbox">
                   <label class="weui_cell weui_check_label" for="s11">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" class="weui_check" name="checkbox1" id="s11" checked="checked">
+                          <input type="checkbox" disabled="disabled" class="weui_check" name="checkbox1" id="s11" checked="checked">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -132,7 +144,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s12">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s12">
+                          <input type="checkbox" disabled="disabled" name="checkbox1" class="weui_check" id="s12">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -141,7 +153,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s13">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s13">
+                          <input type="checkbox" disabled="disabled" name="checkbox1" class="weui_check" id="s13">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -150,7 +162,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s14">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s14">
+                          <input type="checkbox" disabled="disabled" name="checkbox1" class="weui_check" id="s14">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -159,7 +171,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s15">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s15">
+                          <input type="checkbox" disabled="disabled" name="checkbox1" class="weui_check" id="s15">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -168,7 +180,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s16">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s16">
+                          <input type="checkbox" checked="checked" disabled="disabled" name="checkbox1" class="weui_check" id="s16">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -177,7 +189,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s17">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s17">
+                          <input type="checkbox" disabled="disabled" name="checkbox1" class="weui_check" id="s17">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -186,7 +198,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s18">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s18">
+                          <input type="checkbox" disabled="disabled" name="checkbox1" class="weui_check" id="s18">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -204,7 +216,7 @@
           <div class="weui_cell">
                 <div class="weui_cell_hd"><label class="weui_label">悬赏金额</label></div>
                 <div class="weui_cell_bd weui_cell_primary">
-                  <input class="weui_input" type="number" placeholder="单位为人民币">
+                  <input class="weui_input" type="number" value="10000" >
                 </div>
           </div>
         </div>
@@ -213,12 +225,22 @@
     </div>    
 </div>
 
-
 <div class="weui_dialog_confirm" style="display: none;" id="dialog">
     <div class="weui_mask"></div>
     <div class="weui_dialog">
         <div class="weui_dialog_hd"><strong class="weui_dialog_title">确认提示</strong></div>
-        <div class="weui_dialog_bd">确认提交当前信息么？</div>
+        <div class="weui_dialog_bd">确认完成当前项目么？</div>
+        <div class="weui_dialog_ft">
+            <a href="javascript:hideDialog();" class="weui_btn_dialog default">取消</a>
+            <a href="/wechat/mission_commit" class="weui_btn_dialog primary">确定</a>
+        </div>
+    </div>
+</div>
+<div class="weui_dialog_confirm" style="display: none;" id="dialog">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">确认提示</strong></div>
+        <div class="weui_dialog_bd">确认完成当前项目么？</div>
         <div class="weui_dialog_ft">
             <a href="javascript:hideDialog();" class="weui_btn_dialog default">取消</a>
             <a href="/wechat/mission_commit" class="weui_btn_dialog primary">确定</a>
@@ -226,15 +248,12 @@
     </div>
 </div>
 
-
-
-
-
-<!-- <input style="position:fixed;bottom:0;margin:0 auto;z-index:500;" class="btn btn-default col-xs-12" type="submit" value="Submit"> -->
-<input style="position:fixed;bottom:0;margin:0 auto;z-index:500;" class="weui_btn weui_btn_primary" type="button" value="确认提交" onclick="showDialog();">
-
-
-
+<div style="text-align: center;">
+  <a href="javascript:showDialog();" class="weui_btn weui_btn weui_btn_primary">完成工作</a>
+</div>
+<div style="text-align: center;">
+  <a href="javascript:showDialog();" class="weui_btn weui_btn weui_btn_primary">确认完成</a>
+</div>
 
 <script type="text/javascript">
   function showDialog(){
@@ -244,28 +263,5 @@
     $("#dialog").css("display","none");
   }
 </script>
-<script type="text/javascript">
-        $(function () {
-      var currYear = (new Date()).getFullYear();  
-      var opt={};
-      opt.date = {preset : 'date'};
-      opt.datetime = {preset : 'datetime'};
-      opt.time = {preset : 'time'};
-      opt.default = {
-        theme: 'android-ics light', //皮肤样式
-            display: 'modal', //显示方式 
-            mode: 'scroller', //日期选择模式
-        dateFormat: 'yyyy-mm-dd',
-        lang: 'zh',
-        showNow: true,
-        nowText: "今天",
-            startYear: currYear - 10, //开始年份
-            endYear: currYear + 10 //结束年份
-      };
-
-        $("#appDate").mobiscroll($.extend(opt['date'], opt['default']));
-        
-        });
-    </script>
 </body>
 </html>

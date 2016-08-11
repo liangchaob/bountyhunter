@@ -220,16 +220,13 @@ def new_mission():
         city = codefix(city)
         country = codefix(country)
         # 渲染
-        return render_template('t1.html',nickname = nickname,url_openid = url_openid,
-            url_userinfo = url_userinfo,sex = sex, province = province, city=city,
-            country = country,headimgurl = headimgurl)
+        return render_template('new_mission.html',openid = openid)
 
 
     elif request.method == 'POST':
         return render_template('new_mission.html')
     else:
         pass
-    # 菜单设置
 
 # 个人中心
 @app.route('/wechat/myinfo', methods = ['GET', 'POST'])
@@ -278,6 +275,111 @@ def myinfo():
         return render_template('new_mission.html')
     else:
         pass
+
+
+
+
+
+
+
+
+
+
+
+# 新任务
+# @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
+# def new_mission():
+#     if request.method == 'GET':
+#         return render_template('new_mission.html')
+#     elif request.method == 'POST':
+#         return render_template('new_mission.html')
+#     else:
+#         pass
+    # 菜单设置
+
+@app.route('/wechat/mission_commit', methods = ['GET', 'POST'])
+def mission_commit():
+    if request.method == 'GET':
+        return render_template('mission_commit.html')
+    elif request.method == 'POST':
+        return render_template('mission_commit.html')
+    else:
+        pass
+    # 提交表单
+
+@app.route('/wechat/user_center', methods = ['GET', 'POST'])
+def user_center():
+    if request.method == 'GET':
+        return render_template('user_center.html')
+    elif request.method == 'POST':
+        return render_template('user_center.html')
+    else:
+        pass
+        # 查看表单
+@app.route('/wechat/check_mission', methods = ['GET', 'POST'])
+def check_mission():
+    if request.method == 'GET':
+        return render_template('check_mission.html')
+    elif request.method == 'POST':
+        return render_template('check_mission.html')
+    else:
+        pass
+        # 修改表单
+@app.route('/wechat/edit_mission', methods = ['GET', 'POST'])
+def edit_mission():
+    if request.method == 'GET':
+        return render_template('edit_mission.html')
+    elif request.method == 'POST':
+        return render_template('edit_mission.html')
+    else:
+        pass
+         # 竞标
+@app.route('/wechat/bid_mission', methods = ['GET', 'POST'])
+def bid_mission():
+    if request.method == 'GET':
+        return render_template('bid_mission.html')
+    elif request.method == 'POST':
+        return render_template('bid_mission.html')
+    else:
+        pass
+         # 确认完成
+@app.route('/wechat/work_mission', methods = ['GET', 'POST'])
+def work_mission():
+    if request.method == 'GET':
+        return render_template('work_mission.html')
+    elif request.method == 'POST':
+        return render_template('work_mission.html')
+    else:
+        pass
+         # 评价
+@app.route('/wechat/comment_mission', methods = ['GET', 'POST'])
+def comment_mission():
+    if request.method == 'GET':
+        return render_template('comment_mission.html')
+    elif request.method == 'POST':
+        return render_template('comment_mission.html')
+    else:
+        pass
+         # 注册
+@app.route('/wechat/user_register', methods = ['GET', 'POST'])
+def user_register():
+    if request.method == 'GET':
+        return render_template('user_register.html')
+    elif request.method == 'POST':
+        return render_template('user_register.html')
+    else:
+        pass
+
+
+
+
+
+
+
+
+
+
+
 
 # 帮助页面
 @app.route('/wechat/help', methods = ['GET', 'POST'])

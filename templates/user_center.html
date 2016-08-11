@@ -1,0 +1,82 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+   
+        <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script>
+        <script src="{{ url_for('static',filename='js/script.js',_external=True) }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/weui.css',_external=True) }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/example.css',_external=True) }}">
+        <title>个人中心</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css',_external=True) }}">
+        <style type="text/css">
+            a:hover {color: #ae9f9f;} 
+            a:visited {color: #ae9f9f;} 
+            a:link {color: #ae9f9f;} 
+            a {color: #ae9f9f;}
+        </style>
+    </head>
+    <body style="background-color: #2D2C40;color: #ffffff">
+        <div class="hd">
+            <h1 class="page_title">个人中心</h1>
+        </div>
+        <div class="weui_panel_bd">
+            <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                <div class="weui_media_hd">
+                    <img class="weui_media_appmsg_thumb" src="{{ url_for('static',filename='img/lc.jpg',_external=True) }}" alt="">
+                </div>
+                <div class="weui_media_bd">
+                    <h4 class="weui_media_title" style="color: #ffffff">游民梁超</h4>
+                    <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                </div>
+            </a>
+        </div>
+        <div class="cell">
+            <div style="text-align: center;" class="cells">
+                    <div style="float: left;margin-left: 15px;"><i class="weui_icon_info"></i>用户等级：11</div>
+                    <div style="float: right;margin-right: 15px;"><i class="weui_icon_info"></i>用户评价：4.5</div>
+            </div>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <ul class="mainmenu">
+                <li>
+                    <span>已发布任务</span>
+                </li>
+                <ul class="submenu">
+                    <!-- <div class="expand-triangle"></div> -->
+                    <li><span>Linux集群搭建</span></li>
+                    <li><a href="/wechat/check_mission"><span>Ctrix环境部署</span></a></li>
+                    <li><span>OpenStack环境部署</span></li>
+                </ul>
+                <li>
+                    <span>已接收任务</span>
+                </li>
+                <ul class="submenu">
+                    <!-- <div class="expand-triangle"></div> -->
+                    <li><span>Linux集群搭建</span></li>
+                    <li><span>Ctrix环境部署</span></li>
+                    <li><span>OpenStack环境部署</span></li>
+                </ul>
+                <li>
+                    <span>已完成任务</span>
+                </li>
+                <ul class="submenu">
+                    <!-- <div class="expand-triangle"></div> -->
+                    <li><span>Linux集群搭建</span></li>
+                    <li><span>Ctrix环境部署</span></li>
+                    <li><span>OpenStack环境部署</span></li>
+                </ul>
+                <li>
+                    <span>我的所有评价</span>
+                </li>
+                <li>
+                    <span>查看我的赏金</span>
+                </li>
+                
+
+
+            </ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,10 @@
+.suswin{
+    position:fixed;
+    z-index:500;
+    border:1px solid #fff;
+    width:200px;
+    background-color:#293c55;
+    color:white;
+    text-align: center;
+
+}
