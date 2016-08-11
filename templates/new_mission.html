@@ -221,7 +221,7 @@
         <div class="weui_dialog_bd">确认提交当前信息么？</div>
         <div class="weui_dialog_ft">
             <a href="javascript:hideDialog();" class="weui_btn_dialog default">取消</a>
-            <a><input type="submit" class="weui_btn_dialog primary" value="确定"><a>
+            <a href="javascript:formsubmit();" class="weui_btn_dialog primary">确定</a>
         </div>
     </div>
 </div>
@@ -242,6 +242,9 @@
   }
   function hideDialog(){
     $("#dialog").css("display","none");
+  }
+  function formsubmit(){
+    $("form").submit;
   }
 </script>
 <script type="text/javascript">
