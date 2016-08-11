@@ -310,7 +310,6 @@ def new_mission():
     if request.method == 'GET':
         return render_template('new_mission.html')
     elif request.method == 'POST':
-        return render_template('new_mission.html')
         try:
             jsonobj = {
                 # 'openid':request.form['openid'],
