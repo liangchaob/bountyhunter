@@ -14,7 +14,7 @@ sys.setdefaultencoding( "utf-8" )
 
 import requests
 import time  
-from flask import Flask,request, make_response,render_template,jsonify
+from flask import Flask,request, make_response,render_template,jsonify,redirect
 import hashlib  
 # 微信配置类
 from wechat_sdk import WechatConf
@@ -225,6 +225,23 @@ def new_mission():
 
     elif request.method == 'POST':
         return render_template('new_mission.html')
+        try:
+            jsonobj = {
+                'openid':request.form['openid'],
+                'mission_name':request.form['mission_name'],
+                'mission_type':request.form['mission_type'],
+                'deadline':request.form['deadline'],
+                'description':request.form['description'],
+                'obj':request.form['obj'],
+                'skill_need':request.form['skill_need'],
+                'bounty':request.form['bounty']
+                }
+            return redirect("/wechat/myinfo")
+        except:
+            return 'wrong!'
+
+
+
     else:
         pass
 

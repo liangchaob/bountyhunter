@@ -54,7 +54,7 @@
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
         <br>
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="POST">
 
 <!-- 个人信息 -->
         <input type="hidden" name="openid" value="{{ openid }}">
@@ -68,17 +68,16 @@
             <div class="weui_cell">
               <div class="weui_cell_hd"><label class="weui_label">任务名称</label></div>
               <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" placeholder="请尽可能精简">
+                <input class="weui_input" placeholder="请尽可能精简" name="mission_name">
               </div>
             </div>
             <!-- 任务类型 -->
             <div class="weui_cell">
               <div class="weui_cell_hd"><label class="weui_label">任务类型</label></div>
               <div class="weui_cell_bd weui_cell_primary">
-                <select class="form-control" style="width: 100px;">
+                <select class="form-control" style="width: 100px;" name="mission_type">
                   <option>IT</option>
                   <option>非IT</option>
-                  <option>{{ openid }}</option>
                 </select>
               </div>
             </div>
@@ -89,7 +88,7 @@
         <div class="weui_cell">             
                 <div class="weui_cell_hd"><label class="weui_label">完成时间</label></div>
                 <div class="demos">
-                  <input value="" class="weui_input" readonly="readonly" name="appDate" id="appDate" type="text" placeholder="请选择您的完成时间">
+                  <input value="" class="weui_input" readonly="readonly" name="deadline" id="appDate" type="text" placeholder="请选择您的完成时间">
                 </div>
                 <input type="hidden" id="dtp_input1" value="" /><br/>
             
@@ -100,7 +99,7 @@
           </div>
           <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
-                <textarea class="weui_textarea" placeholder="请输入任务描述" rows="3" style="font-size: 17px;border: 1px"></textarea>
+                <textarea name="description" class="weui_textarea" placeholder="请输入任务描述" rows="3" style="font-size: 17px;border: 1px"></textarea>
                 <div class="weui_textarea_counter"><span>0</span>/200</div>
             </div>
           </div>
@@ -110,7 +109,7 @@
           </div>
           <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
-                <textarea class="weui_textarea" placeholder="请输入任务目标" rows="3" style="font-size: 17px;"></textarea>
+                <textarea name="obj" class="weui_textarea" placeholder="请输入任务目标" rows="3" style="font-size: 17px;"></textarea>
                 <div class="weui_textarea_counter"><span>0</span>/200</div>
             </div>
           </div>
@@ -124,7 +123,7 @@
                 <div class="weui_cells weui_cells_checkbox">
                   <label class="weui_cell weui_check_label" for="s11">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" class="weui_check" name="checkbox1" id="s11" checked="checked">
+                          <input type="checkbox" class="weui_check" name="skill_need" id="s11" checked="checked">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -133,7 +132,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s12">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s12">
+                          <input type="checkbox" name="skill_need" class="weui_check" id="s12">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -142,7 +141,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s13">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s13">
+                          <input type="checkbox" name="skill_need" class="weui_check" id="s13">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -151,7 +150,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s14">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s14">
+                          <input type="checkbox" name="skill_need" class="weui_check" id="s14">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -160,7 +159,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s15">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s15">
+                          <input type="checkbox" name="skill_need" class="weui_check" id="s15">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -169,7 +168,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s16">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s16">
+                          <input type="checkbox" name="skill_need" class="weui_check" id="s16">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -178,7 +177,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s17">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s17">
+                          <input type="checkbox" name="skill_need" class="weui_check" id="s17">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -187,7 +186,7 @@
                   </label>
                   <label class="weui_cell weui_check_label" for="s18">
                       <div class="weui_cell_hd">
-                          <input type="checkbox" name="checkbox1" class="weui_check" id="s18">
+                          <input type="checkbox" name="skill_need" class="weui_check" id="s18">
                           <i class="weui_icon_checked"></i>
                       </div>
                       <div class="weui_cell_bd weui_cell_primary">
@@ -205,7 +204,7 @@
           <div class="weui_cell">
                 <div class="weui_cell_hd"><label class="weui_label">悬赏金额</label></div>
                 <div class="weui_cell_bd weui_cell_primary">
-                  <input class="weui_input" type="number" placeholder="单位为人民币">
+                  <input name="bounty" class="weui_input" type="number" placeholder="单位为人民币">
                 </div>
           </div>
         </div>
@@ -222,7 +221,7 @@
         <div class="weui_dialog_bd">确认提交当前信息么？</div>
         <div class="weui_dialog_ft">
             <a href="javascript:hideDialog();" class="weui_btn_dialog default">取消</a>
-            <a href="/wechat/mission_commit" class="weui_btn_dialog primary">确定</a>
+            <a href="/wechat/new_mission" class="weui_btn_dialog primary">确定</a>
         </div>
     </div>
 </div>
