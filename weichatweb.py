@@ -233,7 +233,8 @@ def new_mission():
                 'skill_need':request.form['skill_need'],
                 'bounty':request.form['bounty']
                 }
-            return 'success!'
+            r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/', data=json.dumps(jsonobj))
+            return r.json()
         except:
             return 'wrong!'
     else:
