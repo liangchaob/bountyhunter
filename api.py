@@ -12,7 +12,6 @@ sys.path.append("./")
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
-
 import json
 import time  
 from flask import Flask,request,make_response,jsonify
@@ -20,18 +19,16 @@ from flask import Flask,request,make_response,jsonify
 import pymongo
 import json
 
-
-
-# 数据库相关
+# 数据部分
 # 测试
-MONGODB_ADDR = '172.16.191.163'
-MONGODB_PORT = 27017
-MONGODB_DB = 'local'
+# MONGODB_ADDR = '172.16.191.163'
+# MONGODB_PORT = 27017
+# MONGODB_DB = 'local'
 
 # 生产
-# MONGODB_ADDR = '10.10.72.139'
-# MONGODB_PORT = 27017
-# MONGODB_DB = 'MC7rOHPSiyGo9qJ4'
+MONGODB_ADDR = '10.10.72.139'
+MONGODB_PORT = 27017
+MONGODB_DB = 'ZVM6I0XPYcz4gKDp'
 
 # 设置数据库地址
 client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
@@ -40,12 +37,12 @@ client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
 db = client[MONGODB_DB]
 
 # 生产认证
-# db.authenticate("uhG05VAsSiBdRtQp","pdqBG5IHPi1E36wFC")
+db.authenticate("u4LvDP9eoSWqpBN8","ppvxw6h8uI5lLCeMz")
 
 # 设置表名,建立为索引
 # 用户表
 collection_user = db['user']
-collection_user.ensure_index('id', unique=True)
+collection_user.ensure_index('openid', unique=True)
 
 # 任务表
 collection_mission = db['mission']
@@ -62,15 +59,94 @@ collection_comment.ensure_index('comment_id', unique=True)
 collection_feedback = db['feedback']
 collection_feedback.ensure_index('feedback_id', unique=True)
 
+# 数据表
+# 用户信息
+class UserObj(object):
+    # 依赖json生成对象
+    def __init__(self, jsonobj):
+        super(UserObj, self).__init__()
+        self.jsonobj = {
+            'openid':jsonobj.get('openid'),
+            'intro':jsonobj.get('intro'),
+            'role':jsonobj.get('role'),
+            'feedback':jsonobj.get('feedback'),
+            'level':jsonobj.get('level'),
+            'skill':jsonobj.get('skill'),
+            'mission_published':jsonobj.get('mission_published'),
+            'mission_accept':jsonobj.get('mission_accept'),
+            'mission_accomplish':jsonobj.get('mission_accomplish'),
+            'state':jsonobj.get('state'),
+            'spent':jsonobj.get('spent'),
+            'income':jsonobj.get('income'),
+            'email':jsonobj.get('email'),
+            'mobile':jsonobj.get('mobile')    
+        }
 
+# 任务信息
+class MissionObj(object):
+    # 依赖json生成对象
+    def __init__(self, jsonobj):
+        super(MissionObj, self).__init__()
+        self.jsonobj = {
+            'mission_id':jsonobj.get('mission_id'),
+            'name':jsonobj.get('name'),
+            'mission_type':jsonobj.get('mission_type'),
+            'deadline':jsonobj.get('deadline'),
+            'description':jsonobj.get('description'),
+            'obj':jsonobj.get('obj'),
+            'skill_need':jsonobj.get('skill_need'),
+            'bounty':jsonobj.get('bounty'),
+            'state':jsonobj.get('state'),
+            'comment':jsonobj.get('comment'),
+            'bidder':jsonobj.get('bidder'),
+            'publisher':jsonobj.get('publisher'),
+            'acceptor':jsonobj.get('acceptor')
+        }
 
-# web相关
+# 技能信息
+class SkillObj(object):
+    # 依赖json生成对象
+    def __init__(self, jsonobj):
+        super(SkillObj, self).__init__()
+        self.jsonobj = {
+            'skill_id':jsonobj.get('skill_id'),
+            'name':jsonobj.get('name'),
+            'description':jsonobj.get('description'),
+            'certification':jsonobj.get('certification')
+        }
+
+# 留言信息
+class CommentObj(object):
+    # 依赖json生成对象
+    def __init__(self, jsonobj):
+        super(CommentObj, self).__init__()
+        self.jsonobj = {
+            'comment_id':jsonobj.get('comment_id'),
+            'mission_id':jsonobj.get('mission_id'),
+            'openid':jsonobj.get('openid'),
+            'content':jsonobj.get('content')
+        }
+
+# 评价信息
+class FeedbackObj(object):
+    # 依赖json生成对象
+    def __init__(self, jsonobj):
+        super(FeedbackObj, self).__init__()
+        self.jsonobj = {
+            'feedback_id':jsonobj.get('feedback_id'),
+            'mission_id':jsonobj.get('mission_id'),
+            'publisher':jsonobj.get('publisher'),
+            'acceptor':jsonobj.get('acceptor'),
+            'content':jsonobj.get('content'),
+            'stars':jsonobj.get('stars')
+        }
+
+# web部分
 # flask实例化
 app = Flask(__name__)
 
-
-# 设计err返回码
-class codeReturn(object):
+# err返回码
+class CodeReturn(object):
     def success(self):
         obj = {'errcode':0,'errmsg':'ok'}
         return json.dumps(obj)
@@ -79,10 +155,7 @@ class codeReturn(object):
         return json.dumps(obj)        
 
 # 实例化返回码
-errcode = codeReturn()
-
-
-
+errcode = CodeReturn()
 
 # 单用户
 @app.route('/user/<openid>', methods = ['GET', 'POST'])
@@ -91,56 +164,22 @@ def user(openid):
     if request.method == 'GET':
         try:
             result = collection_user.find_one({'openid':openid})
-            jsonobj = {
-                'openid':result.get('openid'),
-                'intro':result.get('intro'),
-                'role':result.get('role'),
-                'feedback':result.get('feedback'),
-                'level':result.get('level'),
-                'skill':result.get('skill'),
-                'mission_published':result.get('mission_published'),
-                'mission_accept':result.get('mission_accept'),
-                'mission_accomplish':result.get('mission_accomplish'),
-                'state':result.get('state'),
-                'spent':result.get('spent'),
-                'income':result.get('income'),
-                'email':result.get('email'),
-                'mobile':result.get('mobile')
-
-                }
-            return jsonify(jsonobj)
+            j = UserObj(result)
+            return jsonify(j.jsonobj)
         except:
             return errcode.failed()
     # 更改指定用户信息
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_user.update({'openid':openid},
-                {'$set':{
-                    'openid':request.form['openid'],
-                    'intro':request.form['intro'],
-                    'role':request.form['role'],
-                    'feedback':request.form['feedback'],
-                    'level':request.form['level'],
-                    'skill':request.form['skill'],
-                    'mission_published':request.form['mission_published'],
-                    'mission_accept':request.form['mission_accept'],
-                    'mission_accomplish':request.form['mission_accomplish'],
-                    'state':request.form['state'],
-                    'spent':request.form['spent'],
-                    'income':request.form['income'],
-                    'email':request.form['email'],
-                    'mobile':request.form['mobile']
-                    }
-                })
+            result = request.json
+            j = UserObj(result)
+            collection_user.update({'openid':openid},{'$set':j.jsonobj})
             return errcode.success()
         except:
             return errcode.failed()
     else:
         return 'nothing happend!'
-
-
-
 
 # 全部用户
 @app.route('/user/', methods = ['GET', 'POST'])
@@ -149,51 +188,23 @@ def users():
     if request.method == 'GET':        
         jsonlist = []
         for item in collection_user.find({}):
-            jsonlist.append({
-                'openid':item.get('openid'),
-                'intro':item.get('intro'),
-                'role':item.get('role'),
-                'feedback':item.get('feedback'),
-                'level':item.get('level'),
-                'skill':item.get('skill'),
-                'mission_published':item.get('mission_published'),
-                'mission_accept':item.get('mission_accept'),
-                'mission_accomplish':item.get('mission_accomplish'),
-                'state':item.get('state'),
-                'spent':item.get('spent'),
-                'income':item.get('income'),
-                'email':item.get('email'),
-                'mobile':item.get('mobile')
-                })
+            j = UserObj(item)
+            jsonlist.append(j.jsonobj)
 
-        jsonobj = {'user':jsonlist}
-        return jsonify(jsonobj)
+        result = {'user':jsonlist}
+        return jsonify(result)
     # post - 添加新用户
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_user.insert_one({
-                'openid':request.form['openid'],
-                'intro':request.form['intro'],
-                'role':request.form['role'],
-                'feedback':request.form['feedback'],
-                'level':request.form['level'],
-                'skill':request.form['skill'],
-                'mission_published':request.form['mission_published'],
-                'mission_accept':request.form['mission_accept'],
-                'mission_accomplish':request.form['mission_accomplish'],
-                'state':request.form['state'],
-                'spent':request.form['spent'],
-                'income':request.form['income'],
-                'email':request.form['email'],
-                'mobile':request.form['mobile']
-                })
+            result = request.json
+            j = UserObj(result)
+            collection_user.insert_one(j.jsonobj)
             return errcode.success()
         except:
             return errcode.failed()     
     else:
         return 'nothing happend!'
-
 
 # 任务
 @app.route('/mission/<mission_id>', methods = ['GET', 'POST'])
@@ -202,53 +213,20 @@ def mission(mission_id):
     if request.method == 'GET':
         try:
             result = collection_mission.find_one({'mission_id':mission_id})
-            jsonobj = {
-                'mission_id':result.get('mission_id'),
-                'name':result.get('name'),
-                'mission_type':result.get('mission_type'),
-                'deadline':result.get('deadline'),
-                'description':result.get('description'),
-                'obj':result.get('obj'),
-                'skill_need':result.get('skill_need'),
-                'bounty':result.get('bounty'),
-                'state':result.get('state'),
-                'comment':result.get('comment'),
-                'bidder':result.get('bidder'),
-                'publisher':result.get('publisher'),
-                'acceptor':result.get('acceptor')
-                }
-            return jsonify(jsonobj)
+            j = MissionObj(result)
+            return jsonify(j.jsonobj)
         except:
             return errcode.failed()
     # 更改技能信息
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_mission.update({'mission_id':mission_id},{
-                '$set':{
-                    'mission_id':request.form['mission_id'],
-                    'name':request.form['name'],
-                    'mission_type':request.form['mission_type'],
-                    'deadline':request.form['deadline'],
-                    'description':request.form['description'],
-                    'obj':request.form['obj'],
-                    'skill_need':request.form['skill_need'],
-                    'bounty':request.form['bounty'],
-                    'state':request.form['state'],
-                    'comment':request.form['comment'],
-                    'bidder':request.form['bidder'],
-                    'publisher':request.form['publisher'],
-                    'acceptor':request.form['acceptor']
-                    }
-                })
+            result = request.json
+            j = MissionObj(result)
+            collection_mission.update({'mission_id':mission_id},{'$set':j.jsonobj})
             return errcode.success()
         except:
             return errcode.failed()
-    # 
-
-
-
-
 
 # 全部任务
 @app.route('/mission/', methods = ['GET', 'POST'])
@@ -257,43 +235,18 @@ def missions():
     if request.method == 'GET':        
         jsonlist = []
         for item in collection_mission.find({}):
-            jsonlist.append({
-                'mission_id':item.get('mission_id'),
-                'name':item.get('name'),
-                'mission_type':item.get('mission_type'),
-                'deadline':item.get('deadline'),
-                'description':item.get('description'),
-                'obj':item.get('obj'),
-                'skill_need':item.get('skill_need'),
-                'bounty':item.get('bounty'),
-                'state':item.get('state'),
-                'comment':item.get('comment'),
-                'bidder':item.get('bidder'),
-                'publisher':item.get('publisher'),
-                'acceptor':item.get('acceptor')
-                })
+            j = MissionObj(item)
+            jsonlist.append(j.jsonobj)
 
-        jsonobj = {'mission':jsonlist}
-        return jsonify(jsonobj)
+        result = {'mission':jsonlist}
+        return jsonify(result)
     # post - 添加新任务
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_mission.insert_one({
-                'mission_id':request.form['mission_id'],
-                'name':request.form['name'],
-                'mission_type':request.form['mission_type'],
-                'deadline':request.form['deadline'],
-                'description':request.form['description'],
-                'obj':request.form['obj'],
-                'skill_need':request.form['skill_need'],
-                'bounty':request.form['bounty'],
-                'state':request.form['state'],
-                'comment':request.form['comment'],
-                'bidder':request.form['bidder'],
-                'publisher':request.form['publisher'],
-                'acceptor':request.form['acceptor']
-                })
+            result = request.json
+            j = MissionObj(result)
+            collection_mission.insert_one(j.jsonobj)
             return errcode.success()
         except:
             return errcode.failed()      
@@ -307,27 +260,17 @@ def skill(skill_id):
     if request.method == 'GET':
         try:
             result = collection_skill.find_one({'skill_id':skill_id})
-            jsonobj = {
-                'skill_id':result.get('skill_id'),
-                'name':result.get('name'),
-                'description':result.get('description'),
-                'certification':result.get('certification')
-            }
-            return jsonify(jsonobj)
+            j = SkillObj(result)
+            return jsonify(j.jsonobj)
         except:
             return errcode.failed()
     # 更改技能信息
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_skill.update({'skill_id':skill_id},{
-                '$set':{
-                    'skill_id':request.form['skill_id'],
-                    'name':request.form['name'],
-                    'description':request.form['description'],
-                    'certification':request.form['certification']
-                    }
-                })
+            result = request.json
+            j = SkillObj(result)
+            collection_skill.update({'skill_id':skill_id},{'$set':j.jsonobj})
             return errcode.success()
         except:
             return errcode.failed()
@@ -342,24 +285,18 @@ def skills():
     if request.method == 'GET':        
         jsonlist = []
         for item in collection_skill.find({}):
-            jsonlist.append({
-                'skill_id':item.get('skill_id'),
-                'name':item.get('name'),
-                'description':item.get('description'),
-                'certification':item.get('certification')
-                })
-        jsonobj = {'skill':jsonlist}
-        return jsonify(jsonobj)
+            j = SkillObj(item)
+            jsonlist.append(j.jsonobj)
+
+        result = {'skill':jsonlist}
+        return jsonify(result)
     # post - 添加新技能
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_skill.insert_one({
-                'skill_id':request.form['skill_id'],
-                'name':request.form['name'],
-                'description':request.form['description'],
-                'certification':request.form['certification']                
-                })
+            result = request.json
+            j = SkillObj(result)
+            collection_skill.insert_one(j.jsonobj)
             return errcode.success()
         except:
             return errcode.failed()
@@ -373,27 +310,17 @@ def comment(comment_id):
     if request.method == 'GET':
         try:
             result = collection_comment.find_one({'comment_id':comment_id})
-            jsonobj = {
-                'comment_id':result.get('comment_id'),
-                'mission_id':result.get('mission_id'),
-                'openid':result.get('openid'),
-                'content':result.get('content')
-                }
-            return jsonify(jsonobj)
+            j = CommentObj(result)
+            return jsonify(j.jsonobj)
         except:
             return errcode.failed()
     # 更改留言
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_comment.update({'comment_id':comment_id},{
-                '$set':{
-                    'comment_id':request.form['comment_id'],
-                    'mission_id':request.form['mission_id'],
-                    'openid':request.form['openid'],
-                    'content':request.form['content']
-                    }
-                })
+            result = request.json
+            j = CommentObj(result)
+            collection_comment.update({'comment_id':comment_id},{'$set':j.jsonobj})
             return errcode.success()
         except:
             return errcode.failed()
@@ -408,33 +335,23 @@ def comments():
     if request.method == 'GET':        
         jsonlist = []
         for item in collection_comment.find({}):
-            jsonlist.append({
-                'comment_id':item.get('comment_id'),
-                'mission_id':item.get('mission_id'),
-                'openid':item.get('openid'),
-                'content':item.get('content')
-                })
-        jsonobj = {'comment':jsonlist}
-        return jsonify(jsonobj)
+            j = CommentObj(item)
+            jsonlist.append(j.jsonobj)
+
+        result = {'comment':jsonlist}
+        return jsonify(result)
     # post - 添加新留言
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_comment.insert_one({
-                'comment_id':request.form['comment_id'],
-                'mission_id':request.form['mission_id'],
-                'openid':request.form['openid'],
-                'content':request.form['content']
-                })
+            result = request.json
+            j = CommentObj(result)
+            collection_comment.insert_one(j.jsonobj)
             return errcode.success()
         except:
             return errcode.failed()     
     else:
         return 'nothing happend!'
-
-
-
-
 
 # 评价
 @app.route('/feedback/<feedback_id>', methods = ['GET', 'POST'])
@@ -443,31 +360,17 @@ def feedback(feedback_id):
     if request.method == 'GET':
         try:
             result = collection_feedback.find_one({'feedback_id':feedback_id})
-            jsonobj = {
-                'feedback_id':result.get('feedback_id'),
-                'mission_id':result.get('mission_id'),
-                'publisher':result.get('publisher'),
-                'acceptor':result.get('acceptor'),
-                'content':result.get('content'),
-                'stars':result.get('stars')
-                }
-            return jsonify(jsonobj)
+            j = FeedbackObj(result)
+            return jsonify(j.jsonobj)
         except:
             return errcode.failed()
     # 更改评价
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_feedback.update({'feedback_id':feedback_id},{
-                '$set':{
-                    'feedback_id':request.form['feedback_id'],
-                    'mission_id':request.form['mission_id'],
-                    'publisher':request.form['publisher'],
-                    'acceptor':request.form['acceptor'],
-                    'content':request.form['content'],
-                    'stars':request.form['stars']
-                    }
-                })
+            result = request.json
+            j = FeedbackObj(result)
+            collection_feedback.update({'feedback_id':feedback_id},{'$set':j.jsonobj})
             return errcode.success()
         except:
             return errcode.failed()
@@ -482,42 +385,27 @@ def feedbacks():
     if request.method == 'GET':        
         jsonlist = []
         for item in collection_feedback.find({}):
-            jsonlist.append({
-                'feedback_id':item.get('feedback_id'),
-                'mission_id':item.get('mission_id'),
-                'publisher':item.get('publisher'),
-                'acceptor':item.get('acceptor'),
-                'content':item.get('content'),
-                'stars':item.get('stars')
-                })
-        jsonobj = {'feedback':jsonlist}
-        return jsonify(jsonobj)
+            j = FeedbackObj(item)
+            jsonlist.append(j.jsonobj)
+
+        result = {'feedback':jsonlist}
+        return jsonify(result)
     # post - 添加新评价
     elif request.method == 'POST':
         # 参数接收
         try:
-            collection_feedback.insert_one({
-                'feedback_id':request.form['feedback_id'],
-                'mission_id':request.form['mission_id'],
-                'publisher':request.form['publisher'],
-                'acceptor':request.form['acceptor'],
-                'content':request.form['content'],
-                'stars':request.form['stars']
-                })
+            result = request.json
+            j = FeedbackObj(result)
+            collection_feedback.insert_one(j.jsonobj)
             return errcode.success()
         except:
             return errcode.failed()     
     else:
         return 'nothing happend!'
 
-
-
-
-
-
 # 运行主函数
 if __name__ == '__main__':
     # 测试
-    app.run(host='0.0.0.0',port=8080,debug=True)
+    # app.run(host='0.0.0.0',port=8081,debug=True)
     # 生产
-    # app.run(host='0.0.0.0',port=80,debug=False)
+    app.run(host='0.0.0.0',port=80,debug=False)

@@ -226,7 +226,8 @@ def new_mission():
     elif request.method == 'POST':
         try:
             jsonobj = {
-                'openid':request.form['openid'],
+                'mission_id':1,
+                'publisher':request.form['openid'],
                 'name':request.form['mission_name'],
                 'mission_type':request.form['mission_type'],
                 'deadline':request.form['deadline'],
@@ -240,7 +241,10 @@ def new_mission():
                 'publisher':12,
                 'acceptor':13
                 }
-            # r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/', data=json.dumps(jsonobj))
+            headers = {'content-type': 'application/json'}
+            r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/', data=json.dumps(jsonobj),headers = headers)
+            # req_openid = requests.get(url_openid)
+
             return json.dumps(jsonobj)
         except:
             return 'wrong!'
