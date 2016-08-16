@@ -191,24 +191,11 @@ def new_mission():
         print 'nsukey:'+nsukey
 
         # 获取用户信息
-    # 通过code获取openid
-        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
-        req_openid = requests.get(url_openid)
-
-        openid = req_openid.json().get('openid')
-        access_token = req_openid.json().get('access_token')
-        # return openid
-
-        # 通过openid获取用户资料
-        url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
-        req_userinfo = requests.get(url_userinfo)
-        userinfo = req_userinfo.json()
-        # return userinfo
+        userinfo = getUserInfo(code,state,nsukey)
 
         # 从资料中提取具体信息
         nickname = userinfo.get('nickname')
-        url_openid = userinfo.get('openid')
-        url_userinfo = userinfo.get('url_userinfo')
+        openid = userinfo.get('openid')
         sex = userinfo.get('sex')
         province = userinfo.get('province')
         city = userinfo.get('city')
@@ -221,9 +208,8 @@ def new_mission():
         city = codefix(city)
         country = codefix(country)
 
-        return str(openid)+str(url_openid)
         # 渲染
-        # return render_template('new_mission.html',openid = openid)
+        return render_template('new_mission.html',openid = openid)
     # 提交任务
     elif request.method == 'POST':
         try:
