@@ -148,41 +148,6 @@ def wechat_auth():
                         'description': u'第三条新闻描述',
                         'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
                         'url': u'http://www.v2ex.com/',
-                    },{
-                        'title': u'第4条新闻标题',
-                        'description': u'第三条新闻描述',
-                        'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
-                        'url': u'http://www.v2ex.com/',
-                    },{
-                        'title': u'第5条新闻标题',
-                        'description': u'第三条新闻描述',
-                        'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
-                        'url': u'http://www.v2ex.com/',
-                    },{
-                        'title': u'第6条新闻标题',
-                        'description': u'第三条新闻描述',
-                        'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
-                        'url': u'http://www.v2ex.com/',
-                    },{
-                        'title': u'第7条新闻标题',
-                        'description': u'第三条新闻描述',
-                        'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
-                        'url': u'http://www.v2ex.com/',
-                    },{
-                        'title': u'第8条新闻标题',
-                        'description': u'第三条新闻描述',
-                        'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
-                        'url': u'http://www.v2ex.com/',
-                    },{
-                        'title': u'第9条新闻标题',
-                        'description': u'第三条新闻描述',
-                        'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
-                        'url': u'http://www.v2ex.com/',
-                    },{
-                        'title': u'第10条新闻标题',
-                        'description': u'第三条新闻描述',
-                        'picurl': u'http://http://o7m541j22.bkt.clouddn.com/group.png',
-                        'url': u'http://www.v2ex.com/',
                     }
                 ])
                 return feedback
@@ -235,7 +200,7 @@ def new_mission():
         country = codefix(country)
         # 渲染
         return render_template('new_mission.html',openid = openid)
-
+    # 提交任务
     elif request.method == 'POST':
         try:
             jsonobj = {
@@ -254,11 +219,13 @@ def new_mission():
                 'acceptor':''
                 }
 
+            # 更新数据库
             headers = {'content-type': 'application/json'}
             r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/', data=json.dumps(jsonobj),headers = headers)
             # req_openid = requests.get(url_openid)
 
-            return json.dumps(jsonobj)
+            # return json.dumps(jsonobj)
+            return redirect('/wechat/mission_commit') 
         except:
             return 'wrong!'
     else:
@@ -344,6 +311,7 @@ def myinfo():
 #         except:
 #             return 'wrong!'
 
+# 确认提交完成
 @app.route('/wechat/mission_commit', methods = ['GET', 'POST'])
 def mission_commit():
     if request.method == 'GET':
@@ -416,9 +384,6 @@ def user_register():
         return render_template('user_register.html')
     else:
         pass
-
-
-
 
 
 
