@@ -226,7 +226,7 @@ def new_mission():
     elif request.method == 'POST':
         try:
             jsonobj = {
-                'mission_id':1,
+                'mission_id':'0045',
                 'publisher':request.form['publisher'],
                 'name':request.form['mission_name'],
                 'mission_type':request.form['mission_type'],
@@ -240,6 +240,7 @@ def new_mission():
                 'bidder':12,
                 'acceptor':13
                 }
+
             headers = {'content-type': 'application/json'}
             r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/', data=json.dumps(jsonobj),headers = headers)
             # req_openid = requests.get(url_openid)
