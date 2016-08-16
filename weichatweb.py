@@ -228,7 +228,7 @@ def new_mission():
     elif request.method == 'POST':
         try:
             jsonobj = {
-                'mission_id':uuid.uuid1(),
+                'mission_id':str(uuid.uuid1()),
                 'publisher':request.form['publisher'],
                 'name':request.form['mission_name'],
                 'mission_type':request.form['mission_type'],
