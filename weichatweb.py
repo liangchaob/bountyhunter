@@ -207,7 +207,7 @@ def new_mission():
 
         # 从资料中提取具体信息
         nickname = userinfo.get('nickname')
-        url_openid = userinfo.get('url_openid')
+        url_openid = userinfo.get('openid')
         url_userinfo = userinfo.get('url_userinfo')
         sex = userinfo.get('sex')
         province = userinfo.get('province')
