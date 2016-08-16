@@ -112,6 +112,17 @@ def wechat_auth():
 
                     ])
                     return feedback
+                elif key == 'APP_HELP':
+                    feedback = wechat.response_news([
+                        {
+                            'title': u'帮助',
+                            'picurl': u'http://o7m541j22.bkt.clouddn.com/biznetwork.png',
+                            'description': u'正确姿势',
+                            'url': u'http://www.baidu.com/',
+                        }
+
+                    ])
+                    return feedback
                 else:
                     pass
 
@@ -238,9 +249,9 @@ def new_mission():
                 'skill_need':request.form['skill_need'],
                 'bounty':request.form['bounty'],
                 'state':1,
-                'comment':123,
-                'bidder':12,
-                'acceptor':13
+                'comment':'',
+                'bidder':'',
+                'acceptor':''
                 }
 
             headers = {'content-type': 'application/json'}

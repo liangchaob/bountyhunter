@@ -81,9 +81,9 @@ menu_data2 =  {
                "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmyinfo&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
             },
             {
-               "type":"view",
+               "type":"click",
                "name":"帮助",
-               "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fhelp&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+               "key":"APP_HELP"
             }]
        }]
  }
