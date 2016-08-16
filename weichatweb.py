@@ -238,7 +238,6 @@ def new_mission():
                 'state':1,
                 'comment':123,
                 'bidder':12,
-                'publisher':12,
                 'acceptor':13
                 }
             headers = {'content-type': 'application/json'}
