@@ -227,7 +227,7 @@ def new_mission():
         try:
             jsonobj = {
                 'mission_id':1,
-                'publisher':request.form['openid'],
+                'publisher':request.form['publisher'],
                 'name':request.form['mission_name'],
                 'mission_type':request.form['mission_type'],
                 'deadline':request.form['deadline'],
