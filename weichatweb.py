@@ -46,10 +46,31 @@ wechat = WechatBasic(conf=conf)
 # flask实例化
 app = Flask(__name__)
 
+# 编码修正
 def codefix(s):
     s = s.encode('ISO-8859-1')
     s = s.decode('UTF-8')
     return s
+
+# 获取用户基本信息
+def getUserInfo(code=code,state=state,nsukey=nsukey):
+    # 通过code获取openid
+    url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
+    req_openid = requests.get(url_openid)
+
+    openid = req_openid.json().get('openid')
+    access_token = req_openid.json().get('access_token')
+    # return openid
+
+    # 通过openid获取用户资料
+    url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
+    req_userinfo = requests.get(url_userinfo)
+    userinfo = req_userinfo.json()
+    return userinfo
+
+
+
+
 
 # 微信验证
 @app.route('/wechat_auth', methods = ['GET', 'POST'])
@@ -156,8 +177,6 @@ def wechat_auth():
             print 'Invalid Body Text'
             return 'nothing'
 
-
-
 # 新任务
 @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
 def new_mission():
@@ -171,7 +190,8 @@ def new_mission():
         print 'state:'+state
         print 'nsukey:'+nsukey
 
-        # 通过code获取openid
+        # 获取用户信息
+    # 通过code获取openid
         url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
         req_openid = requests.get(url_openid)
 
@@ -183,6 +203,7 @@ def new_mission():
         url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
         req_userinfo = requests.get(url_userinfo)
         userinfo = req_userinfo.json()
+        # return userinfo
 
         # 从资料中提取具体信息
         nickname = userinfo.get('nickname')
@@ -193,13 +214,16 @@ def new_mission():
         city = userinfo.get('city')
         country = userinfo.get('country')
         headimgurl = userinfo.get('headimgurl')
+
         # 修正编码格式
         nickname = codefix(nickname)
         province = codefix(province)
         city = codefix(city)
         country = codefix(country)
+
+        return str(openid)+str(url_openid)
         # 渲染
-        return render_template('new_mission.html',openid = openid)
+        # return render_template('new_mission.html',openid = openid)
     # 提交任务
     elif request.method == 'POST':
         try:
@@ -320,8 +344,8 @@ def mission_commit():
         return render_template('mission_commit.html')
     else:
         pass
-    # 提交表单
-
+    
+# 用户中心
 @app.route('/wechat/user_center', methods = ['GET', 'POST'])
 def user_center():
     if request.method == 'GET':
