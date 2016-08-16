@@ -53,7 +53,7 @@ def codefix(s):
     return s
 
 # 获取用户基本信息
-def getUserInfo(code=code,state=state,nsukey=nsukey):
+def getUserInfo(code,state,nsukey):
     # 通过code获取openid
     url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
     req_openid = requests.get(url_openid)
