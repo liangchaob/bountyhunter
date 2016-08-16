@@ -211,7 +211,7 @@ def new_mission():
                 'deadline':request.form['deadline'],
                 'description':request.form['description'],
                 'obj':request.form['obj'],
-                'skill_need':request.form['skill_need'],
+                'skill_need':request.values.getlist('skill_need'),
                 'bounty':request.form['bounty'],
                 'state':1,
                 'comment':'',
