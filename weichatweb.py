@@ -24,6 +24,8 @@ from wechat_sdk import WechatBasic
 from wechat_sdk.exceptions import ParseError
 
 import json
+import uuid
+
 
 APPID = 'wxa9312a82e8138370'
 APPSECRET = '3f87fbd58c9013a0b0190bda28a4acc5'
@@ -226,7 +228,7 @@ def new_mission():
     elif request.method == 'POST':
         try:
             jsonobj = {
-                'mission_id':'0045',
+                'mission_id':uuid.uuid1(),
                 'publisher':request.form['publisher'],
                 'name':request.form['mission_name'],
                 'mission_type':request.form['mission_type'],
