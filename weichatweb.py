@@ -52,20 +52,20 @@ def codefix(s):
     s = s.decode('UTF-8')
     return s
 
+
 # 获取用户基本信息
 def getUserInfo(code,state,nsukey):
     # 通过code获取openid
     url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
     req_openid = requests.get(url_openid)
-
     openid = req_openid.json().get('openid')
     access_token = req_openid.json().get('access_token')
-    # return openid
 
     # 通过openid获取用户资料
     url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
     req_userinfo = requests.get(url_userinfo)
     userinfo = req_userinfo.json()
+    # 返回用户基本信息
     return userinfo
 
 
@@ -186,9 +186,6 @@ def new_mission():
         code = query.get('code', '')  
         state = query.get('state', '')
         nsukey = query.get('nsukey', '')
-        print 'code:'+code
-        print 'state:'+state
-        print 'nsukey:'+nsukey
 
         # 获取用户信息
         userinfo = getUserInfo(code,state,nsukey)
@@ -335,7 +332,32 @@ def mission_commit():
 @app.route('/wechat/user_center', methods = ['GET', 'POST'])
 def user_center():
     if request.method == 'GET':
-        return render_template('user_center.html')
+        # 参数接收获取code
+        query = request.args 
+        code = query.get('code', '')  
+        state = query.get('state', '')
+        nsukey = query.get('nsukey', '')
+
+        # 获取用户信息
+        userinfo = getUserInfo(code,state,nsukey)
+
+        # 从资料中提取具体信息
+        nickname = userinfo.get('nickname')
+        openid = userinfo.get('openid')
+        sex = userinfo.get('sex')
+        province = userinfo.get('province')
+        city = userinfo.get('city')
+        country = userinfo.get('country')
+        headimgurl = userinfo.get('headimgurl')
+
+        # 修正编码格式
+        nickname = codefix(nickname)
+        province = codefix(province)
+        city = codefix(city)
+        country = codefix(country)
+        # 渲染
+        return render_template('user_center.html', openid = openid, nickname = nickname, city = city,headimgurl = headimgurl)
+
     elif request.method == 'POST':
         return render_template('user_center.html')
     else:
