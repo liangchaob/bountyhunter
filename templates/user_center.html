@@ -19,9 +19,8 @@
             @font-face {
                 font-family: 'iconfont';
                 src: url('{{ url_for('static',filename='fonts/iconfont.eot',_external=True) }}'); /* IE9*/
-                src: url('{{ url_for('static',filename='fonts/iconfont.eot',_external=True) }}') format('embedded-opentype'), /* IE6-IE8 */
-                url('{{ url_for('static',filename='fonts/iconfont.woff',_external=True) }}') format('woff'), /* chrome、firefox */
-                url('{{ url_for('static',filename='fonts/iconfont.ttf',_external=True) }}') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+                src: url('{{ url_for('static',filename='fonts/iconfont.woff',_external=True) }}') format('woff'), 
+                url('{{ url_for('static',filename='fonts/iconfont.ttf',_external=True) }}') format('truetype'),
                 url('{{ url_for('static',filename='fonts/iconfont.svg',_external=True) }}') format('svg'); /* iOS 4.1- */
             }
             .iconfont{
