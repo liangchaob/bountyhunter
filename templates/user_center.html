@@ -15,6 +15,22 @@
             a:visited {color: #ae9f9f;} 
             a:link {color: #ae9f9f;} 
             a {color: #ae9f9f;}
+            /*引用阿里巴巴的微信图库*/
+            @font-face {
+                font-family: 'iconfont';
+                src: url('{{ url_for('static',filename='fonts/iconfont.eot',_external=True) }}'); /* IE9*/
+                src: url('{{ url_for('static',filename='fonts/iconfont.eot',_external=True) }}') format('embedded-opentype'), /* IE6-IE8 */
+                url('{{ url_for('static',filename='fonts/iconfont.woff',_external=True) }}') format('woff'), /* chrome、firefox */
+                url('{{ url_for('static',filename='fonts/iconfont.ttf',_external=True) }}') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+                url('{{ url_for('static',filename='fonts/iconfont.svg',_external=True) }}') format('svg'); /* iOS 4.1- */
+            }
+            .iconfont{
+                font-family:"iconfont" !important;
+                font-size:16px;font-style:normal;
+                -webkit-font-smoothing: antialiased;
+                -webkit-text-stroke-width: 0.2px;
+                -moz-osx-font-smoothing: grayscale;
+            }
         </style>
     </head>
     <body style="background-color: #2D2C40;color: #ffffff">
@@ -28,6 +44,7 @@
                 </div>
                 <div class="weui_media_bd">
                     <h4 class="weui_media_title" style="color: #ffffff">{{ nickname }}</h4>
+                    <p>&#xe603;{{ city }}</p>
                     <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
                 </div>
             </a>
