@@ -436,11 +436,23 @@ def apphelp():
         pass
 
 
-# 帮助页面
+# 管理员
 @app.route('/admin', methods = ['GET', 'POST'])
 def adminConsole():
     if request.method == 'GET':
-        return render_template('admin_console.html')
+        # 更新数据库
+        headers = {'content-type': 'application/json'}
+        r = requests.get('http://liangchaob-bountyhunter.daoapp.io/mission/',headers = headers)
+        result = r.json()
+        mission_list = result.get('mission')
+
+        # 筛选出处于发布状态的任务
+        misson_publish = []
+        for mission in mission_list:
+            if mission.get('state') == 1:
+                misson_publish.append(mission)
+
+        return render_template('admin_console.html',misson_publish = misson_publish)
     else:
         pass
 
