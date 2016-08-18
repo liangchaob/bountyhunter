@@ -408,7 +408,8 @@ def comment_mission():
         return render_template('comment_mission.html')
     else:
         pass
-         # 注册
+
+# 注册
 @app.route('/wechat/user_register', methods = ['GET', 'POST'])
 def user_register():
     if request.method == 'GET':
@@ -434,6 +435,14 @@ def apphelp():
     else:
         pass
 
+
+# 帮助页面
+@app.route('/admin', methods = ['GET', 'POST'])
+def adminConsole():
+    if request.method == 'GET':
+        return render_template('admin_console.html')
+    else:
+        pass
 
 # 运行主函数
 if __name__ == '__main__':
