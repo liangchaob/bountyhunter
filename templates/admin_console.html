@@ -66,8 +66,9 @@
                   <th>项目id</th>
                   <th>项目名</th>
                   <th>项目类型</th>
+                  <th>赏金</th>
                   <th>发布人</th>
-                  <th>发布时间</th>
+                  <!-- <th>发布时间</th> -->
                 </tr>
               </thead>
               <tbody>
@@ -76,10 +77,10 @@
 
                 <tr>
                   <td>{{ mission.mission_id }}</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
+                  <td>{{ mission.name }}</td>
+                  <td>{{ mission.mission_type }}</td>
+                  <td>{{ mission.bounty }}</td>
+                  <td>{{ mission.publisher }}</td>
                 </tr>
                 {% endfor %}
                 <tr>
