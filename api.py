@@ -28,7 +28,7 @@ import json
 # 生产
 MONGODB_ADDR = '10.10.72.139'
 MONGODB_PORT = 27017
-MONGODB_DB = 'ZVM6I0XPYcz4gKDp'
+MONGODB_DB = 'pF34ljJ5KYtc9sdZ'
 
 # 设置数据库地址
 client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
@@ -37,7 +37,7 @@ client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
 db = client[MONGODB_DB]
 
 # 生产认证
-db.authenticate("u4LvDP9eoSWqpBN8","ppvxw6h8uI5lLCeMz")
+db.authenticate("uRyZYodlpcmOj74E","pyHsxuq1dCb9wXGMS")
 
 # 设置表名,建立为索引
 # 用户表
