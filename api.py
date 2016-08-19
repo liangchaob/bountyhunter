@@ -173,8 +173,8 @@ def user(openid):
         # 参数接收
         try:
             result = request.json
-            j = UserObj(result)
-            collection_user.update({'openid':openid},{'$set':j.jsonobj})
+            # j = UserObj(result)
+            collection_user.update({'openid':openid},{'$set':result})
             return errcode.success()
         except:
             return errcode.failed()
@@ -222,8 +222,7 @@ def mission(mission_id):
         # 参数接收
         try:
             result = request.json
-            j = MissionObj(result)
-            collection_mission.update({'mission_id':mission_id},{'$set':j.jsonobj})
+            collection_mission.update({'mission_id':mission_id},{'$set':result})
             return errcode.success()
         except:
             return errcode.failed()
@@ -269,8 +268,8 @@ def skill(skill_id):
         # 参数接收
         try:
             result = request.json
-            j = SkillObj(result)
-            collection_skill.update({'skill_id':skill_id},{'$set':j.jsonobj})
+            # j = SkillObj(result)
+            collection_skill.update({'skill_id':skill_id},{'$set':result})
             return errcode.success()
         except:
             return errcode.failed()
@@ -319,8 +318,8 @@ def comment(comment_id):
         # 参数接收
         try:
             result = request.json
-            j = CommentObj(result)
-            collection_comment.update({'comment_id':comment_id},{'$set':j.jsonobj})
+            # j = CommentObj(result)
+            collection_comment.update({'comment_id':comment_id},{'$set':result})
             return errcode.success()
         except:
             return errcode.failed()
@@ -369,8 +368,8 @@ def feedback(feedback_id):
         # 参数接收
         try:
             result = request.json
-            j = FeedbackObj(result)
-            collection_feedback.update({'feedback_id':feedback_id},{'$set':j.jsonobj})
+            # j = FeedbackObj(result)
+            collection_feedback.update({'feedback_id':feedback_id},{'$set':result})
             return errcode.success()
         except:
             return errcode.failed()
