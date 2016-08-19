@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>{{ mission_name }}</title>
+    <title>{{ mission_approval.name }}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -26,19 +26,19 @@
     <!-- Begin page content -->
     <div class="container">
       <div class="page-header">
-        <h1>{{ mission_name }}</h1>
+        <h1>{{ mission_approval.name }}</h1>
 
 
 
       </div>
-      <p>任务类型：{{ mission_type }}</p>
-      <p>投标截止日期：{{ deadline }}</p>
-      <p class="lead">任务描述：{{ description }}</p>
-      <p class="lead">任务目标：{{ obj }}</p>
-      <p class="lead">技能需求：{{ skill_need }}</p>
-      <p class="lead">酬金：{{ bounty }}</p>
-      <p class="lead">状态：{{ state }}</p>
-      <p class="lead">发布者：{{ publisher }}</p>
+      <p>任务类型：{{ mission_approval.mission_type }}</p>
+      <p>投标截止日期：{{ mission_approval.deadline }}</p>
+      <p class="lead">任务描述：{{ mission_approval.description }}</p>
+      <p class="lead">任务目标：{{ mission_approval.obj }}</p>
+      <p class="lead">技能需求：{{ mission_approval.skill_need[0] }}</p>
+      <p class="lead">酬金：{{ mission_approval.bounty }}</p>
+      <p class="lead">状态：{{ mission_approval.state }}</p>
+      <p class="lead">发布者：{{ mission_approval.publisher }}</p>
       <p>Use <a href="../sticky-footer-navbar">the sticky footer with a fixed navbar</a> if need be, too.</p>
     </div>
 
