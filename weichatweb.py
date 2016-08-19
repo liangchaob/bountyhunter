@@ -228,7 +228,7 @@ def new_mission():
 
             # 更新数据库
             headers = {'content-type': 'application/json'}
-            r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/', data=json.dumps(jsonobj),headers = headers)
+            r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/', data=json.dumps(jsonobj),headers = headers)
             # req_openid = requests.get(url_openid)
 
             # return json.dumps(jsonobj)
@@ -442,7 +442,7 @@ def adminConsole():
     if request.method == 'GET':
         # 更新数据库
         headers = {'content-type': 'application/json'}
-        r = requests.get('http://liangchaob-bountyhunter.daoapp.io/mission/',headers = headers)
+        r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
         result = r.json()
         mission_list = result.get('mission')
 
@@ -462,7 +462,7 @@ def missionApproval(mission_id):
     if request.method == 'GET':
         # 更新数据库
         headers = {'content-type': 'application/json'}
-        r = requests.get('http://liangchaob-bountyhunter.daoapp.io/mission/'+str(mission_id),headers = headers)
+        r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id),headers = headers)
         result = r.json()
 
         return render_template('mission_approval.html',mission_approval = result)
@@ -473,7 +473,7 @@ def missionApproval(mission_id):
             jsonobj = {'state':2}
             # 更新数据库
             headers = {'content-type': 'application/json'}
-            r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
+            r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
             return str(result)
 
         elif result == 'deny':
@@ -481,7 +481,7 @@ def missionApproval(mission_id):
             jsonobj = {'state':0}
             # 更新数据库
             headers = {'content-type': 'application/json'}
-            r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
+            r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
             return str(result)
     else:
         pass
