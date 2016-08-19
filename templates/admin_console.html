@@ -68,6 +68,8 @@
                   <th>项目类型</th>
                   <th>赏金</th>
                   <th>发布人</th>
+                  <th>链接</th>
+
                   <!-- <th>发布时间</th> -->
                 </tr>
               </thead>
@@ -80,6 +82,7 @@
                   <td>{{ mission.mission_type }}</td>
                   <td>{{ mission.bounty }}</td>
                   <td>{{ mission.publisher }}</td>
+                  <td><a href="/admin/{{ mission.mission_id }}"></a>链接</td>
                 </tr>
                 {% endfor %}
               </tbody>

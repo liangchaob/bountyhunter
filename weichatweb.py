@@ -456,6 +456,22 @@ def adminConsole():
     else:
         pass
 
+# 管理员
+@app.route('/admin/<mission_id>', methods = ['GET', 'POST'])
+def missionApproval(mission_id):
+    if request.method == 'GET':
+        # 更新数据库
+        headers = {'content-type': 'application/json'}
+        r = requests.get('http://liangchaob-bountyhunter.daoapp.io/mission/'+str(mission_id),headers = headers)
+        result = r.json()
+
+        return render_template('mission_approval.html',mission_name = result.name,
+            mission_type = result.mission_type,deadline = result.deadline,description = result.description,
+            obj = result.obj,skill_need = result.skill_need,bounty = result.bounty,state = result.state,
+            publisher = publisher)
+    else:
+        pass
+
 # 运行主函数
 if __name__ == '__main__':
     # 对外开放80端口
