@@ -466,6 +466,10 @@ def missionApproval(mission_id):
         result = r.json()
 
         return render_template('mission_approval.html',mission_approval = result)
+    elif request.method == 'POST':
+        result = request.json
+        return 'success'
+
     else:
         pass
 
