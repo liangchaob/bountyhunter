@@ -477,8 +477,8 @@ def missionApproval(mission_id):
             return str(result)
 
         elif result == 'deny':
-            # 把状态置为2（审批通过）
-            jsonobj = {'state':1}
+            # 把状态置为0（驳回状态）
+            jsonobj = {'state':0}
             # 更新数据库
             headers = {'content-type': 'application/json'}
             r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)

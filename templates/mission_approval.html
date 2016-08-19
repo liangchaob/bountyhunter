@@ -67,7 +67,8 @@ $('#pass').click(function(){
         // dataType:"json",
         success:function(result){
             alert('该申请已通过');
-            setTimeout("window.opener=null;window.open('','_self');window.close();",500)
+            top.window.location.href = "/admin";
+            // setTimeout("window.opener=null;window.open('','_self');window.close();",500)
             },
         error:function(){
             alert("error")
@@ -83,7 +84,8 @@ $('#deny').click(function(){
         // dataType:"json",
         success:function(result){
             alert('该申请已驳回');
-            setTimeout("window.opener=null;window.open('','_self');window.close();",500)
+            top.window.location.href = "/admin";
+            // setTimeout("window.opener=null;window.open('','_self');window.close();",500)
             },
         error:function(){
             alert("error")
