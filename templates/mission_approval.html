@@ -35,7 +35,7 @@
       <p>投标截止日期：{{ mission_approval.deadline }}</p>
       <p class="lead">任务描述：{{ mission_approval.description }}</p>
       <p class="lead">任务目标：{{ mission_approval.obj }}</p>
-      <p>技能需求：</p>
+      <p class="lead">技能需求：</p>
       {% for skill in mission_approval.skill_need %}
         <p>{{ skill }}</p>
       {% endfor %}
