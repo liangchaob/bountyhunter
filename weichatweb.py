@@ -467,9 +467,22 @@ def missionApproval(mission_id):
 
         return render_template('mission_approval.html',mission_approval = result)
     elif request.method == 'POST':
-        result = request.json
-        return 'success'
+        result = request.form.get('code')
+        if result == 'pass':
+            # 把状态置为2（审批通过）
+            jsonobj = {'state':2}
+            # 更新数据库
+            headers = {'content-type': 'application/json'}
+            r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
+            return str(result)
 
+        elif result == 'deny':
+            # 把状态置为2（审批通过）
+            jsonobj = {'state':1}
+            # 更新数据库
+            headers = {'content-type': 'application/json'}
+            r = requests.post('http://liangchaob-bountyhunter.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
+            return str(result)
     else:
         pass
 

@@ -59,23 +59,38 @@
   </body>
 
 <script type="text/javascript">
-
-  $(function(){
-    $('#pass').click(function(){
-      $.ajax({
-            url:"/admin/{{ mission_approval.mission_id }}",
-            data:"{'code':'pass'}",
-            type:"POST",
-            dataType:"json",
-            success:function(result){
-                alert('success!')
-                }
+$('#pass').click(function(){
+  $.ajax({
+        url:"/",
+        data:{'code':'pass'},
+        type:"POST",
+        // dataType:"json",
+        success:function(result){
+            alert('该申请已通过');
+            setTimeout("window.opener=null;window.open('','_self');window.close();",500)
             },
-            error:function(){
-                alert("error")
-            }
-        });
-      });
+        error:function(){
+            alert("error")
+        }
+    })
+  });
+
+$('#deny').click(function(){
+  $.ajax({
+        url:"/",
+        data:{'code':'deny'},
+        type:"POST",
+        // dataType:"json",
+        success:function(result){
+            alert('该申请已驳回');
+            setTimeout("window.opener=null;window.open('','_self');window.close();",500)
+            },
+        error:function(){
+            alert("error")
+        }
+    })
+  });
+
 
 </script>
 
