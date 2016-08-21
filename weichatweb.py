@@ -436,9 +436,9 @@ def apphelp():
         pass
 
 
-# 管理员
-@app.route('/admin', methods = ['GET', 'POST'])
-def adminConsole():
+# 管理员审批
+@app.route('/admin/approval', methods = ['GET', 'POST'])
+def adminApproval():
     if request.method == 'GET':
         # 更新数据库
         headers = {'content-type': 'application/json'}
@@ -452,11 +452,53 @@ def adminConsole():
             if mission.get('state') == 1:
                 misson_publish.append(mission)
 
-        return render_template('admin_console.html',misson_publish = misson_publish)
+        return render_template('admin_approval.html',misson_publish = misson_publish)
     else:
         pass
 
-# 管理员
+# 管理员通过
+@app.route('/admin/passed', methods = ['GET', 'POST'])
+def adminPassed():
+    if request.method == 'GET':
+        # 更新数据库
+        headers = {'content-type': 'application/json'}
+        r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
+        result = r.json()
+        mission_list = result.get('mission')
+
+        # 筛选出处于已通过状态的任务
+        misson_passed = []
+        for mission in mission_list:
+            if mission.get('state') == 2:
+                misson_passed.append(mission)
+
+        return render_template('admin_passed.html',misson_passed = misson_passed)
+    else:
+        pass
+
+
+# 管理员驳回
+@app.route('/admin/deny', methods = ['GET', 'POST'])
+def adminDeny():
+    if request.method == 'GET':
+        # 更新数据库
+        headers = {'content-type': 'application/json'}
+        r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
+        result = r.json()
+        mission_list = result.get('mission')
+
+        # 筛选出处于发布状态的任务
+        misson_deny = []
+        for mission in mission_list:
+            if mission.get('state') == 0:
+                misson_deny.append(mission)
+
+        return render_template('admin_deny.html',misson_deny = misson_deny)
+    else:
+        pass
+
+
+# 管理具体项目
 @app.route('/admin/<mission_id>', methods = ['GET', 'POST'])
 def missionApproval(mission_id):
     if request.method == 'GET':
