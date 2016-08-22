@@ -363,7 +363,10 @@ def user_center():
         return render_template('user_center.html')
     else:
         pass
-        # 查看表单
+
+
+
+# 查看表单
 @app.route('/wechat/check_mission', methods = ['GET', 'POST'])
 def check_mission():
     if request.method == 'GET':
@@ -434,6 +437,24 @@ def apphelp():
         return render_template('help.html')
     else:
         pass
+
+
+
+
+
+
+
+
+# 后台管理员界面
+
+# 首页
+@app.route('/admin', methods = ['GET', 'POST'])
+def adminApproval():
+    if request.method == 'GET':
+        return redirect('/admin/approval')
+    else:
+        pass
+
 
 
 # 管理员审批
