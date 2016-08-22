@@ -121,7 +121,7 @@ def wechat_auth():
                     feedback = wechat.response_news([
                         {
                             'title': u'IT类项目',
-                            'picurl': u'http://o7m541j22.bkt.clouddn.com/biznetwork.png',
+                            'picurl': u'http://o7m541j22.bkt.clouddn.com/justdoit.jpg',
                             'description': u'Cisco、Oracle、Linux相关',
                             'url': u'http://www.baidu.com/',
                         },{
@@ -291,32 +291,31 @@ def myinfo():
 
 
 
+# 确认提交完成
+@app.route('/wechat/mission', methods = ['GET', 'POST'])
+def mission_commit():
+    if request.method == 'GET':
+        # 更新数据库
+        headers = {'content-type': 'application/json'}
+        r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
+        result = r.json()
+        mission_list = result.get('mission')
+
+        # 筛选出处于发布状态的任务
+        misson_passed = []
+        for mission in mission_list:
+            if mission.get('state') == 2:
+                misson_passed.append(mission)
+            else:
+                pass
+        return render_template('mission_today.html')
+
+    elif request.method == 'POST':
+        return render_template('mission_commit.html')
+    else:
+        pass
 
 
-
-
-
-
-# # 新任务
-# @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
-# def new_mission():
-#     if request.method == 'GET':
-#         return render_template('new_mission.html')
-#     elif request.method == 'POST':
-#         try:
-#             jsonobj = {
-#                 # 'openid':request.form['openid'],
-#                 'mission_name':request.form['mission_name'],
-#                 'mission_type':request.form['mission_type'],
-#                 'deadline':request.form['deadline'],
-#                 'description':request.form['description'],
-#                 'obj':request.form['obj'],
-#                 'skill_need':request.form['skill_need'],
-#                 'bounty':request.form['bounty']
-#                 }
-#             return 'success!'
-#         except:
-#             return 'wrong!'
 
 # 确认提交完成
 @app.route('/wechat/mission_commit', methods = ['GET', 'POST'])
@@ -355,6 +354,29 @@ def user_center():
         province = codefix(province)
         city = codefix(city)
         country = codefix(country)
+
+        # # 查询数据库
+        # headers = {'content-type': 'application/json'}
+        # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
+        # result = r.json()
+
+        # mission_list = result.get('mission')
+
+        # # 筛选出该用户发布的任务
+        # user_mission = []
+        # for mission in mission_list:
+        #     if mission.get('openid') == openid:
+        #         user_mission.append(mission)
+
+        # # 查询已发布
+        # mission_published = result.get('openid')
+        # # 查询已参与
+        # mission_recived
+        # # 查询已完成
+        # mission_finished
+
+
+
         # 渲染
         return render_template('user_center.html', openid = openid, nickname = nickname, 
             country = country , province = province, city = city, headimgurl = headimgurl)
@@ -363,6 +385,9 @@ def user_center():
         return render_template('user_center.html')
     else:
         pass
+
+
+
 
 
 
@@ -375,7 +400,7 @@ def check_mission():
         return render_template('check_mission.html')
     else:
         pass
-        # 修改表单
+# 修改表单
 @app.route('/wechat/edit_mission', methods = ['GET', 'POST'])
 def edit_mission():
     if request.method == 'GET':
@@ -384,7 +409,7 @@ def edit_mission():
         return render_template('edit_mission.html')
     else:
         pass
-         # 竞标
+# 竞标
 @app.route('/wechat/bid_mission', methods = ['GET', 'POST'])
 def bid_mission():
     if request.method == 'GET':
@@ -508,7 +533,7 @@ def adminDeny():
         result = r.json()
         mission_list = result.get('mission')
 
-        # 筛选出处于发布状态的任务
+        # 筛选出处于驳回状态的任务
         misson_deny = []
         for mission in mission_list:
             if mission.get('state') == 0:
