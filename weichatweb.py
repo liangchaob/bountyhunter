@@ -479,13 +479,6 @@ def user_register():
         pass
 
 
-
-
-
-
-
-
-
 # 帮助页面
 @app.route('/wechat/help', methods = ['GET', 'POST'])
 def apphelp():
@@ -494,15 +487,7 @@ def apphelp():
     else:
         pass
 
-
-
-
-
-
-
-
 # 后台管理员界面
-
 # 首页
 @app.route('/admin', methods = ['GET', 'POST'])
 def adminApproval():
@@ -510,8 +495,6 @@ def adminApproval():
         return redirect('/admin/approval')
     else:
         pass
-
-
 
 # 管理员审批
 @app.route('/admin/approval', methods = ['GET', 'POST'])
