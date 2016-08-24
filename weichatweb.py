@@ -80,7 +80,7 @@ class dbOpt(object):
     def dbget(self,suburl):
         # http头
         headers = {'content-type': 'application/json'}
-        r = requests.get(self.dburl + suburl + '/', headers = headers)
+        r = requests.get(self.dburl + suburl, headers = headers)
         result = r.json()
         return result
 
@@ -325,7 +325,7 @@ def myinfo():
 @app.route('/wechat/mission', methods = ['GET', 'POST'])
 def mission_commit():
     if request.method == 'GET':
-        result = db_obj.dbget('mission')
+        result = db_obj.dbget('mission/')
         # # 更新数据库
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
@@ -517,7 +517,7 @@ def adminApproval():
 @app.route('/admin/approval', methods = ['GET', 'POST'])
 def adminApproval():
     if request.method == 'GET':
-        result = db_obj.dbget('mission')
+        result = db_obj.dbget('mission/')
         # # 更新数据库
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
@@ -538,7 +538,7 @@ def adminApproval():
 @app.route('/admin/passed', methods = ['GET', 'POST'])
 def adminPassed():
     if request.method == 'GET':
-        result = db_obj.dbget('mission')
+        result = db_obj.dbget('mission/')
         # # 更新数据库
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
@@ -560,7 +560,7 @@ def adminPassed():
 @app.route('/admin/deny', methods = ['GET', 'POST'])
 def adminDeny():
     if request.method == 'GET':
-        result = db_obj.dbget('mission')
+        result = db_obj.dbget('mission/')
         # # 更新数据库
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
@@ -582,7 +582,7 @@ def adminDeny():
 @app.route('/admin/<mission_id>', methods = ['GET', 'POST'])
 def missionApproval(mission_id):
     if request.method == 'GET':
-        result = db_obj.dbget('mission')
+        result = db_obj.dbget('mission/')
         # # 更新数据库
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id),headers = headers)
