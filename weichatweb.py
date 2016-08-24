@@ -490,7 +490,7 @@ def apphelp():
 
 # 帮助页面
 @app.route('/wechat/t1', methods = ['GET', 'POST'])
-def apphelp():
+def t2():
     if request.method == 'GET':
         return render_template('weichat_newmission.html')
     else:
