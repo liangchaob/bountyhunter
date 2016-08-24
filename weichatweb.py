@@ -69,6 +69,32 @@ def getUserInfo(code,state,nsukey):
     return userinfo
 
 
+# 数据库操作
+class dbOpt(object):
+    """docstring for dbOpt"""
+    def __init__(self, dburl):
+        super(dbOpt, self).__init__()
+        self.dburl = dburl
+
+    # 数据查询
+    def dbget(self,suburl):
+        # http头
+        headers = {'content-type': 'application/json'}
+        r = requests.get(self.dburl + suburl + '/', headers = headers)
+        result = r.json()
+        return result
+
+    # 数据更新
+    def dbpost(self,suburl,postdata):
+        # http头
+        headers = {'content-type': 'application/json'}
+        r = requests.post(self.dburl + suburl + '/' + str(mission_id), data=json.dumps(postdata), headers = headers)
+        result = r.json()
+        return result
+
+        
+db_obj = dbOpt(dburl = 'http://liangchaob-bountyapi.daoapp.io/')
+
 
 
 
@@ -226,9 +252,11 @@ def new_mission():
                 'acceptor':''
                 }
 
-            # 更新数据库
-            headers = {'content-type': 'application/json'}
-            r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/', data=json.dumps(jsonobj),headers = headers)
+            result = db_obj.dbpost('mission',jsonobj)
+
+            # # 更新数据库
+            # headers = {'content-type': 'application/json'}
+            # r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/', data=json.dumps(jsonobj),headers = headers)
             # req_openid = requests.get(url_openid)
 
             # return json.dumps(jsonobj)
@@ -295,10 +323,11 @@ def myinfo():
 @app.route('/wechat/mission', methods = ['GET', 'POST'])
 def mission_commit():
     if request.method == 'GET':
-        # 更新数据库
-        headers = {'content-type': 'application/json'}
-        r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
-        result = r.json()
+        result = db_obj.dbget('mission')
+        # # 更新数据库
+        # headers = {'content-type': 'application/json'}
+        # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
+        # result = r.json()
         mission_list = result.get('mission')
 
         # 筛选出处于发布状态的任务
@@ -486,10 +515,11 @@ def adminApproval():
 @app.route('/admin/approval', methods = ['GET', 'POST'])
 def adminApproval():
     if request.method == 'GET':
-        # 更新数据库
-        headers = {'content-type': 'application/json'}
-        r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
-        result = r.json()
+        result = db_obj.dbget('mission')
+        # # 更新数据库
+        # headers = {'content-type': 'application/json'}
+        # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
+        # result = r.json()
         mission_list = result.get('mission')
 
         # 筛选出处于发布状态的任务
@@ -506,10 +536,11 @@ def adminApproval():
 @app.route('/admin/passed', methods = ['GET', 'POST'])
 def adminPassed():
     if request.method == 'GET':
-        # 更新数据库
-        headers = {'content-type': 'application/json'}
-        r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
-        result = r.json()
+        result = db_obj.dbget('mission')
+        # # 更新数据库
+        # headers = {'content-type': 'application/json'}
+        # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
+        # result = r.json()
         mission_list = result.get('mission')
 
         # 筛选出处于已通过状态的任务
@@ -527,10 +558,11 @@ def adminPassed():
 @app.route('/admin/deny', methods = ['GET', 'POST'])
 def adminDeny():
     if request.method == 'GET':
-        # 更新数据库
-        headers = {'content-type': 'application/json'}
-        r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
-        result = r.json()
+        result = db_obj.dbget('mission')
+        # # 更新数据库
+        # headers = {'content-type': 'application/json'}
+        # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
+        # result = r.json()
         mission_list = result.get('mission')
 
         # 筛选出处于驳回状态的任务
@@ -548,10 +580,11 @@ def adminDeny():
 @app.route('/admin/<mission_id>', methods = ['GET', 'POST'])
 def missionApproval(mission_id):
     if request.method == 'GET':
-        # 更新数据库
-        headers = {'content-type': 'application/json'}
-        r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id),headers = headers)
-        result = r.json()
+        result = db_obj.dbget('mission')
+        # # 更新数据库
+        # headers = {'content-type': 'application/json'}
+        # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id),headers = headers)
+        # result = r.json()
 
         return render_template('mission_approval.html',mission_approval = result)
     elif request.method == 'POST':
@@ -559,17 +592,19 @@ def missionApproval(mission_id):
         if result == 'pass':
             # 把状态置为2（审批通过）
             jsonobj = {'state':2}
-            # 更新数据库
-            headers = {'content-type': 'application/json'}
-            r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
+            result = db_obj.dbpost('mission',jsonobj)
+            # # 更新数据库
+            # headers = {'content-type': 'application/json'}
+            # r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
             return str(result)
 
         elif result == 'deny':
             # 把状态置为0（驳回状态）
             jsonobj = {'state':0}
-            # 更新数据库
-            headers = {'content-type': 'application/json'}
-            r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
+            result = db_obj.dbpost('mission',jsonobj)
+            # # 更新数据库
+            # headers = {'content-type': 'application/json'}
+            # r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
             return str(result)
     else:
         pass
