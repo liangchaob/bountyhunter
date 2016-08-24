@@ -582,7 +582,7 @@ def adminDeny():
 @app.route('/admin/<mission_id>', methods = ['GET', 'POST'])
 def missionApproval(mission_id):
     if request.method == 'GET':
-        result = db_obj.dbget('mission/')
+        result = db_obj.dbget('mission/'+mission_id)
         # # 更新数据库
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id),headers = headers)
