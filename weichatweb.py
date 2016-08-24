@@ -89,17 +89,10 @@ class dbOpt(object):
     def dbpost(self,suburl,postdata):
         # http头
         headers = {'content-type': 'application/json'}
-        r = requests.post(self.dburl + suburl + '/', data=json.dumps(postdata), headers = headers)
+        r = requests.post(self.dburl + suburl, data=json.dumps(postdata), headers = headers)
         result = r.json()
         return result
 
-    # 数据更新
-    def dbpostone(self,suburl,postdata):
-        # http头
-        headers = {'content-type': 'application/json'}
-        r = requests.post(self.dburl + suburl + '/' + str(mission_id), data=json.dumps(postdata), headers = headers)
-        result = r.json()
-        return result
 
         
 db_obj = dbOpt(dburl = 'http://liangchaob-bountyapi.daoapp.io/')
@@ -261,7 +254,7 @@ def new_mission():
                 'acceptor':''
                 }
 
-            result = db_obj.dbpost('mission',jsonobj)
+            result = db_obj.dbpost('mission/',jsonobj)
 
             # # 更新数据库
             # headers = {'content-type': 'application/json'}
@@ -601,7 +594,7 @@ def missionApproval(mission_id):
         if result == 'pass':
             # 把状态置为2（审批通过）
             jsonobj = {'state':2}
-            result = db_obj.dbpostone('mission',jsonobj)
+            result = db_obj.dbpost('mission/'+str(mission_id),mission_id,jsonobj)
             # # 更新数据库
             # headers = {'content-type': 'application/json'}
             # r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
@@ -610,7 +603,7 @@ def missionApproval(mission_id):
         elif result == 'deny':
             # 把状态置为0（驳回状态）
             jsonobj = {'state':0}
-            result = db_obj.dbpostone('mission',jsonobj)
+            result = db_obj.dbpost('mission/'+str(mission_id),mission_id,jsonobj)
             # # 更新数据库
             # headers = {'content-type': 'application/json'}
             # r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
