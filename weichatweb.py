@@ -487,6 +487,15 @@ def apphelp():
     else:
         pass
 
+
+# 帮助页面
+@app.route('/wechat/t1', methods = ['GET', 'POST'])
+def apphelp():
+    if request.method == 'GET':
+        return render_template('weichat_newmission.html')
+    else:
+        pass
+
 # 后台管理员界面
 # 首页
 @app.route('/admin', methods = ['GET', 'POST'])
