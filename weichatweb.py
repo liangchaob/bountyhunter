@@ -577,7 +577,7 @@ def missionApproval(mission_id):
         if result == 'pass':
             # 把状态置为2（审批通过）
             jsonobj = {'state':2}
-            result = db_obj.dbpost('mission/'+str(mission_id),mission_id,jsonobj)
+            result = db_obj.dbpost('mission/'+str(mission_id),jsonobj)
             # # 更新数据库
             # headers = {'content-type': 'application/json'}
             # r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
@@ -586,7 +586,7 @@ def missionApproval(mission_id):
         elif result == 'deny':
             # 把状态置为0（驳回状态）
             jsonobj = {'state':0}
-            result = db_obj.dbpost('mission/'+str(mission_id),mission_id,jsonobj)
+            result = db_obj.dbpost('mission/'+str(mission_id),jsonobj)
             # # 更新数据库
             # headers = {'content-type': 'application/json'}
             # r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
