@@ -42,22 +42,22 @@ db.authenticate("uRyZYodlpcmOj74E","pyHsxuq1dCb9wXGMS")
 # 设置表名,建立为索引
 # 用户表
 collection_user = db['user']
-collection_user.ensure_index('openid', unique=True)
+collection_user.ensure_index('openid')
 
 # 任务表
 collection_mission = db['mission']
-collection_mission.ensure_index('mission_id', unique=True)
+collection_mission.ensure_index('mission_id')
 
 
 # 技能表
 collection_skill = db['skill']
-collection_skill.ensure_index('skill_id', unique=True)
+collection_skill.ensure_index('skill_id')
 
 collection_comment = db['comment']
-collection_comment.ensure_index('comment_id', unique=True)
+collection_comment.ensure_index('comment_id')
 
 collection_feedback = db['feedback']
-collection_feedback.ensure_index('feedback_id', unique=True)
+collection_feedback.ensure_index('feedback_id')
 
 # 数据表
 # 用户信息
