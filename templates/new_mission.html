@@ -31,6 +31,9 @@
 
 </head>
 <body>
+<!-- 表单头 -->
+<form method="POST">
+<input type="hidden" name="publisher" value="{{ openid }}">
 
 <!-- 当前流程 -->
 <div style="text-align: center;margin-top: 20px;">
@@ -42,6 +45,7 @@
 </div>
 <!-- 外围框 -->
 <div class="bd">
+
     <!-- <div class="weui_cells_title"></div> -->
     <div class="weui_cells weui_cells_access">
         <a class="weui_cell" href="javascript:;">
@@ -137,177 +141,19 @@
         </div>
     </div>
     <div class="weui_cells_tips">悬赏金额不填写则进入竞标模式，截止日期如不填写则默认不限定任务完成日期</div>
+    </form>
     
+    <div class="weui_btn_area">
+        <a class="weui_btn weui_btn_primary" href="javascript:" id="showTooltips">确定</a>
+    </div>
 
 </div>
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-10">
-        <br>
-        <form class="form-horizontal" method="POST">
-
-<!-- 个人信息 -->
-        <input type="hidden" name="publisher" value="{{ openid }}">
 
 
 
-        <!-- 任务名称 -->
-          <div class="form-group">
-
-            <!-- 任务名称 -->
-            <div class="weui_cell">
-              <div class="weui_cell_hd"><label class="weui_label">任务名称</label></div>
-              <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" placeholder="请尽可能精简" name="mission_name">
-              </div>
-            </div>
-            <!-- 任务类型 -->
-            <div class="weui_cell">
-              <div class="weui_cell_hd"><label class="weui_label">任务类型</label></div>
-              <div class="weui_cell_bd weui_cell_primary">
-                <select class="form-control" style="width: 100px;" name="mission_type">
-                  <option>IT</option>
-                  <option>非IT</option>
-                </select>
-              </div>
-            </div>
-            
-          </div>
-
-        <!-- 完成时间 -->
-        <div class="weui_cell">             
-                <div class="weui_cell_hd"><label class="weui_label">完成时间</label></div>
-                <div class="demos">
-                  <input value="" class="weui_input" readonly="readonly" name="deadline" id="appDate" type="text" placeholder="请选择您的完成时间">
-                </div>
-                <input type="hidden" id="dtp_input1" value="" /><br/>
-            
-        </div>
-        <!-- 任务描述 -->
-          <div class="weui_cells">
-            <div class="weui_cell_hd" style="padding: 0 15px;border-top: none;"><label class="weui_label">任务描述</label></div>
-          </div>
-          <div class="weui_cell">
-            <div class="weui_cell_bd weui_cell_primary">
-                <textarea name="description" class="weui_textarea" placeholder="请输入任务描述" rows="3" style="font-size: 17px;border: 1px"></textarea>
-                <div class="weui_textarea_counter"><span>0</span>/200</div>
-            </div>
-          </div>
-          <!-- 任务目标 -->
-          <div class="weui_cells">
-            <div class="weui_cell_hd" style="padding: 0 15px;border-top: none;"><label class="weui_label">任务目标</label></div>
-          </div>
-          <div class="weui_cell">
-            <div class="weui_cell_bd weui_cell_primary">
-                <textarea name="obj" class="weui_textarea" placeholder="请输入任务目标" rows="3" style="font-size: 17px;"></textarea>
-                <div class="weui_textarea_counter"><span>0</span>/200</div>
-            </div>
-          </div>
-          <!-- 技能需求 -->
-          <div class="form-group">
-              <div class="weui_cell">
-                
-                <div class="weui_cell_hd"><label class="weui_label">技能需求</label></div>
-                <div class="col-xs-8"></div>          
-              </div>
-                <div class="weui_cells weui_cells_checkbox">
-                  <label class="weui_cell weui_check_label" for="s11">
-                      <div class="weui_cell_hd">
-                          <input type="checkbox" class="weui_check" name="skill_need" id="s11" checked="checked" value="Cisco">
-                          <i class="weui_icon_checked"></i>
-                      </div>
-                      <div class="weui_cell_bd weui_cell_primary">
-                          <p>Cisco</p>
-                      </div>
-                  </label>
-                  <label class="weui_cell weui_check_label" for="s12">
-                      <div class="weui_cell_hd">
-                          <input type="checkbox" name="skill_need" class="weui_check" id="s12" value="HuaWei">
-                          <i class="weui_icon_checked"></i>
-                      </div>
-                      <div class="weui_cell_bd weui_cell_primary">
-                          <p>HuaWei</p>
-                      </div>
-                  </label>
-                  <label class="weui_cell weui_check_label" for="s13">
-                      <div class="weui_cell_hd">
-                          <input type="checkbox" name="skill_need" class="weui_check" id="s13" value="Oracle">
-                          <i class="weui_icon_checked"></i>
-                      </div>
-                      <div class="weui_cell_bd weui_cell_primary">
-                          <p>Oracle</p>
-                      </div>
-                  </label>
-                  <label class="weui_cell weui_check_label" for="s14">
-                      <div class="weui_cell_hd">
-                          <input type="checkbox" name="skill_need" class="weui_check" id="s14" value="IBM">
-                          <i class="weui_icon_checked"></i>
-                      </div>
-                      <div class="weui_cell_bd weui_cell_primary">
-                          <p>IBM</p>
-                      </div>
-                  </label>
-                  <label class="weui_cell weui_check_label" for="s15">
-                      <div class="weui_cell_hd">
-                          <input type="checkbox" name="skill_need" class="weui_check" id="s15" value="MicroSoft">
-                          <i class="weui_icon_checked"></i>
-                      </div>
-                      <div class="weui_cell_bd weui_cell_primary">
-                          <p>MicroSoft</p>
-                      </div>
-                  </label>
-                  <label class="weui_cell weui_check_label" for="s16">
-                      <div class="weui_cell_hd">
-                          <input type="checkbox" name="skill_need" class="weui_check" id="s16" value="Linux">
-                          <i class="weui_icon_checked"></i>
-                      </div>
-                      <div class="weui_cell_bd weui_cell_primary">
-                          <p>Linux</p>
-                      </div>
-                  </label>
-                  <label class="weui_cell weui_check_label" for="s17">
-                      <div class="weui_cell_hd">
-                          <input type="checkbox" name="skill_need" class="weui_check" id="s17" value="VMware">
-                          <i class="weui_icon_checked"></i>
-                      </div>
-                      <div class="weui_cell_bd weui_cell_primary">
-                          <p>VMware</p>
-                      </div>
-                  </label>
-                  <label class="weui_cell weui_check_label" for="s18">
-                      <div class="weui_cell_hd">
-                          <input type="checkbox" name="skill_need" class="weui_check" id="s18" value="Citrix">
-                          <i class="weui_icon_checked"></i>
-                      </div>
-                      <div class="weui_cell_bd weui_cell_primary">
-                          <p>Citrix</p>
-                      </div>
-                  </label>
-
-                </div>
-                
-          <br>
-
-
-        <!-- 悬赏金额 -->
-        <div class="form-group" style="margin-bottom: 50px;">
-          <div class="weui_cell">
-                <div class="weui_cell_hd"><label class="weui_label">悬赏金额</label></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                  <input name="bounty" class="weui_input" type="number" placeholder="单位为人民币">
-                </div>
-          </div>
-        </div>
-        </div>
-        <div class="col-xs-1"></div>
-    </div>    
-</div>
-
-
-<div class="weui_dialog_confirm" style="display: none;" id="dialog">
+<!-- <div class="weui_dialog_confirm" style="display: none;" id="dialog">
     <div class="weui_mask"></div>
     <div class="weui_dialog">
         <div class="weui_dialog_hd"><strong class="weui_dialog_title">确认提示</strong></div>
@@ -317,7 +163,7 @@
             <a href="javascript:formsubmit();" class="weui_btn_dialog primary">确定</a>
         </div>
     </div>
-</div>
+</div> -->
 
 
 
@@ -327,8 +173,8 @@
 <input style="bottom:0;margin:0 auto;" class="weui_btn weui_btn_primary" type="button" value="确认提交" onclick="showDialog();">
 
 
-
-
+<!-- 表单尾 -->
+</form>
 <script type="text/javascript">
   function showDialog(){
     $("#dialog").css("display","block");
