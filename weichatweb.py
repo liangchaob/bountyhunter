@@ -603,6 +603,14 @@ def missionApproval(mission_id):
     else:
         pass
 
+
+
+# test
+@app.route('/admin/t2', methods = ['GET', 'POST'])
+def t2():
+    if request.method == 'GET':
+        return render_template('new_mission.html')
+
 # 运行主函数
 if __name__ == '__main__':
     # 对外开放80端口
