@@ -275,8 +275,7 @@ $(function () {
         }
     };
 
-    router
-        .push(new_mission)
+    router.push(new_mission)
         .push(mission_name)
         .push(button)
         .push(cell)
