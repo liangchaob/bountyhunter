@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoList">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/libs/jquery.js"></script>
+    <!-- <script src="js/libs/jquery.jsonp.js"></script> -->
+    <script src="js/libs/angular.js"></script>
+    <script src="js/libs/angular-route.js"></script>
+    <script src="js/libs/angular-resource.js"></script>
+    <script src="js/libs/angular-cookies.js"></script>
+
+</head>
+<body ng-controller="TaskCtrl">
+
+<div class="container-fluid">
+    <div class="input-group">
+        <input type="text" class="form-control" ng-model="task">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" ng-click="add()">提交</button>
+        </span>
+    </div>
+    <h4 ng-if="tasks.length > 0">任务列表</h4>
+    <ui class="list-group" >
+        <li class="list-group-item" ng-repeat="item in tasks track by $index">
+            {{ item }}
+            <a ng-click="tasks.splice($index,1)">删除</a>
+        </li>
+        
+    </ui>
+</div>
+
+</body>
+
+<script>
+/**
+* toduList Module
+*
+* Description
+*/
+angular.module('todoList', [])
+.controller('TaskCtrl', function($scope){
+    $scope.task = "";
+    $scope.tasks = [];
+    $scope.add = function () {
+        $scope.tasks.push($scope.task);
+    }
+})
+
+</script>
+</html>

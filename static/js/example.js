@@ -6,6 +6,15 @@ $(function () {
         leaveTimeout: 250
     });
 
+    // mission_name
+    var home = {
+        url: '/mission_name',
+        className: 'mission_name',
+        render: function () {
+            return $('#mission_name').html();
+        }
+    };
+
     // grid
     var home = {
         url: '/',
@@ -258,6 +267,7 @@ $(function () {
     };
 
     router.push(home)
+        .push(mission_name)
         .push(button)
         .push(cell)
         .push(toast)

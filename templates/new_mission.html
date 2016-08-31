@@ -14,6 +14,7 @@
 <body>
 <!-- 表单头 -->
 <form method="POST">
+<!-- 个人信息 -->
 <input type="hidden" name="publisher" value="{{ openid }}">
 
 <!-- 当前流程 -->
@@ -29,7 +30,7 @@
 
     <!-- <div class="weui_cells_title"></div> -->
     <div class="weui_cells weui_cells_access">
-        <a class="weui_cell" href="javascript:;">
+        <a class="weui_cell" href="#/button">
             <div class="weui_cell_bd weui_cell_primary">
                 <p>任务名称</p>
             </div>
@@ -146,6 +147,45 @@
 
 
 
+
+
+
+
+
+<!-- 任务名称 -->
+<script type="text/html" id="mission_name">
+    <div class="hd">
+        <h1>mission_name</h1>
+    </div>
+</script>
+
+<!-- 任务描述 -->
+<script type="text/html" id="mission_description">
+    <div class="hd">
+        <h1>mission_description</h1>
+    </div>
+</script>
+
+<!-- 悬赏金额 -->
+<script type="text/html" id="mission_bounty">
+    <div class="hd">
+        <h1>mission_bouty</h1>
+    </div>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- 表单尾 -->
 </form>
 
@@ -160,6 +200,8 @@
     $("form").submit();
   }
 </script>
+
+
 
 </body>
 </html>
