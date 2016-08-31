@@ -6,8 +6,17 @@ $(function () {
         leaveTimeout: 250
     });
 
+    // new_mission
+    var new_mission = {
+        url: '/',
+        className: 'new_mission',
+        render: function () {
+            return $('#new_mission').html();
+        }
+    };
+
     // mission_name
-    var home = {
+    var mission_name = {
         url: '/mission_name',
         className: 'mission_name',
         render: function () {
@@ -15,14 +24,14 @@ $(function () {
         }
     };
 
-    // grid
-    var home = {
-        url: '/',
-        className: 'home',
-        render: function () {
-            return $('#tpl_home').html();
-        }
-    };
+    // // grid
+    // var home = {
+    //     url: '/',
+    //     className: 'home',
+    //     render: function () {
+    //         return $('#tpl_home').html();
+    //     }
+    // };
 
     // button
     var button = {
@@ -266,7 +275,8 @@ $(function () {
         }
     };
 
-    router.push(home)
+    router
+        .push(new_mission)
         .push(mission_name)
         .push(button)
         .push(cell)
