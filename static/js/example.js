@@ -2,8 +2,8 @@ $(function () {
 
     var router = new Router({
         container: '#container',
-        enterTimeout: 400,
-        leaveTimeout: 400
+        enterTimeout: 250,
+        leaveTimeout: 250
     });
 
     // new_mission
