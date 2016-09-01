@@ -199,31 +199,24 @@
 <!-- 标题字数限制 -->
 <script type="text/javascript">
 
-     window.onkeydown = function(){
+    var content_id = 'line-input';  
 
+    max = 10;
 
-        // debugger;
+    //binding keyup/down events on the contenteditable div
+    $('#'+content_id).keyup(function(e){ check_charcount(content_id, max, e); });
+    $('#'+content_id).keydown(function(e){ check_charcount(content_id, max, e); });
 
-        var len = document.getElementById('line-input').innerHTML.length;
-
-        if(len > 10) {
-
-            $('#line-input').text($('#line-input').text().substring(0,10));
-
+    function check_charcount(content_id, max, e)
+    {   
+        if(e.which != 8 && $('#'+content_id).text().length > max)
+        {
+           // $('#'+content_id).text($('#'+content_id).text().substring(0, max));
+           e.preventDefault();
         }
+    }
 
-     }
-
-// window.onkeydown = function(){
-
-//     if($('#line-input').text().length>10){
-//             $('#line-input').text($('#line-input').text().substring(0,10));
-//         };
-
-// };
-
-
-    </script>
+</script>
 
 <!-- 任务描述 -->
 <script type="text/html" id="mission_description">
