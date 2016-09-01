@@ -234,7 +234,7 @@ def new_mission():
         country = codefix(country)
 
         # 渲染
-        return render_template('new_mission.html',openid = openid)
+        return render_template('work_mission.html',openid = openid)
     # 提交任务
     elif request.method == 'POST':
         try:
