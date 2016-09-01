@@ -14,17 +14,17 @@
 
 </head>
 <body ontouchstart>
+<div ng-app="">
+  <p>名字 : <input type="text" ng-model="name"></p>
+  <h1 ng-bind="name"></h1>
+</div>
     <div class="container" id="container"></div>
 
 <script type="text/html" id="new_mission">
 <!-- 表单头 -->
 <form method="POST">
 <!-- 个人信息 -->
-<!-- <input type="hidden" name="publisher" value="{{ openid }}"> -->
-<div ng-app="">
-  <p>名字 : <input type="text" ng-model="name"></p>
-  <h1 ng-bind="name"></h1>
-</div>
+<input type="hidden" name="publisher" value="{{ openid }}">
 <!-- 当前流程 -->
 <div style="text-align: center;margin-top: 20px;">
   <button class="weui_btn weui_btn_mini weui_btn_primary">发布</button>
