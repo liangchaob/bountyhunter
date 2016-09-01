@@ -197,7 +197,7 @@
     <!-- </div> -->
 </script>
 <!-- 标题字数限制 -->
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 
     var content_id = 'line-input';  
 
@@ -209,15 +209,12 @@
 
     function check_charcount(content_id, max, e)
     {   
-        if(e.which != 8 && $('#'+content_id).text().length > max)
-        {
-           // $('#'+content_id).text($('#'+content_id).text().substring(0, max));
-           e.preventDefault();
-           alart('no!');
+        if(object.text().length>max){
+            object.text(object.text().substring(0,max));
         }
     }
 
-</script> -->
+</script>
 
 <!-- 任务描述 -->
 <script type="text/html" id="mission_description">
