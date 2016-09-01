@@ -211,7 +211,7 @@
     {   
         if(e.which != 8 && $('#'+content_id).text().length > max)
         {
-           // $('#'+content_id).text($('#'+content_id).text().substring(0, max));
+           $('#'+content_id).text($('#'+content_id).text().substring(0, max));
            e.preventDefault();
         }
     }
