@@ -21,8 +21,8 @@ $(function () {
         url: '/mission_name',
         className: 'mission_name',
         render: function () {
-            return '<h1>mission_name</h1>';
-            // return $('#mission_name').html();
+            // return '<h1>mission_name</h1>';
+            return $('#mission_name').html();
         }
     };
 
