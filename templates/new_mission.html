@@ -206,10 +206,10 @@
 <!-- 标题字数限制 -->
 
 <script type="text/javascript">
-
+var t1= $("#mission_name_content").innerHTML;
 angular.module('missionPage', [])
 .controller('missionName', function($scope){
-    $scope.mission_name_content = $("#mission_name_content").innerHTML;
+    $scope.mission_name_content = t1;
 })
 
 </script>
