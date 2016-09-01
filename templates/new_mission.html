@@ -40,7 +40,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <p>任务名称</p>
             </div>
-            <div class="weui_cell_ft" ng-controller="missionName">{{ mission_name_content }}</div>
+            <div class="weui_cell_ft"></div>
         </a>
         <div class="weui_cell weui_cell_select weui_select_after">
             <div class="weui_cell_hd">
@@ -198,6 +198,7 @@
 
             <textarea rows="1" class="line" placeholder="请输入20字以内项目名" autofocus="true" wrap="physical" maxlength="20"></textarea>
             <a href="#" id="mission_name_content" class="weui_btn weui_btn_primary">保存</a>
+            <p ng-controller="missionName">{{ mission_name_content }}</p>
             <!-- <div id="line-input" class="test_box" contenteditable="true" onkeypress="return (this.innerText.length <= 10)"><br /></div>  -->
             <!-- <div contenteditable="true" name="choice1" class="textfield"></div> -->
         <!-- </div> -->
@@ -206,10 +207,9 @@
 <!-- 标题字数限制 -->
 
 <script type="text/javascript">
-var t1= $("#mission_name_content").innerHTML;
 angular.module('missionPage', [])
 .controller('missionName', function($scope){
-    $scope.mission_name_content = t1;
+    $scope.mission_name_content = $("#mission_name_content").innerHTML;
 })
 
 </script>
