@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -39,7 +39,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <p>任务名称</p>
             </div>
-            <div class="weui_cell_ft"></div>
+            <div class="weui_cell_ft" ng-bind="mission_name_content"></div>
         </a>
         <div class="weui_cell weui_cell_select weui_select_after">
             <div class="weui_cell_hd">
@@ -195,7 +195,7 @@
     <div class="bd spacing">
         <!-- <div class="line-input"> -->
 
-            <!-- <input class="line" placeholder="请输入20字以内项目名" autofocus="true" maxlength="20" ng-model="mission_name_content"> -->
+            <input class="line" placeholder="请输入20字以内项目名" autofocus="true" maxlength="20" ng-model="mission_name_content">
             <a href="#" id="mission_name_content" class="weui_btn weui_btn_primary">保存</a>
             <!-- <h1>{{ mission_name_content }}</h1> -->
             <!-- <div id="line-input" class="test_box" contenteditable="true" onkeypress="return (this.innerText.length <= 10)"><br /></div>  -->
