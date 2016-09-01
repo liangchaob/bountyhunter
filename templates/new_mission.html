@@ -214,6 +214,13 @@
 
      // }
 
+
+    $("#line-input").blur(function () {
+        var t = document.getElementById("line-input").innerText;
+        $(".input p").html((140 - t.length) + '，最多输入140');
+        if (t.length > 140) document.getElementById("line-input").innerHTML = t.substring(0, 140);
+    });
+
     </script>
 
 <!-- 任务描述 -->
