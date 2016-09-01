@@ -21,7 +21,10 @@
 <form method="POST">
 <!-- 个人信息 -->
 <input type="hidden" name="publisher" value="{{ openid }}">
-
+<div ng-app="">
+  <p>名字 : <input type="text" ng-model="name"></p>
+  <h1 ng-bind="name"></h1>
+</div>
 <!-- 当前流程 -->
 <div style="text-align: center;margin-top: 20px;">
   <button class="weui_btn weui_btn_mini weui_btn_primary">发布</button>
@@ -192,12 +195,12 @@
         }*/
 
     </style>
-    <div class="bd spacing" ng-app="">
+    <div class="bd spacing">
         <!-- <div class="line-input"> -->
 
-            <input class="line" placeholder="请输入20字以内项目名" autofocus="true" maxlength="20" ng-model="mission_name_content">
+            <input class="line" placeholder="请输入20字以内项目名" autofocus="true" maxlength="20">
             <a href="#" id="mission_name_content" class="weui_btn weui_btn_primary">保存</a>
-            <h1 ng-bind="mission_name_content"></h1>
+            <h1></h1>
             <!-- <h1>{{ mission_name_content }}</h1> -->
             <!-- <div id="line-input" class="test_box" contenteditable="true" onkeypress="return (this.innerText.length <= 10)"><br /></div>  -->
             <!-- <div contenteditable="true" name="choice1" class="textfield"></div> -->
