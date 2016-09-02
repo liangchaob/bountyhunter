@@ -23,7 +23,7 @@ angular.module('newMissionApp', ['ngAnimate', 'ngRoute'])
             $scope.viewShow = true;
         }
     })
-    .controller('toast', ['$scope', '$interval', toastCtrl])
+    .controller('toast', ['$scope', '$interval', toast])
     .animation('.aweui-show', ['$animateCss', toastAnimate])
     .animation('.home', ['$animateCss', function($animateCss) {
         return {
