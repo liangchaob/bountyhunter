@@ -409,11 +409,11 @@ def user_center():
 
 
         # 渲染
-        return render_template('user_center.html', openid = openid, nickname = nickname, 
+        return render_template('usercenter.html', openid = openid, nickname = nickname, 
             country = country , province = province, city = city, headimgurl = headimgurl)
 
     elif request.method == 'POST':
-        return render_template('user_center.html')
+        return render_template('usercenter.html')
     else:
         pass
 
