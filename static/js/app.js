@@ -6,10 +6,10 @@ angular.module('newMissionApp', ['ngAnimate', 'ngRoute'])
                 templateUrl: ''
             })
             .when('/mission_name',{
-                controller: 'missionNameController',
+                // controller: 'missionNameController',
                 templateUrl: 'newmission_name.html'
             })
-            .when('/computers',{template:'这是电脑分类页面'})
+            // .when('/computers',{template:'这是电脑分类页面'})
             .otherwise({
                 redirectTo: '/'
             })
