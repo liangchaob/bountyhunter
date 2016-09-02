@@ -609,7 +609,7 @@ def missionApproval(mission_id):
 @app.route('/test/t2', methods = ['GET', 'POST'])
 def t2():
     if request.method == 'GET':
-        return render_template('t2.html')
+        return render_template('new_mission.html')
 
 # test
 @app.route('/admin/t3', methods = ['GET', 'POST'])
