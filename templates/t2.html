@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="weuiapp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/example.css',_external=True) }}"/>
+    <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script>
+    <script src="{{ url_for('static',filename='js/angular.js',_external=True) }}"></script>
+    <script src="{{ url_for('static',filename='js/angular-route.js',_external=True) }}"></script>
+    <script src="{{ url_for('static',filename='js/angular-animate.js',_external=True) }}"></script>
+    <!-- <script src="{{ url_for('static',filename='js/toast.js',_external=True) }}"></script> -->
+    <script src="{{ url_for('static',filename='js/app.js',_external=True) }}"></script>
+
+    
+</head>
+<style type="text/css">
+.home,
+.view {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.view {
+    left: 100%;
+    background: #fff;
+    z-index: 2;
+    height: 0;
+    width: 0;
+}
+
+.weui_progress_inner_bar {
+    transition: all .3s;
+}
+
+.hd {
+    padding: 2em 0
+}
+
+.page {
+    height: 100%;
+}
+
+.page_desc {
+    text-align: center;
+    color: #888;
+    font-size: 14px
+}
+
+.bd.spacing {
+    padding: 0 15px
+}
+
+.page_title {
+    text-align: center;
+    font-size: 34px;
+    color: #3cc51f;
+    font-weight: 400;
+    margin: 0 15%
+}
+</style>
+
+<body ng-controller="homeCtrl">
+    <div ng-class="['home']">
+        <div class="hd">
+            <h1 class="page_title">WeUI</h1>
+            <p class="page_desc">为微信Web服务量身设计</p>
+        </div>
+        <div class="weui_grids">
+            <a href="#/button" class="weui_grid js_grid" data-id="button" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_button.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    Button
+                </p>
+            </a>
+            <a href="#/cell" class="weui_grid js_grid" data-id="cell" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_cell.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    Cell
+                </p>
+            </a>
+            <a href="#/toast" class="weui_grid js_grid" data-id="toast" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_toast.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    Toast
+                </p>
+            </a>
+            <a href="#/dialog" class="weui_grid js_grid" data-id="dialog" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_dialog.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    Dialog
+                </p>
+            </a>
+            <a href="#/progress" class="weui_grid js_grid" data-id="progress" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_progress.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    Progress
+                </p>
+            </a>
+            <a href="#/msg" class="weui_grid js_grid" data-id="msg" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_msg.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    Msg
+                </p>
+            </a>
+            <a href="#/article" class="weui_grid js_grid" data-id="article" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_article.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    Article
+                </p>
+            </a>
+            <a href="#/actionsheet" class="weui_grid js_grid" data-id="actionsheet" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_actionSheet.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    ActionSheet
+                </p>
+            </a>
+            <a href="#/icons" class="weui_grid js_grid" data-id="icons" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_icons.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    Icons
+                </p>
+            </a>
+            <a href="#/panel" class="weui_grid js_grid" data-id="panel" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_panel.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    Panel
+                </p>
+            </a>
+            <a href="#/tab" class="weui_grid js_grid" data-id="tab" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_tab.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    Tab
+                </p>
+            </a>
+            <a href="#/searchbar" class="weui_grid js_grid" data-id="searchbar" ng-click="showBlock()">
+                <div class="weui_grid_icon">
+                    <img src="./images/icon_nav_search_bar.png" alt="">
+                </div>
+                <p class="weui_grid_label">
+                    SearchBar
+                </p>
+            </a>
+        </div>
+    </div>
+    <div ng-class="['view']" ng-view ng-style="viewStyle"></div>
+    <!-- <script type="text/javascript" src="./js/angular.min.js"></script> -->
+    <!-- <script type="text/javascript" src="./js/angular-route.min.js"></script> -->
+    <!-- <script type="text/javascript" src="./js/toast.js"></script> -->
+    <!-- <script type="text/javascript" src="./js/dialog.js"></script> -->
+    <!-- <script type="text/javascript" src="./js/progress.js"></script> -->
+    <!-- <script type="text/javascript" src="./js/actionsheet.js"></script> -->
+    <!-- <script type="text/javascript" src="./js/searchbar.js"></script> -->
+    <!-- <script type="text/javascript" src="./js/example.js"></script> -->
+</body>
+
+</html>
