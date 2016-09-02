@@ -15,15 +15,23 @@ angular.module('newMissionApp', ['ngAnimate', 'ngRoute'])
             })
 
     })
-    // .controller('newMissionController', function($scope) {
-    //     $scope.newMission = true;
-    //     $scope.viewShow = false;
+    .controller('newMissionController', function($scope) {
+        //初始化ngView的样式为不可见
+        $scope.viewStyle = {
+            left: '200%',
+            height: 0,
+            width: 0
+        };
 
-    //     $scope.showBlock = function() {
-    //         $scope.homeShow = false;
-    //         $scope.viewShow = true;
-    //     }
-    // })
+        $scope.showBlock = function() {
+            //设置ngView的样式可见
+            $scope.viewStyle = {
+                left: 0,
+                height: '100%',
+                width: '100%'
+            };
+        }
+    })
     // .controller('toast', ['$scope', '$interval', toast])
     // .animation('.aweui-show', ['$animateCss', toastAnimate])
     // .animation('.home', ['$animateCss', function($animateCss) {
