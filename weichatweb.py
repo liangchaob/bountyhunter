@@ -615,7 +615,7 @@ def t2():
 @app.route('/admin/t3', methods = ['GET', 'POST'])
 def t3():
     if request.method == 'GET':
-        return render_template('t1.html')
+        return render_template('t3.html')
 
 # 运行主函数
 if __name__ == '__main__':
