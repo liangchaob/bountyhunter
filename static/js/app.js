@@ -6,9 +6,9 @@ angular.module('weuiapp', ['ngRoute'])
                 controller: 'homeCtrl',
                 templateUrl: 'home.html'
             })
-            .when('/button', {
+            .when('/newmission_name', {
                 controller: 'buttonCtrl',
-                templateUrl: 'button.html'
+                templateUrl: 'newmission_name.html'
             })
             .when('/cell', {
                 controller: 'cellCtrl',
