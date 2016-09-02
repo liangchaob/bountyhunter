@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="newMissionApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/example.css',_external=True) }}"/>
+    <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script>
+    <title>用户中心</title>
+</head>
+<body>
+
+<!-- 个人信息 -->
+<input type="hidden" name="publisher" value="{{ openid }}">
+<!-- 外围框 -->
+<div class="bd">
+
+
+
+
+        <div class="weui_panel weui_panel_access">
+            <div class="weui_panel_bd">
+                <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                    <div class="weui_media_hd">
+                        <img class="weui_media_appmsg_thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAAAeFBMVEUAwAD///+U5ZTc9twOww7G8MYwzDCH4YcfyR9x23Hw+/DY9dhm2WZG0kbT9NP0/PTL8sux7LFe115T1VM+zz7i+OIXxhes6qxr2mvA8MCe6J6M4oz6/frr+us5zjn2/fa67rqB4IF13XWn6ad83nxa1loqyirn+eccHxx4AAAC/klEQVRo3u2W2ZKiQBBF8wpCNSCyLwri7v//4bRIFVXoTBBB+DAReV5sG6lTXDITiGEYhmEYhmEYhmEYhmEY5v9i5fsZGRx9PyGDne8f6K9cfd+mKXe1yNG/0CcqYE86AkBMBh66f20deBc7wA/1WFiTwvSEpBMA2JJOBsSLxe/4QEEaJRrASP8EVF8Q74GbmevKg0saa0B8QbwBdjRyADYxIhqxAZ++IKYtciPXLQVG+imw+oo4Bu56rjEJ4GYsvPmKOAB+xlz7L5aevqUXuePWVhvWJ4eWiwUQ67mK51qPj4dFDMlRLBZTqF3SDvmr4BwtkECu5gHWPkmDfQh02WLxXuvbvC8ku8F57GsI5e0CmUwLz1kq3kD17R1In5816rGvQ5VMk5FEtIiWislTffuDpl/k/PzscdQsv8r9qWq4LRWX6tQYtTxvI3XyrwdyQxChXioOngH3dLgOFjk0all56XRi/wDFQrGQU3Os5t0wJu1GNtNKHdPqYaGYQuRDfbfDf26AGLYSyGS3ZAK4S8XuoAlxGSdYMKwqZKM9XJMtyqXi7HX/CiAZS6d8bSVUz5J36mEMFDTlAFQzxOT1dzLRljjB6+++ejFqka+mXIe6F59mw22OuOw1F4T6lg/9VjL1rLDoI9Xzl1MSYDNHnPQnt3D1EE7PrXjye/3pVpr1Z45hMUdcACc5NVQI0bOdS1WA0wuz73e7/5TNqBPhQXPEFGJNV2zNqWI7QKBd2Gn6AiBko02zuAOXeWIXjV0jNqdKegaE/kJQ6Bfs4aju04lMLkA2T5wBSYPKDGF3RKhFYEa6A1L1LG2yacmsaZ6YPOSAMKNsO+N5dNTfkc5Aqe26uxHpx7ZirvgCwJpWq/lmX1hA7LyabQ34tt5RiJKXSwQ+0KU0V5xg+hZrd4Bn1n4EID+WkQdgLfRNtvil9SPfwy+WQ7PFBWQz6dGWZBLkeJFXZGCfLUjCgGgqXo5TuSu3cugdcTv/HjqnBTEMwzAMwzAMwzAMwzAMw/zf/AFbXiOA6frlMAAAAABJRU5ErkJggg==" alt="">
+                    </div>
+                    <div class="weui_media_bd">
+                        <h4 class="weui_media_title">标题一</h4>
+                        <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="weui_cells_title"></div> -->
+    <div class="weui_cells weui_cells_access">
+<!--         <a class="weui_cell" href="#/mission_name" ng-click="showBlock()">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>任务名称</p>
+            </div>
+            <div class="weui_cell_ft"></div>
+        </a> -->
+
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">任务名称</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" placeholder="任务名称" name="mission_name" />
+            </div>
+        </div>
+        
+        <div class="weui_cell weui_cell_select weui_select_after">
+            <div class="weui_cell_hd">
+                <label for="" class="weui_label">任务类型</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select" name="mission_type">
+                    <option value="IT">IT类</option>
+                    <option value="Other">非IT类</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+
+ <!--        <div class="weui_cells_title">表单</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">qq</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="number" pattern="[0-9]*" placeholder="请输入qq号" />
+                </div>
+            </div>
+            <div class="weui_cell weui_vcode">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">验证码</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="number" placeholder="请输入验证码" />
+                </div>
+                <div class="weui_cell_ft">
+                    <img src="./images/vcode.jpg" />
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">银行卡</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="number" pattern="[0-9]*" placeholder="请输入银行卡号" />
+                </div>
+            </div>
+            <div class="weui_cell weui_vcode weui_cell_warn">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">验证码</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="number" placeholder="请输入验证码" />
+                </div>
+                <div class="weui_cell_ft">
+                    <i class="weui_icon_warn"></i>
+                    <img src="./images/vcode.jpg" />
+                </div>
+            </div>
+        </div> -->
+
+
+
+
+    <div class="weui_cells_title">任务描述</div>
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <textarea class="weui_textarea" placeholder="请输入对该任务的细节描述" name="description" rows="10"></textarea>
+                <!-- <div class="weui_textarea_counter"><span>0</span>/200</div> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="weui_cells_title">技能需求</div>
+    <div class="weui_cells weui_cells_checkbox">
+        <label class="weui_cell weui_check_label" for="s11">
+            <div class="weui_cell_hd">
+                <input type="checkbox" class="weui_check" name="skill_need" id="s11" checked="checked" value="network">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>网络设备</p>
+            </div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s12">
+            <div class="weui_cell_hd">
+                <input type="checkbox" name="skill_need" class="weui_check" id="s12" value="server">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>硬件服务器</p>
+            </div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s13">
+            <div class="weui_cell_hd">
+                <input type="checkbox" name="skill_need" class="weui_check" id="s13" value="os">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>操作系统</p>
+            </div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s14">
+            <div class="weui_cell_hd">
+                <input type="checkbox" name="skill_need" class="weui_check" id="s14" value="database">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>数据库</p>
+            </div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s15">
+            <div class="weui_cell_hd">
+                <input type="checkbox" name="skill_need" class="weui_check" id="s15" value="virtual">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>虚拟化</p>
+            </div>
+        </label>
+    </div>
+
+    <div class="weui_cells_tips">系统将根据技能需求类型推荐给相关的工程师</div>
+
+
+    <div class="weui_cells_title">选填</div>
+    <div class="weui_cells weui_cells_access">
+<!--         <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>悬赏金额</p>
+            </div>
+            <div class="weui_cell_ft">
+            </div>
+        </a> -->
+
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">悬赏金额</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="number" pattern="[0-9]*" name="bounty" placeholder="人民币" />
+            </div>
+        </div>
+
+
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label for="" class="weui_label">截止日期</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" name="deadline" type="date" value="" placeholder=""/>
+            </div>
+        </div>
+    </div>
+    <div class="weui_cells_tips">悬赏金额不填写则进入竞标模式，截止日期如不填写则默认不限定任务完成日期</div>
+    
+    <!-- 确认对话框 -->
+    <div class="weui_dialog_confirm" style="display: none;" id="dialog">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">确认提示</strong></div>
+            <div class="weui_dialog_bd">确认提交当前信息么？</div>
+            <div class="weui_dialog_ft">
+                <a href="javascript:hideDialog();" class="weui_btn_dialog default">取消</a>
+                <a href="javascript:formsubmit();" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 提交按钮 -->
+    <div class="weui_btn_area">
+        <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">确认提交</a>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
