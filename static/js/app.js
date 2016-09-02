@@ -2,34 +2,26 @@ angular.module('newMissionApp', ['ngAnimate', 'ngRoute'])
     .config(function($routeProvider) {
         $routeProvider
             .when('/', {
-                controller: 'newMissionController',
+                controller: 'home',
                 templateUrl: ''
             })
-            // .when('/mission_name',{
-            //     controller: 'missionNameController',
-            //     templateUrl: 'newmission_name.html'
-            // })
+            .when('/mission_name',{
+                controller: 'missionNameController',
+                templateUrl: 'newmission_name.html'
+            })
             .when('/computers',{template:'这是电脑分类页面'})
             .otherwise({
                 redirectTo: '/'
             })
 
     })
-    .controller('newMissionController', function($scope) {
-        //初始化ngView的样式为不可见
-        $scope.viewStyle = {
-            left: '200%',
-            height: 0,
-            width: 0
-        };
+    .controller('home', function($scope) {
+        $scope.homeShow = true;
+        $scope.viewShow = false;
 
         $scope.showBlock = function() {
-            //设置ngView的样式可见
-            $scope.viewStyle = {
-                left: 0,
-                height: '100%',
-                width: '100%'
-            };
+            $scope.homeShow = false;
+            $scope.viewShow = true;
         }
     })
     // .controller('toast', ['$scope', '$interval', toast])
