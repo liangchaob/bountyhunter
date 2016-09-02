@@ -49,11 +49,11 @@
 <input type="hidden" name="publisher" value="{{ openid }}">
 <!-- 当前流程 -->
 <div style="text-align: center;margin-top: 20px;">
-  <button class="weui_btn weui_btn_mini weui_btn_primary">发布</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default">审核</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default">竞标</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default">工作</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default">评价</button>
+  <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">发布</button>
+  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">审核</button>
+  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">竞标</button>
+  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">工作</button>
+  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">评价</button>
 </div>
 <!-- 外围框 -->
 <div class="bd">
@@ -72,7 +72,7 @@
                 <label class="weui_label">任务名称</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" placeholder="任务名称" />
+                <input class="weui_input" placeholder="任务名称" name="mission_name" />
             </div>
         </div>
         
@@ -81,7 +81,7 @@
                 <label for="" class="weui_label">任务类型</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <select class="weui_select" name="select2">
+                <select class="weui_select" name="mission_type">
                     <option value="1">IT类</option>
                     <option value="2">非IT类</option>
                 </select>
@@ -141,7 +141,7 @@
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
-                <textarea class="weui_textarea" placeholder="请输入对该任务的细节描述" rows="10"></textarea>
+                <textarea class="weui_textarea" placeholder="请输入对该任务的细节描述" name="description" rows="10"></textarea>
                 <!-- <div class="weui_textarea_counter"><span>0</span>/200</div> -->
             </div>
         </div>
