@@ -15,15 +15,15 @@ angular.module('newMissionApp', ['ngAnimate', 'ngRoute'])
             })
 
     })
-    .controller('newMissionController', function($scope) {
-        $scope.newMission = true;
-        $scope.viewShow = false;
+    // .controller('newMissionController', function($scope) {
+    //     $scope.newMission = true;
+    //     $scope.viewShow = false;
 
-        $scope.showBlock = function() {
-            $scope.homeShow = false;
-            $scope.viewShow = true;
-        }
-    })
+    //     $scope.showBlock = function() {
+    //         $scope.homeShow = false;
+    //         $scope.viewShow = true;
+    //     }
+    // })
     // .controller('toast', ['$scope', '$interval', toast])
     // .animation('.aweui-show', ['$animateCss', toastAnimate])
     // .animation('.home', ['$animateCss', function($animateCss) {
