@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="newMissionApp">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/example.css',_external=True) }}"/>
     <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script>
-    <script src="{{ url_for('static',filename='js/angular.js',_external=True) }}"></script>
-    <script src="{{ url_for('static',filename='js/router.min.js',_external=True) }}"></script>
-    <script src="{{ url_for('static',filename='js/example.js',_external=True) }}"></script>
+    <script src="{{ url_for('static',filename='js/angular.min.js',_external=True) }}"></script>
+    <script src="{{ url_for('static',filename='js/angular-route.min.js',_external=True) }}"></script>
+    <script src="{{ url_for('static',filename='js/angular-animate.min.js',_external=True) }}"></script>
+    <script src="{{ url_for('static',filename='js/app.js',_external=True) }}"></script>
+    <!-- <script src="{{ url_for('static',filename='js/router.min.js',_external=True) }}"></script> -->
+    <!-- <script src="{{ url_for('static',filename='js/example.js',_external=True) }}"></script> -->
     <title>新任务</title>
 
 
+<style type="text/css">
+.new_mission,
+.view {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+</style>
+
 </head>
-<body ontouchstart>
+<body ng-controller="newMissionController">
+<div class="new_mission" ng-if="newMission">
 
-    <div class="container" id="container"></div>
-
-<script type="text/html" id="new_mission">
 <!-- 表单头 -->
 <form method="POST">
 <!-- 个人信息 -->
@@ -151,79 +162,10 @@
 </div>
 
 
-</script>
 
 
 
-
-
-<!-- 任务名称 -->
-<script type="text/html" id="mission_name">
-    <style type="text/css">
-        .line{
-            border: 0;
-            outline: none;
-            border-bottom: 1px solid  #07BD05;
-            display: block;
-            width: 94%;
-            padding: 5px 6px;
-            margin: 20px auto;
-            background-color: #fbf9fe;
-            font-size: 15px;
-
-        }
-        #push{
-            float: right;
-        }
-/*        .test_box {
-            border: 0;
-            outline: none;
-            border-bottom: 1px solid  #07BD05;
-            display: block;
-            width: 90%;
-            padding: 5px 10px;
-            margin: 10px auto;
-            background-color: #fbf9fe;
-            font-size: 20px;
-            word-wrap: break-word;
-            overflow-x: hidden;
-            overflow-y: auto;
-            _overflow-y: visible;
-        }*/
-
-    </style>
-    <div class="bd spacing">
-        <!-- <div class="line-input"> -->
-
-            <input class="line" placeholder="请输入20字以内项目名" autofocus="true" maxlength="20">
-            <a href="#" id="mission_name_content" class="weui_btn weui_btn_primary">保存</a>
-            <h1></h1>
-            <!-- <h1>{{ mission_name_content }}</h1> -->
-            <!-- <div id="line-input" class="test_box" contenteditable="true" onkeypress="return (this.innerText.length <= 10)"><br /></div>  -->
-            <!-- <div contenteditable="true" name="choice1" class="textfield"></div> -->
-        <!-- </div> -->
-    </div>
-</script>
-<!-- 标题字数限制 -->
-
-<script type="text/javascript">
-
-
-</script>
-
-<!-- 任务描述 -->
-<script type="text/html" id="mission_description">
-    <div class="hd">
-        <h1>mission_description</h1>
-    </div>
-</script>
-
-<!-- 悬赏金额 -->
-<script type="text/html" id="mission_bounty">
-    <div class="hd">
-        <h1>mission_bouty</h1>
-    </div>
-</script>
+</div>
 
 
 
@@ -234,24 +176,14 @@
 
 
 
+
+<div class="view" ng-view ng-if="viewShow"></div>
 
 
 
 
 <!-- 表单尾 -->
 </form>
-
-<script type="text/javascript">
-  function showDialog(){
-    $("#dialog").css("display","block");
-  }
-  function hideDialog(){
-    $("#dialog").css("display","none");
-  }
-  function formsubmit(){
-    $("form").submit();
-  }
-</script>
 
 
 
