@@ -17,27 +17,6 @@
     <title>新任务</title>
 
 
-<style type="text/css">
-
-.new_mission,
-.view {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: 1;
-}
-
-.view {
-    left: 100%;
-    background: #fff;
-    z-index: 2;
-    height: 0;
-    width: 0;
-}
-
-</style>
 
 </head>
 <body>
@@ -151,7 +130,7 @@
     <div class="weui_cells weui_cells_checkbox">
         <label class="weui_cell weui_check_label" for="s11">
             <div class="weui_cell_hd">
-                <input type="checkbox" class="weui_check" name="checkbox1" id="s11" checked="checked">
+                <input type="checkbox" class="weui_check" name="checkbox1" id="s11" checked="checked" value="network">
                 <i class="weui_icon_checked"></i>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
@@ -160,7 +139,7 @@
         </label>
         <label class="weui_cell weui_check_label" for="s12">
             <div class="weui_cell_hd">
-                <input type="checkbox" name="checkbox1" class="weui_check" id="s12">
+                <input type="checkbox" name="checkbox1" class="weui_check" id="s12" value="server">
                 <i class="weui_icon_checked"></i>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
@@ -169,7 +148,7 @@
         </label>
         <label class="weui_cell weui_check_label" for="s13">
             <div class="weui_cell_hd">
-                <input type="checkbox" name="checkbox1" class="weui_check" id="s13">
+                <input type="checkbox" name="checkbox1" class="weui_check" id="s13" value="os">
                 <i class="weui_icon_checked"></i>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
@@ -178,7 +157,7 @@
         </label>
         <label class="weui_cell weui_check_label" for="s14">
             <div class="weui_cell_hd">
-                <input type="checkbox" name="checkbox1" class="weui_check" id="s14">
+                <input type="checkbox" name="checkbox1" class="weui_check" id="s14" value="database">
                 <i class="weui_icon_checked"></i>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
@@ -187,7 +166,7 @@
         </label>
         <label class="weui_cell weui_check_label" for="s15">
             <div class="weui_cell_hd">
-                <input type="checkbox" name="checkbox1" class="weui_check" id="s15">
+                <input type="checkbox" name="checkbox1" class="weui_check" id="s15" value="virtual">
                 <i class="weui_icon_checked"></i>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
@@ -195,6 +174,10 @@
             </div>
         </label>
     </div>
+
+    <div class="weui_cells_tips">系统将根据技能需求类型推荐给相关的工程师</div>
+
+
     <div class="weui_cells_title">选填</div>
     <div class="weui_cells weui_cells_access">
 <!--         <a class="weui_cell" href="javascript:;">
@@ -210,7 +193,7 @@
                 <label class="weui_label">悬赏金额</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="number" pattern="[0-9]*" placeholder="人民币" />
+                <input class="weui_input" type="number" pattern="[0-9]*" name="bounty" placeholder="人民币" />
             </div>
         </div>
 
@@ -266,7 +249,17 @@
 
 <!-- 表单尾 -->
 </form>
-
+<script type="text/javascript">
+  function showDialog(){
+    $("#dialog").css("display","block");
+  }
+  function hideDialog(){
+    $("#dialog").css("display","none");
+  }
+  function formsubmit(){
+    $("form").submit();
+  }
+</script>
 
 
 </body>
