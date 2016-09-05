@@ -617,6 +617,12 @@ def t3():
     if request.method == 'GET':
         return render_template('usercenter.html')
 
+# test
+@app.route('/test/usercenter_published', methods = ['GET', 'POST'])
+def t4():
+    if request.method == 'GET':
+        return render_template('published_mission.html')
+
 # 运行主函数
 if __name__ == '__main__':
     # 对外开放80端口
