@@ -36,331 +36,133 @@
 <!-- 外围框 -->
 <div class="bd">
 
-<br>
+    <br>
 
-<div class="weui_panel weui_panel_access">
-    <div class="weui_panel_bd">
-        <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
-            <div class="weui_media_hd">
-                <img class="weui_media_appmsg_thumb" src="{{ headimgurl }}" alt="">
-            </div>
-            <div class="weui_media_bd">
-                <h4 class="weui_media_title">{{ nickname }}</h4>
-                <p class="weui_media_desc"><i class="iconfont">&#xe603;</i>&nbsp;{{ province }}</p>
-                <!-- <p class="weui_media_desc">{{ province }}</p> -->
-            </div>
-        </a>
-    </div>
-</div>
-
-
-<div class="weui_panel">
-    <div class="weui_panel_bd">
-        <div class="weui_media_box weui_media_small_appmsg">
-            <div class="weui_cells weui_cells_access">
-                <a class="weui_cell" href="javascript:;">
-                    <div class="weui_cell_hd"><i class="iconfont">&#xe621;</i></div>&nbsp;&nbsp;
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>等级&nbsp;17</p>
-                    </div>
-                </a>
-                <a class="weui_cell" href="javascript:;">
-                    <div class="weui_cell_hd"><i class="iconfont">&#xe63a;</i></div>&nbsp;&nbsp;
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>评价&nbsp;
-                        <i class="iconfont">&#xe61f;</i>
-                        <i class="iconfont">&#xe61f;</i>
-                        <i class="iconfont">&#xe61f;</i>
-                        <i class="iconfont">&#xe61f;</i>
-                        </p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="weui_panel">
-    <div class="weui_panel_bd">
-        <div class="weui_media_box weui_media_small_appmsg">
-            <div class="weui_cells weui_cells_access">
-                <a class="weui_cell" href="javascript:;">
-                    <div class="weui_cell_hd"><i class="iconfont">&#xe602;</i></div>&nbsp;&nbsp;
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>已参与</p>
-                    </div>
-                </a>
-                <a class="weui_cell" href="javascript:;">
-                    <div class="weui_cell_hd"><i class="iconfont">&#xe60f;</i></div>&nbsp;&nbsp;
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>已发布</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="weui_panel">
-    <div class="weui_panel_bd">
-        <div class="weui_media_box weui_media_small_appmsg">
-            <div class="weui_cells weui_cells_access">
-                <a class="weui_cell" href="javascript:;">
-                    <div class="weui_cell_hd"><i class="iconfont">&#xe60c;</i></div>&nbsp;&nbsp;
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>技能</p>
-                    </div>
-                </a>
-                <a class="weui_cell" href="javascript:;">
-                    <div class="weui_cell_hd"><i class="iconfont">&#xe639;</i></div>&nbsp;&nbsp;
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>认证</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="weui_panel">
-    <div class="weui_panel_bd">
-        <div class="weui_media_box weui_media_small_appmsg">
-            <div class="weui_cells weui_cells_access">
-                <a class="weui_cell" href="javascript:;">
-                    <div class="weui_cell_hd"><i class="iconfont">&#xe612;</i></div>&nbsp;&nbsp;
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>钱包</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="weui_panel">
-    <div class="weui_panel_bd">
-        <div class="weui_media_box weui_media_small_appmsg">
-            <div class="weui_cells weui_cells_access">
-                <a class="weui_cell" href="javascript:;">
-                    <div class="weui_cell_hd"><i class="iconfont">&#xe600;</i></div>&nbsp;&nbsp;
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>设置</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <div class="weui_cells_title"></div> -->
-    <div class="weui_cells weui_cells_access">
-<!--         <a class="weui_cell" href="#/mission_name" ng-click="showBlock()">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>任务名称</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a> -->
-
-        <div class="weui_cell">
-            <div class="weui_cell_hd">
-                <label class="weui_label">任务名称</label>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" placeholder="任务名称" name="mission_name" />
-            </div>
-        </div>
-        
-        <div class="weui_cell weui_cell_select weui_select_after">
-            <div class="weui_cell_hd">
-                <label for="" class="weui_label">任务类型</label>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <select class="weui_select" name="mission_type">
-                    <option value="IT">IT类</option>
-                    <option value="Other">非IT类</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-
-
- <!--        <div class="weui_cells_title">表单</div>
-        <div class="weui_cells weui_cells_form">
-            <div class="weui_cell">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">qq</label>
+    <div class="weui_panel weui_panel_access">
+        <div class="weui_panel_bd">
+            <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                <div class="weui_media_hd">
+                    <img class="weui_media_appmsg_thumb" src="{{ headimgurl }}" alt="">
                 </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" type="number" pattern="[0-9]*" placeholder="请输入qq号" />
+                <div class="weui_media_bd">
+                    <h4 class="weui_media_title">{{ nickname }}</h4>
+                    <p class="weui_media_desc"><i class="iconfont">&#xe603;</i>&nbsp;{{ province }}</p>
+                    <!-- <p class="weui_media_desc">{{ province }}</p> -->
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="weui_panel">
+        <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_small_appmsg">
+                <div class="weui_cells weui_cells_access">
+                    <a class="weui_cell" href="javascript:;">
+                        <div class="weui_cell_hd"><i class="iconfont">&#xe621;</i></div>&nbsp;&nbsp;
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p>等级&nbsp;17</p>
+                        </div>
+                    </a>
+                    <a class="weui_cell" href="javascript:;">
+                        <div class="weui_cell_hd"><i class="iconfont">&#xe63a;</i></div>&nbsp;&nbsp;
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p>评价&nbsp;
+                            <i class="iconfont">&#xe61f;</i>
+                            <i class="iconfont">&#xe61f;</i>
+                            <i class="iconfont">&#xe61f;</i>
+                            <i class="iconfont">&#xe61f;</i>
+                            </p>
+                        </div>
+                    </a>
                 </div>
             </div>
-            <div class="weui_cell weui_vcode">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">验证码</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" type="number" placeholder="请输入验证码" />
-                </div>
-                <div class="weui_cell_ft">
-                    <img src="./images/vcode.jpg" />
-                </div>
-            </div>
-            <div class="weui_cell">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">银行卡</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" type="number" pattern="[0-9]*" placeholder="请输入银行卡号" />
-                </div>
-            </div>
-            <div class="weui_cell weui_vcode weui_cell_warn">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">验证码</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" type="number" placeholder="请输入验证码" />
-                </div>
-                <div class="weui_cell_ft">
-                    <i class="weui_icon_warn"></i>
-                    <img src="./images/vcode.jpg" />
-                </div>
-            </div>
-        </div> -->
-
-
-
-
-    <div class="weui_cells_title">任务描述</div>
-    <div class="weui_cells weui_cells_form">
-        <div class="weui_cell">
-            <div class="weui_cell_bd weui_cell_primary">
-                <textarea class="weui_textarea" placeholder="请输入对该任务的细节描述" name="description" rows="10"></textarea>
-                <!-- <div class="weui_textarea_counter"><span>0</span>/200</div> -->
-            </div>
         </div>
     </div>
 
-    <div class="weui_cells_title">技能需求</div>
-    <div class="weui_cells weui_cells_checkbox">
-        <label class="weui_cell weui_check_label" for="s11">
-            <div class="weui_cell_hd">
-                <input type="checkbox" class="weui_check" name="skill_need" id="s11" checked="checked" value="network">
-                <i class="weui_icon_checked"></i>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>网络设备</p>
-            </div>
-        </label>
-        <label class="weui_cell weui_check_label" for="s12">
-            <div class="weui_cell_hd">
-                <input type="checkbox" name="skill_need" class="weui_check" id="s12" value="server">
-                <i class="weui_icon_checked"></i>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>硬件服务器</p>
-            </div>
-        </label>
-        <label class="weui_cell weui_check_label" for="s13">
-            <div class="weui_cell_hd">
-                <input type="checkbox" name="skill_need" class="weui_check" id="s13" value="os">
-                <i class="weui_icon_checked"></i>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>操作系统</p>
-            </div>
-        </label>
-        <label class="weui_cell weui_check_label" for="s14">
-            <div class="weui_cell_hd">
-                <input type="checkbox" name="skill_need" class="weui_check" id="s14" value="database">
-                <i class="weui_icon_checked"></i>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>数据库</p>
-            </div>
-        </label>
-        <label class="weui_cell weui_check_label" for="s15">
-            <div class="weui_cell_hd">
-                <input type="checkbox" name="skill_need" class="weui_check" id="s15" value="virtual">
-                <i class="weui_icon_checked"></i>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>虚拟化</p>
-            </div>
-        </label>
-    </div>
-
-    <div class="weui_cells_tips">系统将根据技能需求类型推荐给相关的工程师</div>
 
 
-    <div class="weui_cells_title">选填</div>
-    <div class="weui_cells weui_cells_access">
-<!--         <a class="weui_cell" href="javascript:;">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>悬赏金额</p>
-            </div>
-            <div class="weui_cell_ft">
-            </div>
-        </a> -->
-
-        <div class="weui_cell">
-            <div class="weui_cell_hd">
-                <label class="weui_label">悬赏金额</label>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="number" pattern="[0-9]*" name="bounty" placeholder="人民币" />
-            </div>
-        </div>
-
-
-        <div class="weui_cell">
-            <div class="weui_cell_hd"><label for="" class="weui_label">截止日期</label></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" name="deadline" type="date" value="" placeholder=""/>
-            </div>
-        </div>
-    </div>
-    <div class="weui_cells_tips">悬赏金额不填写则进入竞标模式，截止日期如不填写则默认不限定任务完成日期</div>
-    
-    <!-- 确认对话框 -->
-    <div class="weui_dialog_confirm" style="display: none;" id="dialog">
-        <div class="weui_mask"></div>
-        <div class="weui_dialog">
-            <div class="weui_dialog_hd"><strong class="weui_dialog_title">确认提示</strong></div>
-            <div class="weui_dialog_bd">确认提交当前信息么？</div>
-            <div class="weui_dialog_ft">
-                <a href="javascript:hideDialog();" class="weui_btn_dialog default">取消</a>
-                <a href="javascript:formsubmit();" class="weui_btn_dialog primary">确定</a>
+    <div class="weui_panel">
+        <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_small_appmsg">
+                <div class="weui_cells weui_cells_access">
+                    <a class="weui_cell" href="javascript:;">
+                        <div class="weui_cell_hd"><i class="iconfont">&#xe602;</i></div>&nbsp;&nbsp;
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p>已参与</p>
+                        </div>
+                    </a>
+                    <a class="weui_cell" href="javascript:;">
+                        <div class="weui_cell_hd"><i class="iconfont">&#xe60f;</i></div>&nbsp;&nbsp;
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p>已发布</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
 
-    <!-- 提交按钮 -->
-    <div class="weui_btn_area">
-        <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">确认提交</a>
+
+    <div class="weui_panel">
+        <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_small_appmsg">
+                <div class="weui_cells weui_cells_access">
+                    <a class="weui_cell" href="javascript:;">
+                        <div class="weui_cell_hd"><i class="iconfont">&#xe60c;</i></div>&nbsp;&nbsp;
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p>技能</p>
+                        </div>
+                    </a>
+                    <a class="weui_cell" href="javascript:;">
+                        <div class="weui_cell_hd"><i class="iconfont">&#xe639;</i></div>&nbsp;&nbsp;
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p>认证</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+    <div class="weui_panel">
+        <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_small_appmsg">
+                <div class="weui_cells weui_cells_access">
+                    <a class="weui_cell" href="javascript:;">
+                        <div class="weui_cell_hd"><i class="iconfont">&#xe612;</i></div>&nbsp;&nbsp;
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p>钱包</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="weui_panel">
+        <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_small_appmsg">
+                <div class="weui_cells weui_cells_access">
+                    <a class="weui_cell" href="javascript:;">
+                        <div class="weui_cell_hd"><i class="iconfont">&#xe600;</i></div>&nbsp;&nbsp;
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p>设置</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 
 </div>
 
