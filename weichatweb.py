@@ -422,6 +422,42 @@ def user_center():
 
 
 
+# 已发布
+@app.route('/wechat/usercenter_published', methods = ['GET', 'POST'])
+def usercenter_published():
+
+    if request.method == 'GET':
+        # 参数接收获取code
+        query = request.args 
+        code = query.get('code', '')  
+        state = query.get('state', '')
+        nsukey = query.get('nsukey', '')
+
+        # 获取用户信息
+        userinfo = getUserInfo(code,state,nsukey)
+
+        # 从资料中提取具体信息
+        nickname = userinfo.get('nickname')
+        openid = userinfo.get('openid')
+        sex = userinfo.get('sex')
+        province = userinfo.get('province')
+        city = userinfo.get('city')
+        country = userinfo.get('country')
+        headimgurl = userinfo.get('headimgurl')
+
+        # 修正编码格式
+        nickname = codefix(nickname)
+        province = codefix(province)
+        city = codefix(city)
+        country = codefix(country)
+
+
+        return render_template('published_mission.html',openid = openid)
+
+
+
+
+
 # 查看表单
 @app.route('/wechat/check_mission', methods = ['GET', 'POST'])
 def check_mission():
