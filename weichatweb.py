@@ -606,16 +606,16 @@ def missionApproval(mission_id):
 
 
 # test
-@app.route('/test/t2', methods = ['GET', 'POST'])
+@app.route('/test/newmission', methods = ['GET', 'POST'])
 def t2():
     if request.method == 'GET':
         return render_template('new_mission.html')
 
 # test
-@app.route('/admin/t3', methods = ['GET', 'POST'])
+@app.route('/test/usercenter', methods = ['GET', 'POST'])
 def t3():
     if request.method == 'GET':
-        return render_template('t3.html')
+        return render_template('usercenter.html')
 
 # 运行主函数
 if __name__ == '__main__':
