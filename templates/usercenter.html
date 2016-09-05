@@ -12,7 +12,7 @@
         a:visited {color: #ae9f9f;} 
         a:link {color: #ae9f9f;} 
         a {color: #ae9f9f;}
-        /*引用阿里巴巴的微信图库*/
+        /*引用阿里巴巴的图库*/
         @font-face {
             font-family: 'iconfont';
             src: url('{{ url_for('static',filename='fonts/iconfont.eot',_external=True) }}'); /* IE9*/
@@ -27,6 +27,9 @@
             -webkit-text-stroke-width: 0.2px;
             -moz-osx-font-smoothing: grayscale;
         }
+        body{
+            margin: 0px;
+        }
     </style>
 </head>
 <body>
@@ -34,7 +37,7 @@
 <!-- 个人信息 -->
 <!-- <input type="hidden" name="publisher" value="{{ openid }}"> -->
 <!-- 外围框 -->
-<!-- <div class="bd"> -->
+<div class="bd">
 
     <!-- <br> -->
 
@@ -140,11 +143,7 @@
 
 
 
-
-
-
-
-<!-- </div> -->
+</div>
 
 
 
