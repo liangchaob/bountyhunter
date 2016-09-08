@@ -139,6 +139,10 @@ def wechat_auth():
             # print "信息内容:"+str(rec_content)
 
             if rec_type == 'subscribe':  # 关注事件(包括普通关注事件和扫描二维码造成的关注事件)
+                # 关注获取用户openid
+
+
+
                 key = wechat.message.key           # 对应于 XML 中的 EventKey (普通关注事件时此值为 None)
                 ticket = wechat.message.ticket     # 对应于 XML 中的 Ticket (普通关注事件时此值为 None)
                 return wechat.response_text("欢迎加入赏金猎人公会!")

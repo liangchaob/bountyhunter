@@ -19,6 +19,30 @@ from flask import Flask, request, jsonify
 from flask_restful import Resource, Api
 from flask.ext.restful import reqparse
 import json
+# 导入pymongo模块
+import pymongo
+
+# 数据部分
+# 测试
+MONGODB_ADDR = '172.16.191.163'
+MONGODB_PORT = 27017
+MONGODB_DB = 'local'
+
+# 设置数据库地址
+client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
+
+# 设置数据库名
+db = client[MONGODB_DB]
+
+# 生产认证
+# db.authenticate("uRyZYodlpcmOj74E","pyHsxuq1dCb9wXGMS")
+
+# 设置表名,建立为索引
+# 用户表
+collection_user = db['user']
+collection_user.ensure_index('openid')
+
+
 
 
 
@@ -28,23 +52,6 @@ api = Api(app)
 
 userdb=[]
 
-userobj = {
-    'openid':'openid',
-    'intro':'intro',
-    'role':'role',
-    'feedback':'feedback',
-    'level':'level',
-    'skill':'skill',
-    'mission_published':'mission_published',
-    'mission_accept':'mission_accept',
-    'mission_accomplish':'mission_accomplish',
-    'state':'state',
-    'spent':'spent',
-    'income':'income',
-    'email':'email',
-    'mobile':'mobile'
-}
-
 
 
 
@@ -52,35 +59,46 @@ userobj = {
 # 用户对象
 userobj = reqparse.RequestParser()
 userobj.add_argument('openid', type=str)
+userobj.add_argument('intro', type=str)
 userobj.add_argument('role', type=str)
+userobj.add_argument('feedback', type=str)
+userobj.add_argument('level', type=str)
+userobj.add_argument('skill', type=str)
+userobj.add_argument('mission_published', type=str)
+userobj.add_argument('mission_accept', type=str)
+userobj.add_argument('state', type=str)
+userobj.add_argument('spent', type=str)
+userobj.add_argument('income', type=str)
+userobj.add_argument('email', type=str)
+userobj.add_argument('mobile', type=str)
 
-
-# 模拟数据库操作
-def filterUser(user,user_id):
-    return user.openid == user_id
 
 
 
 # 全部用户
 class Users(Resource):
     def get(self):
-        return userdb
+        jsonlist = []
+        for item in collection_user.find({}):
+            jsonlist.append(j.jsonobj)
+        return jsonlist
 
     def post(self):
         args = userobj.parse_args()
-        userdb.append(args)
-        return userdb
+        collection_user.insert_one(dict(args))
+        return args
 
 
 # 单用户
 class User(Resource):
-    def get(self,user_id):
-        # filter(filterUser,userdb)
-        return filter(filterUser(user_id=user_id),userdb)
+    def get(self, user_id):
+        result = collection_user.find_one({'openid':user_id},{'_id':0})
+        return result
 
     def put(self, user_id):
-        user_dict[user_id] = request.form['data']
-        return {'user_id': user_dict[user_id]}
+        args = userobj.parse_args()
+        collection_user.update({'openid':user_id},{'$set':args})
+        return args
 
         
 # 全部任务
