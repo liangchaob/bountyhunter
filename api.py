@@ -101,6 +101,7 @@ class User(Resource):
         return result
 
     def put(self, user_id):
+        # 获取参数
         args = userobj.parse_args()
         # 把空值筛除
         args = dict(args)

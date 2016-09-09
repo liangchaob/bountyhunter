@@ -139,6 +139,7 @@ def wechat_auth():
             # print "信息内容:"+str(rec_content)
 
             if rec_type == 'subscribe':  # 关注事件(包括普通关注事件和扫描二维码造成的关注事件)
+                # 将用户状态置为on
                 userstate_update={'openid':str(rec_source),'state':'on'}
                 result = db_obj.dbpost('api/user/',userstate_update)
                 
@@ -258,7 +259,7 @@ def new_mission():
                 'acceptor':''
                 }
 
-            result = db_obj.dbpost('mission/',jsonobj)
+            result = db_obj.dbpost('api/mission/',jsonobj)
 
             # # 更新数据库
             # headers = {'content-type': 'application/json'}
@@ -672,6 +673,15 @@ def t5():
         # return 'hehe'
         result = db_obj.dbget('api/user/')
         return result
+
+# test
+@app.route('/test/user_mission/<openid>', methods = ['GET', 'POST'])
+def t6(openid):
+    if request.method == 'GET':
+        result = db_obj.dbget('api/user/'+openid)
+        return result
+
+
 
 
 # 运行主函数
