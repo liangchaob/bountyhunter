@@ -672,7 +672,7 @@ def t5():
     if request.method == 'GET':
         # return 'hehe'
         result = db_obj.dbget('api/user/')
-        return result
+        return str(result)
 
 # test
 @app.route('/test/user_mission/<openid>', methods = ['GET', 'POST'])
