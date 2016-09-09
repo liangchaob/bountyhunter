@@ -669,9 +669,9 @@ def t4():
 @app.route('/test/allusers', methods = ['GET', 'POST'])
 def t5():
     if request.method == 'GET':
-        return 'hehe'
-        # result = db_obj.dbget('api/user/')
-        # return result
+        # return 'hehe'
+        result = db_obj.dbget('api/user/')
+        return result
 
 
 # 运行主函数
