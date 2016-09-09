@@ -672,6 +672,7 @@ def t5():
     if request.method == 'GET':
         # return 'hehe'
         result = db_obj.dbget('api/user/')
+        result = {'comment':result}
         return jsonify(result)
 
 # test
