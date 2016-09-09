@@ -663,6 +663,16 @@ def t4():
     if request.method == 'GET':
         return render_template('published_mission.html')
 
+
+
+# test
+@app.route('/test/allusers', methods = ['GET', 'POST'])
+def t5():
+    if request.method == 'GET':
+        result = db_obj.dbget('api/user/')
+        return result
+
+
 # 运行主函数
 if __name__ == '__main__':
     # 对外开放80端口
