@@ -85,7 +85,7 @@ class Users(Resource):
     def get(self):
         jsonlist = []
         for item in collection_user.find({}):
-            jsonlist.append(j.jsonobj)
+            jsonlist.append(item.jsonobj)
         return jsonlist
 
     def post(self):
