@@ -139,14 +139,36 @@ def wechat_auth():
             # print "信息内容:"+str(rec_content)
 
             if rec_type == 'subscribe':  # 关注事件(包括普通关注事件和扫描二维码造成的关注事件)
-                # 将用户状态置为on
-                userstate_update={'openid':str(rec_source),'state':'on'}
-                result = db_obj.dbpost('api/user/',userstate_update)
+                try:
+                    # 新添用户
+                    useradd = {'openid':str(rec_source)}
+                    result = db_obj.dbpost('api/user/',useradd ) 
+                except Exception, e:
+                    raise e
+                    pass
+
+                try:
+                    # 激活用户
+                    user_on = {'state':'on'}
+                    result = db_obj.dbpost('api/user/'+str(rec_source),user_on)
+                except Exception, e:
+                    raise e
+                    pass
+
                 
                 # 关注获取用户openid,并将其状态置位为on
                 key = wechat.message.key           # 对应于 XML 中的 EventKey (普通关注事件时此值为 None)
                 ticket = wechat.message.ticket     # 对应于 XML 中的 Ticket (普通关注事件时此值为 None)
                 return wechat.response_text("欢迎加入赏金猎人公会!")
+
+            if rec_type == 'unsubscribe':  # 关注事件(包括普通关注事件和扫描二维码造成的关注事件)
+                try:
+                    # 关闭用户
+                    user_off = {'state':'off'}
+                    result = db_obj.dbput('api/user/'+str(rec_source),user_off)
+                except Exception, e:
+                    raise e
+                    pass
 
             elif rec_type == 'click':  # 自定义菜单点击事件
                 key = wechat.message.key           # 对应于 XML 中的 EventKey
