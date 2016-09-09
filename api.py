@@ -22,11 +22,17 @@ import json
 # 导入pymongo模块
 import pymongo
 
+
+
 # 数据部分
-# 测试
-MONGODB_ADDR = '172.16.191.163'
+# 生产
+MONGODB_ADDR = '10.10.72.139:27017'
 MONGODB_PORT = 27017
-MONGODB_DB = 'local'
+MONGODB_DB = '2LZxR3oaScQKDAhu'
+# 测试
+# MONGODB_ADDR = '172.16.191.163'
+# MONGODB_PORT = 27017
+# MONGODB_DB = 'local'
 
 # 设置数据库地址
 client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
@@ -35,7 +41,7 @@ client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
 db = client[MONGODB_DB]
 
 # 生产认证
-# db.authenticate("uRyZYodlpcmOj74E","pyHsxuq1dCb9wXGMS")
+db.authenticate("ulPjupyxX3mDVW0T","psodj1ZuqfBXlaADR")
 
 # 设置表名,建立为索引
 # 用户表
@@ -50,7 +56,6 @@ collection_user.ensure_index('openid')
 app = Flask(__name__)
 api = Api(app)
 
-userdb=[]
 
 
 
@@ -72,7 +77,7 @@ userobj.add_argument('income', type=str)
 userobj.add_argument('email', type=str)
 userobj.add_argument('mobile', type=str)
 
-
+    
 
 
 # 全部用户
@@ -97,8 +102,17 @@ class User(Resource):
 
     def put(self, user_id):
         args = userobj.parse_args()
-        collection_user.update({'openid':user_id},{'$set':args})
-        return args
+        # 把空值筛除
+        args = dict(args)
+        result = {}
+        for i in args:
+            if args[i] != '' and args[i] != None:
+                result[i] = args[i]
+            else:
+                pass
+        # 入库
+        collection_user.update({'openid':user_id},{'$set':result})
+        return result
 
         
 # 全部任务

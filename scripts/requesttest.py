@@ -27,7 +27,7 @@ import requests
 
 payload={
     'openid':2,
-    'intro':'',
+    'intro':'tt',
     'role':'user',
     'feedback':'',
     'level':'',
@@ -45,3 +45,7 @@ r=requests.put('http://0.0.0.0:8080/api/user/2',data=payload)
 
 
 print r.text
+
+
+
+
