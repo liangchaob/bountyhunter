@@ -84,8 +84,8 @@ userobj.add_argument('mobile', type=str)
 class Users(Resource):
     def get(self):
         jsonlist = []
-        for item in collection_user.find({}):
-            jsonlist.append(item.jsonobj)
+        for item in collection_user.find({},{'_id':0}):
+            jsonlist.append(item)
         return jsonlist
 
     def post(self):
