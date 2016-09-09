@@ -26,9 +26,9 @@ import pymongo
 
 # 数据部分
 # 生产
-MONGODB_ADDR = '10.10.72.139:27017'
+MONGODB_ADDR = '10.10.72.139'
 MONGODB_PORT = 27017
-MONGODB_DB = '2LZxR3oaScQKDAhu'
+MONGODB_DB = '3cVNYBye7mztp8v4'
 # 测试
 # MONGODB_ADDR = '172.16.191.163'
 # MONGODB_PORT = 27017
@@ -41,12 +41,12 @@ client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
 db = client[MONGODB_DB]
 
 # 生产认证
-db.authenticate("ulPjupyxX3mDVW0T","psodj1ZuqfBXlaADR")
+db.authenticate("uMvW5dqcFu0K6IkU","phG8sY6MtkrwIzuFp")
 
 # 设置表名,建立为索引
 # 用户表
 collection_user = db['user']
-collection_user.ensure_index('openid')
+collection_user.ensure_index('openid',unique=True)
 
 
 
