@@ -139,7 +139,9 @@ def wechat_auth():
             # print "信息内容:"+str(rec_content)
 
             if rec_type == 'subscribe':  # 关注事件(包括普通关注事件和扫描二维码造成的关注事件)
-                # db_obj.dbpost('user/',{'openid':str(rec_source),'state':'on'})
+                userstate_update={'openid':str(rec_source),'state':'on'}
+                result = db_obj.dbpost('/api/user/',userstate_update)
+                
                 # 关注获取用户openid,并将其状态置位为on
                 key = wechat.message.key           # 对应于 XML 中的 EventKey (普通关注事件时此值为 None)
                 ticket = wechat.message.ticket     # 对应于 XML 中的 Ticket (普通关注事件时此值为 None)
