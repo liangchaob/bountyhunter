@@ -90,7 +90,10 @@ class Users(Resource):
 
     def post(self):
         args = userobj.parse_args()
-        collection_user.insert_one(dict(args))
+        try:
+            collection_user.insert_one(dict(args))
+        except Exception, e:
+            raise e
         return args
 
 
@@ -112,7 +115,10 @@ class User(Resource):
             else:
                 pass
         # 入库
-        collection_user.update({'openid':user_id},{'$set':result})
+        try:
+            collection_user.update({'openid':user_id},{'$set':result})
+        except Exception, e:
+            raise e
         return result
 
         
