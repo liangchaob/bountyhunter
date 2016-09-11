@@ -151,14 +151,14 @@ def wechat_auth():
                     useradd = {'openid':str(rec_source)}
                     result = db_obj.dbpost('api/user/',useradd ) 
                 except Exception, e:
-                    raise e
+                    pass
 
                 try:
                     # 激活用户
                     user_on = {'state':'on'}
                     result = db_obj.dbput('api/user/'+str(rec_source),user_on)
                 except Exception, e:
-                    raise e
+                    pass
 
                 
                 # 关注获取用户openid,并将其状态置位为on
@@ -173,7 +173,6 @@ def wechat_auth():
                     result = db_obj.dbput('api/user/'+str(rec_source),user_off)
                 except Exception, e:
                     raise e
-                    pass
 
             elif rec_type == 'click':  # 自定义菜单点击事件
                 key = wechat.message.key           # 对应于 XML 中的 EventKey

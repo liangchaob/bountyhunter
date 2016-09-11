@@ -93,7 +93,7 @@ class Users(Resource):
         try:
             collection_user.insert_one(dict(args))
         except Exception, e:
-            raise e
+            pass
         return args
 
 
@@ -118,7 +118,7 @@ class User(Resource):
         try:
             collection_user.update({'openid':user_id},{'$set':result})
         except Exception, e:
-            raise e
+            pass
         return result
 
         
