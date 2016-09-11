@@ -152,7 +152,6 @@ def wechat_auth():
                     result = db_obj.dbpost('api/user/',useradd ) 
                 except Exception, e:
                     raise e
-                    pass
 
                 try:
                     # 激活用户
@@ -160,7 +159,6 @@ def wechat_auth():
                     result = db_obj.dbput('api/user/'+str(rec_source),user_on)
                 except Exception, e:
                     raise e
-                    pass
 
                 
                 # 关注获取用户openid,并将其状态置位为on
@@ -170,7 +168,7 @@ def wechat_auth():
 
             if rec_type == 'unsubscribe':  # 关注事件(包括普通关注事件和扫描二维码造成的关注事件)
                 try:
-                    # 关闭用户
+                    # 注销用户
                     user_off = {'state':'off'}
                     result = db_obj.dbput('api/user/'+str(rec_source),user_off)
                 except Exception, e:
