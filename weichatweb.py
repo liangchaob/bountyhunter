@@ -93,6 +93,13 @@ class dbOpt(object):
         result = r.json()
         return result
 
+    # 数据新建
+    def dbput(self,suburl,putdata):
+        # http头
+        headers = {'content-type': 'application/json'}
+        r = requests.put(self.dburl + suburl, data=json.dumps(putdata), headers = headers)
+        result = r.json()
+        return result
 
         
 db_obj = dbOpt(dburl = 'http://liangchaob-bountyapi.daoapp.io/')
@@ -150,7 +157,7 @@ def wechat_auth():
                 try:
                     # 激活用户
                     user_on = {'state':'on'}
-                    result = db_obj.dbpost('api/user/'+str(rec_source),user_on)
+                    result = db_obj.dbput('api/user/'+str(rec_source),user_on)
                 except Exception, e:
                     raise e
                     pass
