@@ -169,7 +169,7 @@ class MissionById(Resource):
 
     def put(self, mission_id):
         # 获取参数
-        args = mission.parse_args()
+        args = missionobj.parse_args()
         # 把空值筛除
         args = dict(args)
         result = {}
