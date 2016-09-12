@@ -602,7 +602,7 @@ def adminPassed():
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
         # result = r.json()
-        mission_list = result.get('api/mission')
+        mission_list = result
 
         # 筛选出处于已通过状态的任务
         misson_passed = []
