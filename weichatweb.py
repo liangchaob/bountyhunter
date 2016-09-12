@@ -352,30 +352,30 @@ def myinfo():
 
 
 
-# 确认提交完成
-@app.route('/wechat/mission', methods = ['GET', 'POST'])
-def mission_commit():
-    if request.method == 'GET':
-        result = db_obj.dbget('mission/')
-        # # 更新数据库
-        # headers = {'content-type': 'application/json'}
-        # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
-        # result = r.json()
-        mission_list = result.get('mission')
+# # 确认提交完成
+# @app.route('/wechat/mission', methods = ['GET', 'POST'])
+# def mission_commit():
+#     if request.method == 'GET':
+#         result = db_obj.dbget('api/mission/')
+#         # # 更新数据库
+#         # headers = {'content-type': 'application/json'}
+#         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
+#         # result = r.json()
+#         mission_list = result.get('mission')
 
-        # 筛选出处于发布状态的任务
-        misson_passed = []
-        for mission in mission_list:
-            if mission.get('state') == 2:
-                misson_passed.append(mission)
-            else:
-                pass
-        return render_template('mission_today.html')
+#         # 筛选出处于发布状态的任务
+#         misson_passed = []
+#         for mission in mission_list:
+#             if mission.get('state') == 2:
+#                 misson_passed.append(mission)
+#             else:
+#                 pass
+#         return render_template('mission_today.html')
 
-    elif request.method == 'POST':
-        return render_template('mission_commit.html')
-    else:
-        pass
+#     elif request.method == 'POST':
+#         return render_template('mission_commit.html')
+#     else:
+#         pass
 
 
 
@@ -481,6 +481,9 @@ def usercenter_published():
         province = codefix(province)
         city = codefix(city)
         country = codefix(country)
+
+        # 数据提取
+        result = db_obj.dbget('api/mission/publisher/' + openid)
 
 
         return render_template('published_mission.html',openid = openid)
