@@ -581,7 +581,7 @@ def adminApproval():
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
         # result = r.json()
-        mission_list = result.get('mission')
+        mission_list = result
 
         # 筛选出处于发布状态的任务
         misson_publish = []
