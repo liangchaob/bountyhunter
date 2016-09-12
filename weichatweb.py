@@ -524,9 +524,11 @@ def mission(mission_id):
         if result.state == '0' or result.state == '1':
             return render_template('mission_edit.html',mission_obj=result)
         elif result.state == '2':
+            pass
+        else:
         # result = {'comment':result}
         # return jsonify(result)
-        return render_template('mission.html',mission_obj=result)
+            return render_template('mission.html',mission_obj=result)
 
 
 
