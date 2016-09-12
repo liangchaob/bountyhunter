@@ -26,13 +26,13 @@ import pymongo
 
 # 数据部分
 # 生产
-# MONGODB_ADDR = '10.10.72.139'
-# MONGODB_PORT = 27017
-# MONGODB_DB = '3cVNYBye7mztp8v4'
-# 测试
-MONGODB_ADDR = '172.16.191.163'
+MONGODB_ADDR = '10.10.72.139'
 MONGODB_PORT = 27017
-MONGODB_DB = 'local'
+MONGODB_DB = '3cVNYBye7mztp8v4'
+# 测试
+# MONGODB_ADDR = '172.16.191.163'
+# MONGODB_PORT = 27017
+# MONGODB_DB = 'local'
 
 # 设置数据库地址
 client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
@@ -41,7 +41,7 @@ client = pymongo.MongoClient(MONGODB_ADDR, MONGODB_PORT)
 db = client[MONGODB_DB]
 
 # 生产认证
-# db.authenticate("uMvW5dqcFu0K6IkU","phG8sY6MtkrwIzuFp")
+db.authenticate("uMvW5dqcFu0K6IkU","phG8sY6MtkrwIzuFp")
 
 # 设置表名,建立为索引
 # 用户表
@@ -274,7 +274,7 @@ def after_request(response):
 
 # 服务进程
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0',port=80,debug=True)
-    app.run(host='0.0.0.0',port=8080,debug=True)
+    app.run(host='0.0.0.0',port=80,debug=True)
+    # app.run(host='0.0.0.0',port=8080,debug=True)
 
 
