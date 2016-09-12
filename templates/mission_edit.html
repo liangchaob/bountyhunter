@@ -202,7 +202,7 @@
                 <label class="weui_label">悬赏金额</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="number" pattern="[0-9]*" name="bounty" placeholder="人民币" value="mission_obj.bounty" />
+                <input class="weui_input" type="number" pattern="[0-9]*" name="bounty" placeholder="人民币" value="{{mission_obj.bounty}}" />
             </div>
         </div>
 
@@ -210,7 +210,7 @@
         <div class="weui_cell">
             <div class="weui_cell_hd"><label for="" class="weui_label">截止日期</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" name="deadline" type="date" value="mission_obj.deadline" placeholder=""/>
+                <input class="weui_input" name="deadline" type="date" value="{{mission_obj.deadline}}" placeholder=""/>
             </div>
         </div>
     </div>
