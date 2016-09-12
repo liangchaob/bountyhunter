@@ -513,6 +513,24 @@ def usercenter_published():
 
 
 
+
+
+@app.route('/wechat/mission/<mission_id>', methods = ['GET', 'POST'])
+def mission(mission_id):
+    if request.method == 'GET':
+        # return 'hehe'
+        result = db_obj.dbget('api/mission/id/' + mission_id)
+        # 如果任务处于待修改或发布状态
+        if result.state == '0' or result.state == '1':
+            return render_template('mission_edit.html',mission_obj=result)
+        elif result.state == '2':
+        # result = {'comment':result}
+        # return jsonify(result)
+        return render_template('mission.html',mission_obj=result)
+
+
+
+
 # 查看表单
 @app.route('/wechat/check_mission', methods = ['GET', 'POST'])
 def check_mission():
@@ -763,6 +781,11 @@ def t9(mission_id):
         return render_template('mission.html',mission_obj=result)
 
 # 9eeaa838-78b2-11e6-8cfa-d5fca37bf494
+
+
+
+
+
 
 # 运行主函数
 if __name__ == '__main__':
