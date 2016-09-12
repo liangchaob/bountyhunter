@@ -29,7 +29,11 @@
 <!-- 当前流程 -->
 <div style="text-align: center;margin-top: 20px;">
   <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">发布</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">审核</button>
+  {% if mission_obj.state=='1' %}
+    <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">审核</button>
+  {% else %}
+    <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">审核</button>
+  {% endif %}
   <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">竞标</button>
   <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">工作</button>
   <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">评价</button>
