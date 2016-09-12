@@ -93,7 +93,14 @@
     <div class="weui_cells weui_cells_checkbox">
         <label class="weui_cell weui_check_label" for="s11">
             <div class="weui_cell_hd">
-                <input type="checkbox" class="weui_check" name="skill_need" id="s11" checked="checked" value="network">
+                <input type="checkbox" class="weui_check" name="skill_need" id="s11" 
+                {% for item in mission_obj.skill_need %}
+                    {% if item=='network' %}
+                    checked="checked"
+                    {% else %}
+                    {% endif %}
+                {% endfor %}
+                value="network">
                 <i class="weui_icon_checked"></i>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
