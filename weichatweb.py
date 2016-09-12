@@ -701,6 +701,8 @@ def t5():
         result = {'comment':result}
         return jsonify(result)
 
+
+
 # test
 @app.route('/test/user_mission/<openid>', methods = ['GET', 'POST'])
 def t6(openid):
@@ -709,6 +711,22 @@ def t6(openid):
         return result
 
 
+# test
+@app.route('/test/missions/<publisher>', methods = ['GET', 'POST'])
+def t7(openid):
+    if request.method == 'GET':
+        result = db_obj.dbget('api/mission/publisher/'+publisher)
+        return result
+
+
+# test
+@app.route('/test/allmissions', methods = ['GET', 'POST'])
+def t8():
+    if request.method == 'GET':
+        # return 'hehe'
+        result = db_obj.dbget('api/mission/')
+        result = {'comment':result}
+        return jsonify(result)
 
 
 # 运行主函数
