@@ -51,15 +51,15 @@
                 <p>
                 {% for item in mission_obj.skill_need %}
                     {% if item=="network" %}
-                    <!-- 网络; -->
+                    网络;
                     {% elif item=="server" %}
-                    <!-- 服务器; -->
+                    服务器;
                     {% elif item=="os" %}
-                    <!-- 操作系统; -->
+                    操作系统;
                     {% elif item=="database" %}
-                    <!-- 数据库; -->
+                    数据库;
                     {% elif item=="virtual" %}
-                    <!-- 虚拟化; -->
+                    虚拟化;
                     {% else %}
                     {% endif %}
                 {% endfor %}
