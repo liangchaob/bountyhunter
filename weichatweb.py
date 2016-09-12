@@ -486,7 +486,7 @@ def usercenter_published():
         result = db_obj.dbget('api/mission/publisher/' + openid)
 
 
-        return render_template('published_mission.html',openid = openid)
+        return render_template('published_mission.html',openid = openid, missiom_list = result)
 
 
 
