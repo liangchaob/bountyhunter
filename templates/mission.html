@@ -37,22 +37,21 @@
 <!-- 外围框 -->
 <div class="bd">
 
-    <!-- <div class="weui_cells_title"></div> -->
-    <div class="weui_cells">
-        <div class="weui_cell">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>任务名称</p>
-            </div>
-            <div class="weui_cell_ft">{{mission_obj.name}}</div>
-        </div>
-        <div class="weui_cell">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>任务类型</p>
-            </div>
-            <div class="weui_cell_ft">{{mission_obj.mission_type}}</div>
-        </div>
-    </div>
-
+        <article class="weui_article">
+            <h1>{{mission_obj.name}}</h1>
+            <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">{{mission_obj.mission_type}}</button>
+            <section>
+                <!-- <h2 class="title">章标题</h2> -->
+                <section>
+                    <h3>项目描述</h3>
+                    <p>{{mission_obj.description}}</p>
+                </section>
+<!--                 <section>
+                    <h3>1.2 节标题</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </section> -->
+            </section>
+        </article>
 
 
  <!--        <div class="weui_cells_title">表单</div>
