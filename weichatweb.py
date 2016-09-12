@@ -652,7 +652,7 @@ def missionApproval(mission_id):
         result = request.form.get('code')
         if result == 'pass':
             # 把状态置为2（审批通过）
-            jsonobj = {'state':2}
+            jsonobj = {'state':"2"}
             result = db_obj.dbpost('api/mission/id/'+str(mission_id),jsonobj)
             # # 更新数据库
             # headers = {'content-type': 'application/json'}
@@ -661,7 +661,7 @@ def missionApproval(mission_id):
 
         elif result == 'deny':
             # 把状态置为0（驳回状态）
-            jsonobj = {'state':0}
+            jsonobj = {'state':"0"}
             result = db_obj.dbpost('api/mission/id/'+str(mission_id),jsonobj)
             # # 更新数据库
             # headers = {'content-type': 'application/json'}
