@@ -485,34 +485,33 @@ def usercenter_published():
         # 数据提取
         result = db_obj.dbget('api/mission/publisher/' + openid)
 
-        # 审核阶段
-        state_0 = []
-        # 发布阶段
-        state_1 = []
-        # 竞标阶段
-        state_2 = []
-        # 工作阶段
-        state_3 = []
-        # 评价阶段
-        state_4 = []
+        # # 审核阶段
+        # state_0 = []
+        # # 发布阶段
+        # state_1 = []
+        # # 竞标阶段
+        # state_2 = []
+        # # 工作阶段
+        # state_3 = []
+        # # 评价阶段
+        # state_4 = []
 
-        for item in result:
-            if item.state == '0':
-                state_0.append(item)
-            elif item.state == '1':
-                state_0.append(item)
-            elif item.state == '2':
-                state_0.append(item)
-            elif item.state == '3':
-                state_0.append(item)
-            elif item.state == '4':
-                state_0.append(item)
-            else:
-                pass
+        # for item in result:
+        #     if item["state"] == '0':
+        #         state_0.append(item)
+        #     elif item["state"] == '1':
+        #         state_1.append(item)
+        #     elif item["state"] == '2':
+        #         state_2.append(item)
+        #     elif item["state"] == '3':
+        #         state_3.append(item)
+        #     elif item["state"] == '4':
+        #         state_4.append(item)
+        #     else:
+        #         pass
 
-        return render_template('published_mission.html',openid = openid, state_0 = state_0, 
-            state_1 = state_1, state_2 = state_2, state_3 = state_3,state_4 = state_4,)
-
+        return render_template('published_mission.html',openid = openid)
+        # return render_template('published_mission.html',openid = openid, state_0 = state_0,state_1 = state_1, state_2 = state_2, state_3 = state_3,state_4 = state_4)
 
 
 
