@@ -22,10 +22,43 @@
 <body>
 <!-- <div ng-if="homeShow"> -->
 
+<div class="page">
+    <div class="hd">
+        <h1 class="page_title">{{mission_obj.name}}</h1>
+    </div>
+
+<div style="text-align: center;margin-top: 20px;">
+  <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">发布</button>
+  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">审核</button>
+  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">竞标</button>
+  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">工作</button>
+  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">评价</button>
+</div>
+
+    
+    <div class="bd">
+        <article class="weui_article">
+            <!-- <h1>大标题</h1> -->
+            <section>
+                <h2 class="title">章标题</h2>
+                <section>
+                    <h3>{{mission_obj.mission_type}}</h3>
+                    <p>{{mission_obj.description}}</p>
+                </section>
+
+            </section>
+        </article>
+    </div>
+</div>
+
+
+
+
+
 <!-- 表单头 -->
 <form method="POST">
 <!-- 任务信息 -->
-<input type="hidden" name="mission_id" value="{{ mission_obj.mission_id }}">
+<!-- <input type="hidden" name="mission_id" value="{{ mission_obj.mission_id }}"> -->
 <!-- 当前流程 -->
 <div style="text-align: center;margin-top: 20px;">
   <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">发布</button>
