@@ -716,7 +716,7 @@ def t6(openid):
 
 # test
 @app.route('/test/missions/<publisher>', methods = ['GET', 'POST'])
-def t7(openid):
+def t7(publisher):
     if request.method == 'GET':
         result = db_obj.dbget('api/mission/publisher/'+publisher)
         return result
