@@ -25,13 +25,13 @@
 <div class="page">
     <!-- <div class="hd"> -->
         <h1 class="page_title">{{mission_obj.name}}</h1>
-        <!-- <div style="text-align: center;margin-top: 20px;"> -->
+        <div style="text-align: center;">
           <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">发布</button>
           <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">审核</button>
           <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">竞标</button>
           <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">工作</button>
           <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">评价</button>
-        <!-- </div> -->
+        </div>
     <!-- </div> -->
 
 
@@ -52,177 +52,6 @@
 </div>
 
 
-
-
-
-<!-- 表单头 -->
-<form method="POST">
-<!-- 任务信息 -->
-<!-- <input type="hidden" name="mission_id" value="{{ mission_obj.mission_id }}"> -->
-<!-- 当前流程 -->
-<div style="text-align: center;margin-top: 20px;">
-  <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">发布</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">审核</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">竞标</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">工作</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">评价</button>
-</div>
-<!-- 外围框 -->
-<div class="bd">
-
-        <article class="weui_article">
-            <h1>{{mission_obj.name}}</h1>
-            <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">{{mission_obj.mission_type}}</button>
-            <section>
-                <!-- <h2 class="title">章标题</h2> -->
-                <section>
-                    <h3>项目描述</h3>
-                    <p>{{mission_obj.description}}</p>
-                </section>
-<!--                 <section>
-                    <h3>1.2 节标题</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </section> -->
-            </section>
-        </article>
-
-
- <!--        <div class="weui_cells_title">表单</div>
-        <div class="weui_cells weui_cells_form">
-            <div class="weui_cell">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">qq</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" type="number" pattern="[0-9]*" placeholder="请输入qq号" />
-                </div>
-            </div>
-            <div class="weui_cell weui_vcode">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">验证码</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" type="number" placeholder="请输入验证码" />
-                </div>
-                <div class="weui_cell_ft">
-                    <img src="./images/vcode.jpg" />
-                </div>
-            </div>
-            <div class="weui_cell">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">银行卡</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" type="number" pattern="[0-9]*" placeholder="请输入银行卡号" />
-                </div>
-            </div>
-            <div class="weui_cell weui_vcode weui_cell_warn">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">验证码</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" type="number" placeholder="请输入验证码" />
-                </div>
-                <div class="weui_cell_ft">
-                    <i class="weui_icon_warn"></i>
-                    <img src="./images/vcode.jpg" />
-                </div>
-            </div>
-        </div> -->
-
-
-
-
-    <div class="weui_cells_title">任务描述</div>
-    <div class="weui_cells weui_cells_form">
-        <div class="weui_cell">
-            <div class="weui_cell_bd weui_cell_primary">
-                <textarea class="weui_textarea" placeholder="请输入对该任务的细节描述" name="description" rows="10"></textarea>
-                <!-- <div class="weui_textarea_counter"><span>0</span>/200</div> -->
-            </div>
-        </div>
-    </div>
-
-    <div class="weui_cells_title">技能需求</div>
-    <div class="weui_cells weui_cells_checkbox">
-        <label class="weui_cell weui_check_label" for="s11">
-            <div class="weui_cell_hd">
-                <input type="checkbox" class="weui_check" name="skill_need" id="s11" checked="checked" value="network">
-                <i class="weui_icon_checked"></i>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>网络设备</p>
-            </div>
-        </label>
-        <label class="weui_cell weui_check_label" for="s12">
-            <div class="weui_cell_hd">
-                <input type="checkbox" name="skill_need" class="weui_check" id="s12" value="server">
-                <i class="weui_icon_checked"></i>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>硬件服务器</p>
-            </div>
-        </label>
-        <label class="weui_cell weui_check_label" for="s13">
-            <div class="weui_cell_hd">
-                <input type="checkbox" name="skill_need" class="weui_check" id="s13" value="os">
-                <i class="weui_icon_checked"></i>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>操作系统</p>
-            </div>
-        </label>
-        <label class="weui_cell weui_check_label" for="s14">
-            <div class="weui_cell_hd">
-                <input type="checkbox" name="skill_need" class="weui_check" id="s14" value="database">
-                <i class="weui_icon_checked"></i>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>数据库</p>
-            </div>
-        </label>
-        <label class="weui_cell weui_check_label" for="s15">
-            <div class="weui_cell_hd">
-                <input type="checkbox" name="skill_need" class="weui_check" id="s15" value="virtual">
-                <i class="weui_icon_checked"></i>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>虚拟化</p>
-            </div>
-        </label>
-    </div>
-
-    <div class="weui_cells_tips">系统将根据技能需求类型推荐给相关的工程师</div>
-
-
-    <div class="weui_cells_title">选填</div>
-    <div class="weui_cells weui_cells_access">
-<!--         <a class="weui_cell" href="javascript:;">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>悬赏金额</p>
-            </div>
-            <div class="weui_cell_ft">
-            </div>
-        </a> -->
-
-        <div class="weui_cell">
-            <div class="weui_cell_hd">
-                <label class="weui_label">悬赏金额</label>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="number" pattern="[0-9]*" name="bounty" placeholder="人民币" />
-            </div>
-        </div>
-
-
-        <div class="weui_cell">
-            <div class="weui_cell_hd"><label for="" class="weui_label">截止日期</label></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" name="deadline" type="date" value="" placeholder=""/>
-            </div>
-        </div>
-    </div>
-    <div class="weui_cells_tips">悬赏金额不填写则进入竞标模式，截止日期如不填写则默认不限定任务完成日期</div>
     
     <!-- 确认对话框 -->
     <div class="weui_dialog_confirm" style="display: none;" id="dialog">
