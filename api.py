@@ -48,8 +48,8 @@ db.authenticate("uMvW5dqcFu0K6IkU","phG8sY6MtkrwIzuFp")
 collection_user = db['user']
 collection_user.ensure_index('openid',unique=True)
 # 任务表
-collection_user = db['mission']
-collection_user.ensure_index('mission_id',unique=True)
+collection_mission = db['mission']
+collection_mission.ensure_index('mission_id',unique=True)
 
 
 
