@@ -300,53 +300,53 @@ def new_mission():
         pass
 
 
-# 个人中心
-@app.route('/wechat/myinfo', methods = ['GET', 'POST'])
-def myinfo():
-    if request.method == 'GET':
-        # 参数接收获取code
-        query = request.args 
-        code = query.get('code', '')  
-        state = query.get('state', '')
-        nsukey = query.get('nsukey', '')
-        print 'code:'+code
-        print 'state:'+state
-        print 'nsukey:'+nsukey
-        # 通过code获取openid
-        url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
-        req_openid = requests.get(url_openid)
-        openid = req_openid.json().get('openid')
-        access_token = req_openid.json().get('access_token')
-        # return openid
-        # 通过openid获取用户资料
-        url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
-        req_userinfo = requests.get(url_userinfo)
-        userinfo = req_userinfo.json()
+# # 个人中心
+# @app.route('/wechat/myinfo', methods = ['GET', 'POST'])
+# def myinfo():
+#     if request.method == 'GET':
+#         # 参数接收获取code
+#         query = request.args 
+#         code = query.get('code', '')  
+#         state = query.get('state', '')
+#         nsukey = query.get('nsukey', '')
+#         print 'code:'+code
+#         print 'state:'+state
+#         print 'nsukey:'+nsukey
+#         # 通过code获取openid
+#         url_openid = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+APPSECRET+"&code="+code+"&grant_type=authorization_code"
+#         req_openid = requests.get(url_openid)
+#         openid = req_openid.json().get('openid')
+#         access_token = req_openid.json().get('access_token')
+#         # return openid
+#         # 通过openid获取用户资料
+#         url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
+#         req_userinfo = requests.get(url_userinfo)
+#         userinfo = req_userinfo.json()
 
-        # 从资料中提取具体信息
-        nickname = userinfo.get('nickname')
-        url_openid = userinfo.get('url_openid')
-        url_userinfo = userinfo.get('url_userinfo')
-        sex = userinfo.get('sex')
-        province = userinfo.get('province')
-        city = userinfo.get('city')
-        country = userinfo.get('country')
-        headimgurl = userinfo.get('headimgurl')
-        # 修正编码格式
-        nickname = codefix(nickname)
-        province = codefix(province)
-        city = codefix(city)
-        country = codefix(country)
+#         # 从资料中提取具体信息
+#         nickname = userinfo.get('nickname')
+#         url_openid = userinfo.get('url_openid')
+#         url_userinfo = userinfo.get('url_userinfo')
+#         sex = userinfo.get('sex')
+#         province = userinfo.get('province')
+#         city = userinfo.get('city')
+#         country = userinfo.get('country')
+#         headimgurl = userinfo.get('headimgurl')
+#         # 修正编码格式
+#         nickname = codefix(nickname)
+#         province = codefix(province)
+#         city = codefix(city)
+#         country = codefix(country)
 
-        # 返回渲染页面
-        return render_template('t1.html',nickname = nickname,url_openid = url_openid,
-            url_userinfo = url_userinfo,sex = sex, province = province, city=city,
-            country = country,headimgurl = headimgurl)
+#         # 返回渲染页面
+#         return render_template('t1.html',nickname = nickname,url_openid = url_openid,
+#             url_userinfo = url_userinfo,sex = sex, province = province, city=city,
+#             country = country,headimgurl = headimgurl)
 
-    elif request.method == 'POST':
-        return render_template('new_mission.html')
-    else:
-        pass
+#     elif request.method == 'POST':
+#         return render_template('new_mission.html')
+#     else:
+#         pass
 
 
 

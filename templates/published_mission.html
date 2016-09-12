@@ -37,45 +37,54 @@
 <div class="bd">
 
     <p style="font-size:0px; visibility: none;">用户id:{{ openid }}</p>
-    <div class="weui_cells_title"><i class="iconfont">&#xe63d;</i>&nbsp;审批中</div>
-    <div class="weui_cells weui_cells_access">
-    {% for item in state_1 %}
-        <a class="weui_cell" href="/test/missioncheck/{{item.mission_id}}">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>{{ item.name }}</p>
-            </div>
-            <div class="weui_cell_ft">
-            </div>
-        </a>
-    {% endfor %}
-    </div>
+    {% if state_1 %}
+        <div class="weui_cells_title"><i class="iconfont">&#xe63d;</i>&nbsp;审批中</div>
+        <div class="weui_cells weui_cells_access">
+        {% for item in state_1 %}
+            <a class="weui_cell" href="/test/missioncheck/{{item.mission_id}}">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>{{ item.name }}</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    {% else %}
+    {% endif %}
 
-    <div class="weui_cells_title"><i class="iconfont">&#xe627;</i>&nbsp;待修改</div>
-    <div class="weui_cells weui_cells_access">
-    {% for item in state_0 %}
-        <a class="weui_cell" href="/test/missioncheck/{{item.mission_id}}">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>{{ item.name }}</p>
-            </div>
-            <div class="weui_cell_ft">
-            </div>
-        </a>
-    {% endfor %}
-    </div>
+    {% if state_0 %}
+        <div class="weui_cells_title"><i class="iconfont">&#xe627;</i>&nbsp;待修改</div>
+        <div class="weui_cells weui_cells_access">
+        {% for item in state_0 %}
+            <a class="weui_cell" href="/test/missioncheck/{{item.mission_id}}">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>{{ item.name }}</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    {% else %}
+    {% endif %}
 
+    {% if state_2 %}
+        <div class="weui_cells_title"><i class="iconfont">&#xe613;</i>&nbsp;竞标中</div>
+        <div class="weui_cells weui_cells_access">
+        {% for item in state_2 %}
+            <a class="weui_cell" href="/test/missioncheck/{{item.mission_id}}">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>{{ item.name }}</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    {% else %}
+    {% endif %}
 
-    <div class="weui_cells_title"><i class="iconfont">&#xe613;</i>&nbsp;竞标中</div>
-    <div class="weui_cells weui_cells_access">
-    {% for item in state_2 %}
-        <a class="weui_cell" href="/test/missioncheck/{{item.mission_id}}">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>{{ item.name }}</p>
-            </div>
-            <div class="weui_cell_ft">
-            </div>
-        </a>
-    {% endfor %}
-    </div>
 
     <div class="weui_cells_title"><i class="iconfont">&#xe62b;</i>&nbsp;工作中</div>
     <div class="weui_cells weui_cells_access">
