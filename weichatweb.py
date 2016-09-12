@@ -511,7 +511,7 @@ def usercenter_published():
                 pass
 
         # return render_template('published_mission.html',openid = openid)
-        return render_template('published_mission.html',openid = openid, state_0 = state_0,state_1 = state_1, state_2 = state_2, state_3 = state_3,state_4 = state_4)
+        return render_template('published_mission.html',openid=openid, state_0=state_0,state_1=state_1, state_2=state_2, state_3=state_3,state_4=state_4)
 
 
 

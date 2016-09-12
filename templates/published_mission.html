@@ -48,43 +48,32 @@
             </div>
         </a>
     {% endfor %}
-        <a class="weui_cell" href="javascript:;">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>调试esxi</p>
-            </div>
-            <div class="weui_cell_ft">
-            </div>
-        </a>
-        <a class="weui_cell" href="javascript:;">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>调试vmware</p>
-            </div>
-            <div class="weui_cell_ft">
-            </div>
-        </a>
     </div>
 
     <div class="weui_cells_title"><i class="iconfont">&#xe627;</i>&nbsp;待修改</div>
     <div class="weui_cells weui_cells_access">
+    {% for item in state_0 %}
         <a class="weui_cell" href="javascript:;">
             <div class="weui_cell_bd weui_cell_primary">
-                <p>调试xencenter</p>
+                <p>{{ item.name }}</p>
             </div>
             <div class="weui_cell_ft">
             </div>
         </a>
-    </div>
+    {% endfor %}    </div>
 
 
     <div class="weui_cells_title"><i class="iconfont">&#xe613;</i>&nbsp;竞标中</div>
     <div class="weui_cells weui_cells_access">
+    {% for item in state_2 %}
         <a class="weui_cell" href="javascript:;">
             <div class="weui_cell_bd weui_cell_primary">
-                <p>调试vcenter</p>
+                <p>{{ item.name }}</p>
             </div>
             <div class="weui_cell_ft">
             </div>
         </a>
+    {% endfor %}
     </div>
 
     <div class="weui_cells_title"><i class="iconfont">&#xe62b;</i>&nbsp;工作中</div>
