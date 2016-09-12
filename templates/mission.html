@@ -25,24 +25,24 @@
 <div class="page">
     <div class="hd">
         <h1 class="page_title">{{mission_obj.name}}</h1>
+        <div style="text-align: center;margin-top: 20px;">
+          <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">发布</button>
+          <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">审核</button>
+          <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">竞标</button>
+          <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">工作</button>
+          <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">评价</button>
+        </div>
     </div>
 
-<div style="text-align: center;margin-top: 20px;">
-  <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">发布</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">审核</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">竞标</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">工作</button>
-  <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">评价</button>
-</div>
 
-    
+
     <div class="bd">
         <article class="weui_article">
             <!-- <h1>大标题</h1> -->
             <section>
-                <h2 class="title">章标题</h2>
+            <h2>任务类型:{{mission_obj.mission_type}}</h2>
                 <section>
-                    <h3>{{mission_obj.mission_type}}</h3>
+                    <h3>任务描述:</h3>
                     <p>{{mission_obj.description}}</p>
                 </section>
 
