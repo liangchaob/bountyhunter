@@ -586,7 +586,7 @@ def adminApproval():
         # 筛选出处于发布状态的任务
         misson_publish = []
         for mission in mission_list:
-            if mission.get('state') == 1:
+            if mission.get('state') == "1":
                 misson_publish.append(mission)
 
         return render_template('admin_approval.html',misson_publish = misson_publish)
@@ -607,7 +607,7 @@ def adminPassed():
         # 筛选出处于已通过状态的任务
         misson_passed = []
         for mission in mission_list:
-            if mission.get('state') == 2:
+            if mission.get('state') == "2":
                 misson_passed.append(mission)
 
         return render_template('admin_passed.html',misson_passed = misson_passed)
@@ -629,7 +629,7 @@ def adminDeny():
         # 筛选出处于驳回状态的任务
         misson_deny = []
         for mission in mission_list:
-            if mission.get('state') == 0:
+            if mission.get('state') == "0":
                 misson_deny.append(mission)
 
         return render_template('admin_deny.html',misson_deny = misson_deny)
