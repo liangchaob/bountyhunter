@@ -398,10 +398,8 @@ def user_center():
         code = query.get('code', '')  
         state = query.get('state', '')
         nsukey = query.get('nsukey', '')
-
         # 获取用户信息
         userinfo = getUserInfo(code,state,nsukey)
-
         # 从资料中提取具体信息
         nickname = userinfo.get('nickname')
         openid = userinfo.get('openid')
@@ -410,7 +408,6 @@ def user_center():
         city = userinfo.get('city')
         country = userinfo.get('country')
         headimgurl = userinfo.get('headimgurl')
-
         # 修正编码格式
         nickname = codefix(nickname)
         province = codefix(province)
@@ -762,7 +759,8 @@ def t9(mission_id):
         # return 'hehe'
         result = db_obj.dbget('api/mission/id/' + mission_id)
         # result = {'comment':result}
-        return jsonify(result)
+        # return jsonify(result)
+        return render_template('mission.html',mission_obj=result)
 
 # 9eeaa838-78b2-11e6-8cfa-d5fca37bf494
 
