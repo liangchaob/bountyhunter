@@ -50,15 +50,32 @@
                 <h3>技能需求:</h3>
                 <p>
                 {% for item in mission_obj.skill_need %}
-                    {{item}};
+                    {% if item == "network" %}
+                    网络;
+                    {% elif item == "server" %}
+                    服务器;
+                    {% elif item == "os" %}
+                    操作系统;
+                    {% elif item == "database" %}
+                    数据库;
+                    {% elif item == "virtual" %}
+                    虚拟化;
+                    {% else %}
                 {% endfor %}
                 </p>
             </section>
+            {% if mission_obj.bounty!='' %}
             <section>
-                <h3>任务描述:</h3>
-                <p>{{mission_obj.description}}</p>
+                <h3>任务悬赏:</h3>
+                <p>{{mission_obj.bounty}}</p>
             </section>
-
+            {% endif %}
+            {% if mission_obj.deadline!='' %}
+            <section>
+                <h3>截止日期:</h3>
+                <p>{{mission_obj.deadline}}</p>
+            </section>
+            {% endif %}
         </article>
     </div>
 </div>
