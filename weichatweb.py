@@ -624,7 +624,7 @@ def adminDeny():
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
         # result = r.json()
-        mission_list = result.get('mission')
+        mission_list = result
 
         # 筛选出处于驳回状态的任务
         misson_deny = []
