@@ -521,9 +521,9 @@ def mission(mission_id):
         # return 'hehe'
         result = db_obj.dbget('api/mission/id/' + mission_id)
         # 如果任务处于待修改或发布状态
-        if result.state == '0' or result.state == '1':
+        if result['state'] == '0' or result['state'] == '1':
             return render_template('mission_edit.html',mission_obj=result)
-        elif result.state == '2':
+        elif result['state'] == '2':
             pass
         else:
         # result = {'comment':result}
