@@ -37,7 +37,34 @@
 
     <div class="bd">
         <article class="weui_article">
- 
+            <!-- <h1>大标题</h1> -->
+            <section>
+                <h3>任务类型:</h3>
+                <p>{{mission_obj.mission_type}}</p>
+            </section>
+            <section>
+                <h3>任务描述:</h3>
+                <p>{{mission_obj.description}}</p>
+            </section>
+            <section>
+                <h3>技能需求:</h3>
+                <p>
+                {% for item in mission_obj.skill_need %}
+                    {% if item == "network" %}
+                    网络;
+                    {% elif item == "server" %}
+                    服务器;
+                    {% elif item == "os" %}
+                    操作系统;
+                    {% elif item == "database" %}
+                    数据库;
+                    {% elif item == "virtual" %}
+                    虚拟化;
+                    {% else %}
+                {% endfor %}
+                </p>
+            </section>
+
         </article>
     </div>
 </div>
