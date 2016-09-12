@@ -47,6 +47,9 @@ db.authenticate("uMvW5dqcFu0K6IkU","phG8sY6MtkrwIzuFp")
 # 用户表
 collection_user = db['user']
 collection_user.ensure_index('openid',unique=True)
+# 任务表
+collection_user = db['mission']
+collection_user.ensure_index('mission_id',unique=True)
 
 
 
@@ -77,7 +80,27 @@ userobj.add_argument('income', type=str)
 userobj.add_argument('email', type=str)
 userobj.add_argument('mobile', type=str)
 
-    
+
+
+# 用户对象
+missionobj = reqparse.RequestParser()
+missionobj.add_argument('mission_id', type=str)
+missionobj.add_argument('name', type=str)
+missionobj.add_argument('mission_type', type=str)
+missionobj.add_argument('deadline', type=str)
+missionobj.add_argument('description', type=str)
+missionobj.add_argument('skill_need', type=str)
+missionobj.add_argument('bounty', type=str)
+missionobj.add_argument('state', type=str)
+missionobj.add_argument('comment', type=str)
+missionobj.add_argument('bidder', type=str)
+missionobj.add_argument('publisher', type=str)
+missionobj.add_argument('acceptor', type=str)
+missionobj.add_argument('feedback', type=str)
+
+
+
+
 
 
 # 全部用户
@@ -125,12 +148,67 @@ class User(Resource):
 # 全部任务
 class Missions(Resource):
     def get(self):
-        return {'hello': 'world'}
+        jsonlist = []
+        for item in collection_mission.find({},{'_id':0}):
+            jsonlist.append(item)
+        return jsonlist
+
+    def post(self):
+        args = missionobj.parse_args()
+        try:
+            collection_mission.insert_one(dict(args))
+        except Exception, e:
+            pass
+        return args
 
 # 单任务
-class Mission(Resource):
-    def get(self):
-        return {'hello': 'world'}
+class MissionById(Resource):
+    def get(self, mission_id):
+        result = collection_mission.find_one({'mission_id':mission_id},{'_id':0})
+        return result
+
+    def put(self, mission_id):
+        # 获取参数
+        args = mission.parse_args()
+        # 把空值筛除
+        args = dict(args)
+        result = {}
+        for i in args:
+            if args[i] != '' and args[i] != None:
+                result[i] = args[i]
+            else:
+                pass
+        # 入库
+        try:
+            collection_mission.update({'mission_id':mission_id},{'$set':result})
+        except Exception, e:
+            pass
+        return result
+
+# 单任务
+class MissionByPublisher(Resource):
+    def get(self, publisher):
+        result = collection_mission.find({'publisher':publisher},{'_id':0})
+        return result
+
+    # def put(self, publisher):
+    #     # 获取参数
+    #     args = mission.parse_args()
+    #     # 把空值筛除
+    #     args = dict(args)
+    #     result = {}
+    #     for i in args:
+    #         if args[i] != '' and args[i] != None:
+    #             result[i] = args[i]
+    #         else:
+    #             pass
+    #     # 入库
+    #     try:
+    #         collection_mission.update({'publisher':publisher},{'$set':result})
+    #     except Exception, e:
+    #         pass
+    #     return result
+
 
 
 # 全部技能
@@ -171,7 +249,8 @@ class Feedback(Resource):
 api.add_resource(Users, '/api/user/')
 api.add_resource(User, '/api/user/<string:user_id>')
 api.add_resource(Missions, '/api/mission/')
-api.add_resource(Mission, '/api/mission/<string:mission_id>')
+api.add_resource(MissionById, '/api/mission/id/<string:mission_id>')
+api.add_resource(MissionByPublisher, '/api/mission/publisher/<string:publisher>')
 api.add_resource(Skills, '/api/skill/')
 api.add_resource(Skill, '/api/skill/<string:skill_id>')
 api.add_resource(Comments, '/api/comment/')

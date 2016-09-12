@@ -271,18 +271,18 @@ def new_mission():
         try:
             jsonobj = {
                 'mission_id':str(uuid.uuid1()),
-                'publisher':request.form['publisher'],
                 'name':request.form['mission_name'],
                 'mission_type':request.form['mission_type'],
                 'deadline':request.form['deadline'],
                 'description':request.form['description'],
-                'obj':'none',
                 'skill_need':request.values.getlist('skill_need'),
                 'bounty':request.form['bounty'],
                 'state':1,
                 'comment':'',
                 'bidder':'',
-                'acceptor':''
+                'publisher':request.form['publisher'],
+                'acceptor':'',
+                'feedback':''
                 }
 
             result = db_obj.dbpost('api/mission/',jsonobj)
@@ -576,7 +576,7 @@ def adminApproval():
 @app.route('/admin/approval', methods = ['GET', 'POST'])
 def adminApproval():
     if request.method == 'GET':
-        result = db_obj.dbget('mission/')
+        result = db_obj.dbget('api/mission/')
         # # 更新数据库
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
@@ -597,12 +597,12 @@ def adminApproval():
 @app.route('/admin/passed', methods = ['GET', 'POST'])
 def adminPassed():
     if request.method == 'GET':
-        result = db_obj.dbget('mission/')
+        result = db_obj.dbget('api/mission/')
         # # 更新数据库
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
         # result = r.json()
-        mission_list = result.get('mission')
+        mission_list = result.get('api/mission')
 
         # 筛选出处于已通过状态的任务
         misson_passed = []
@@ -619,7 +619,7 @@ def adminPassed():
 @app.route('/admin/deny', methods = ['GET', 'POST'])
 def adminDeny():
     if request.method == 'GET':
-        result = db_obj.dbget('mission/')
+        result = db_obj.dbget('api/mission/')
         # # 更新数据库
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/',headers = headers)
@@ -641,7 +641,7 @@ def adminDeny():
 @app.route('/admin/<mission_id>', methods = ['GET', 'POST'])
 def missionApproval(mission_id):
     if request.method == 'GET':
-        result = db_obj.dbget('mission/'+mission_id)
+        result = db_obj.dbget('api/mission/id/'+mission_id)
         # # 更新数据库
         # headers = {'content-type': 'application/json'}
         # r = requests.get('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id),headers = headers)
@@ -653,7 +653,7 @@ def missionApproval(mission_id):
         if result == 'pass':
             # 把状态置为2（审批通过）
             jsonobj = {'state':2}
-            result = db_obj.dbpost('mission/'+str(mission_id),jsonobj)
+            result = db_obj.dbpost('api/mission/id/'+str(mission_id),jsonobj)
             # # 更新数据库
             # headers = {'content-type': 'application/json'}
             # r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
@@ -662,7 +662,7 @@ def missionApproval(mission_id):
         elif result == 'deny':
             # 把状态置为0（驳回状态）
             jsonobj = {'state':0}
-            result = db_obj.dbpost('mission/'+str(mission_id),jsonobj)
+            result = db_obj.dbpost('api/mission/id/'+str(mission_id),jsonobj)
             # # 更新数据库
             # headers = {'content-type': 'application/json'}
             # r = requests.post('http://liangchaob-bountyapi.daoapp.io/mission/'+str(mission_id), data=json.dumps(jsonobj),headers = headers)
