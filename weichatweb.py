@@ -755,6 +755,16 @@ def t8():
         result = {'comment':result}
         return jsonify(result)
 
+# test
+@app.route('/test/missioncheck/<mission_id>', methods = ['GET', 'POST'])
+def t9(mission_id):
+    if request.method == 'GET':
+        # return 'hehe'
+        result = db_obj.dbget('api/mission/id/' + mission_id)
+        # result = {'comment':result}
+        return jsonify(result)
+
+# 9eeaa838-78b2-11e6-8cfa-d5fca37bf494
 
 # 运行主函数
 if __name__ == '__main__':
