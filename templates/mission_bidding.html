@@ -212,7 +212,7 @@
         numItem.text(max - curLength);
         textArea.on('input propertychange', function () {
             var _value = $(this).val().replace(/\n/gi,"");
-            numItem.text(max + _value.length);
+            numItem.text(max - _value.length);
         });
     };
 
