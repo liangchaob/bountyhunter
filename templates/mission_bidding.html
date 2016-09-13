@@ -102,15 +102,15 @@
     <div class="weui_cells_title">发表评论</div>
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
-            <div class="weui_cell_bd weui_cell_primary">
-                <textarea class="weui_textarea" placeholder="请输入评论" rows="3"></textarea>
-                <div class="weui_textarea_counter"><span>0</span>/200</div>
+            <div class="weui_cell_bd weui_cell_primary" id="wordCount">
+                <textarea class="weui_textarea" placeholder="请输入评论" rows="3" maxlength="200"></textarea>
+                <div class="weui_textarea_counter"><span class="word">0</span>/200</div>
             </div>
         </div>
     </div>
     <div class="bd spacing">
         <div class="button_sp_area">
-            <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_default" style="float:right;margin:10px;">按钮</a>
+            <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_default" style="float:right;margin:10px;">提交</a>
         </div>
     </div>
 
@@ -188,15 +188,29 @@
 <!-- 表单尾 -->
 </form>
 <script type="text/javascript">
+  $(function(){
+        //先选出 textarea 和 统计字数 dom 节点
+        var wordCount = $("#wordCount"),
+            textArea = wordCount.find("textarea"),
+            word = wordCount.find(".word");
+        //调用
+        statInputNum(textArea,word);
+    });
+
+
+
   function showDialog(){
     $("#dialog").css("display","block");
   }
   function hideDialog(){
     $("#dialog").css("display","none");
   }
-  function formsubmit(){
-    $("form").submit();
-  }
+  // function formsubmit(){
+  //   $("form").submit();
+  // }
+
+
+
 </script>
 
 
