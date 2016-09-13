@@ -742,7 +742,7 @@ def t9(mission_id):
 
 # test
 @app.route('/test/comment', methods = ['GET', 'POST'])
-def t10(mission_id):
+def t10():
     if request.method == 'GET':
         # return 'hehe'
         result = db_obj.dbget('api/comment/')
