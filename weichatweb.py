@@ -498,7 +498,7 @@ def bid_mission():
 
 # 评论
 @app.route('/wechat/comment', methods = ['GET', 'POST'])
-def comment_mission():
+def comment():
     # if request.method == 'POST':
     #     return render_template('bid_mission.html')
     # 提交任务
@@ -515,7 +515,7 @@ def comment_mission():
 
             result = db_obj.dbpost('api/comment/',jsonobj)
             return redirect('/wechat/mission/' + mission_id)
-            
+
         except Exception, e:
             pass
     else:
