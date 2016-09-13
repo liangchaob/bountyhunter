@@ -517,9 +517,9 @@ def comment():
             return redirect(url_for('mission',mission_id=mission_id))
 
         except Exception, e:
-            pass
+            return redirect(url_for('mission',mission_id=mission_id))
     else:
-        pass
+        return redirect(url_for('mission',mission_id=mission_id))
 
 
 # 确认完成
