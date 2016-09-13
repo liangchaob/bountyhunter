@@ -102,10 +102,10 @@
     <div class="weui_cells_title">发表评论</div>
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
-            <div class="weui_cell_bd weui_cell_primary">
+            <div class="weui_cell_bd weui_cell_primary" id="wordCount">
                 <textarea class="weui_textarea chackTextarea" placeholder="请输入评论" rows="3" maxlength="100"></textarea>
-                <div class="weui_textarea_counter"></div>
-                <!-- <div class="weui_textarea_counter"><span>0</span>/200</div> -->
+                <!-- <div class="weui_textarea_counter"></div> -->
+                <div class="weui_textarea_counter"><span class="wordwrap"><var class="word"></var></span>/200</div>
             </div>
         </div>
     </div>
@@ -189,6 +189,38 @@
 <!-- 表单尾 -->
 </form>
 <script type="text/javascript">
+
+    $(function(){
+
+        //先选出 textarea 和 统计字数 dom 节点
+        var wordCount = $("#wordCount"),
+                textArea = wordCount.find("textarea"),
+                word = wordCount.find(".word");
+        //调用
+        statInputNum(textArea,word);
+
+    });
+    /*
+     * 剩余字数统计
+     * 注意 最大字数只需要在放数字的节点哪里直接写好即可 如：<var class="word">200</var>
+     */
+    function statInputNum(textArea,numItem) {
+        var max = numItem.text(),
+                curLength;
+        textArea[0].setAttribute("maxlength", max);
+        curLength = textArea.val().length;
+        numItem.text(max - curLength);
+        textArea.on('input propertychange', function () {
+            var _value = $(this).val().replace(/\n/gi,"");
+            numItem.text(max - _value.length);
+        });
+    };
+
+
+
+
+
+
 
   function showDialog(){
     $("#dialog").css("display","block");
