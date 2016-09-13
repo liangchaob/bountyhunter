@@ -210,7 +210,7 @@
         textArea[0].setAttribute("maxlength", max);
         curLength = textArea.val().length;
         // numItem.text(max - curLength);
-        // numItem.text(curLength);
+        numItem.text(curLength);
         textArea.on('input propertychange', function () {
             var _value = $(this).val().replace(/\n/gi,"");
             // numItem.text(max - _value.length);
