@@ -514,12 +514,14 @@ def comment():
             mission_id = request.form['mission_id']
 
             result = db_obj.dbpost('api/comment/',jsonobj)
-            return redirect(url_for('mission',mission_id=mission_id))
+            # return redirect(url_for('mission',mission_id=mission_id))
 
         except Exception, e:
-            return redirect(url_for('mission',mission_id=mission_id))
+            pass
+            # return redirect(url_for('mission',mission_id=mission_id))
     else:
-        return redirect(url_for('mission',mission_id=mission_id))
+        pass
+        # return redirect(url_for('mission',mission_id=mission_id))
 
 
 # 确认完成
