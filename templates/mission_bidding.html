@@ -96,7 +96,7 @@
 
 <!-- 评论表单 -->
 <form action="/wechat/comment" method="post" id="comment">
-    <input type="hidden" name="commenter" value="{{ openid }}">
+    <input type="hidden" name="openid" value="{{ openid }}">
     <input type="hidden" name="mission_id" value="{{ mission_obj.mission_id }}">
     <div class="weui_panel weui_panel_access">
         <div class="weui_cells_title">发表评论</div>
@@ -221,7 +221,7 @@
     // 刷新页面
     $('#btn_comment').click(function(){
         $('#comment').submit();
-        window.location.reload();
+        // window.location.reload();
     });
 
 
