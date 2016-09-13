@@ -738,6 +738,17 @@ def t9(mission_id):
         # return jsonify(result)
         return render_template('mission.html',mission_obj=result)
 
+# test
+@app.route('/test/comment', methods = ['GET', 'POST'])
+def t10(mission_id):
+    if request.method == 'GET':
+        # return 'hehe'
+        result = db_obj.dbget('api/comment/')
+        result = {'comment':result}
+        return jsonify(result)
+        # return render_template('mission.html',mission_obj=result)
+
+
 # 9eeaa838-78b2-11e6-8cfa-d5fca37bf494
 
 
