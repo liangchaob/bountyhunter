@@ -455,13 +455,15 @@ def mission(mission_id):
         result = db_obj.dbget('api/mission/id/' + mission_id)
         # 如果任务处于待修改或发布状态
         if result['state'] == '0' or result['state'] == '1':
-            return render_template('mission_edit.html',mission_obj=result)
+            return render_template('mission_edit.html',mission_obj=result,openid=openid)
         elif result['state'] == '2':
-            return render_template('mission_bidding.html',mission_obj=result)
+            return render_template('mission_bidding.html',mission_obj=result,openid=openid)
         else:
         # result = {'comment':result}
         # return jsonify(result)
             return render_template('mission_bidding.html',mission_obj=result,openid=openid)
+    else:
+        pass
 
 
 
