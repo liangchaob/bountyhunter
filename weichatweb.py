@@ -499,10 +499,10 @@ def bid_mission():
 # 评论
 @app.route('/wechat/comment', methods = ['GET', 'POST'])
 def comment_mission():
-    if request.method == 'POST':
-        return render_template('bid_mission.html')
+    # if request.method == 'POST':
+    #     return render_template('bid_mission.html')
     # 提交任务
-    elif request.method == 'POST':
+    if request.method == 'POST':
         try:
             jsonobj = {
                 'comment_id':str(uuid.uuid1()),
@@ -511,7 +511,11 @@ def comment_mission():
                 'content':request.form['content']
                 }
 
+            mission_id = request.form['mission_id']
+
             result = db_obj.dbpost('api/comment/',jsonobj)
+            return redirect('/wechat/mission/' + mission_id)
+            
         except Exception, e:
             pass
     else:
