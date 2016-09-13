@@ -514,7 +514,8 @@ def comment():
             mission_id = request.form['mission_id']
 
             result = db_obj.dbpost('api/comment/',jsonobj)
-            return redirect('/wechat/mission/' + mission_id)
+            pass
+            # return redirect('/wechat/mission/' + mission_id)
 
         except Exception, e:
             pass
@@ -531,7 +532,7 @@ def work_mission():
         return render_template('work_mission.html')
     else:
         pass
-         # 评价
+# 评价
 @app.route('/wechat/comment_mission', methods = ['GET', 'POST'])
 def comment_mission():
     if request.method == 'GET':
