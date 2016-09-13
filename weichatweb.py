@@ -514,8 +514,7 @@ def comment():
             mission_id = request.form['mission_id']
 
             result = db_obj.dbpost('api/comment/',jsonobj)
-            pass
-            # return redirect('/wechat/mission/' + mission_id)
+            return redirect('/wechat/mission/' + mission_id)
 
         except Exception, e:
             pass
