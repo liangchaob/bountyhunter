@@ -512,6 +512,8 @@ def comment_mission():
                 }
 
             result = db_obj.dbpost('api/comment/',jsonobj)
+        except Exception, e:
+            pass
     else:
         pass
 
