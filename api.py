@@ -50,6 +50,9 @@ collection_user.ensure_index('openid',unique=True)
 # 任务表
 collection_mission = db['mission']
 collection_mission.ensure_index('mission_id',unique=True)
+# 留言表
+collection_comment = db['comment']
+collection_comment.ensure_index('comment_id',unique=True)
 
 
 
@@ -99,6 +102,14 @@ missionobj.add_argument('acceptor', type=str)
 missionobj.add_argument('feedback', type=str)
 
 
+
+
+# 用户对象
+commentobj = reqparse.RequestParser()
+commentobj.add_argument('comment_id', type=str)
+commentobj.add_argument('mission_id', type=str)
+commentobj.add_argument('openid', type=str)
+commentobj.add_argument('content', type=str)
 
 
 
@@ -161,7 +172,7 @@ class Missions(Resource):
             pass
         return args
 
-# 单任务
+# 单任务通过id查询
 class MissionById(Resource):
     def get(self, mission_id):
         result = collection_mission.find_one({'mission_id':mission_id},{'_id':0})
@@ -185,7 +196,7 @@ class MissionById(Resource):
             pass
         return result
 
-# 单任务
+# 单任务通过用户查询
 class MissionByPublisher(Resource):
     def get(self, publisher):
         result = collection_mission.find({'publisher':publisher},{'_id':0})
@@ -229,7 +240,55 @@ class Skill(Resource):
 # 全部留言
 class Comments(Resource):
     def get(self):
-        return {'hello': 'world'}
+        jsonlist = []
+        for item in collection_comment.find({},{'_id':0}):
+            jsonlist.append(item)
+        return jsonlist
+
+    def post(self):
+        args = commentobj.parse_args()
+        try:
+            collection_comment.insert_one(dict(args))
+        except Exception, e:
+            pass
+        return args
+
+
+# 单任务通过id查询
+class CommentById(Resource):
+    def get(self, comment_id):
+        result = collection_comment.find_one({'comment_id':comment_id},{'_id':0})
+        return result
+
+    def put(self, comment_id):
+        # 获取参数
+        args = commentobj.parse_args()
+        # 把空值筛除
+        args = dict(args)
+        result = {}
+        for i in args:
+            if args[i] != '' and args[i] != None:
+                result[i] = args[i]
+            else:
+                pass
+        # 入库
+        try:
+            collection_comment.update({'comment_id':comment_id},{'$set':result})
+        except Exception, e:
+            pass
+        return result
+
+
+# 单留言通过mission查询
+class CommentByMission(Resource):
+    def get(self, mission_id):
+        result = collection_comment.find({'mission_id':mission_id},{'_id':0})
+        t = []
+        for item in result:
+            t.append(item)
+        return t
+
+
 
 # 单条留言
 class Comment(Resource):

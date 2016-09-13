@@ -501,6 +501,17 @@ def bid_mission():
 def comment_mission():
     if request.method == 'POST':
         return render_template('bid_mission.html')
+    # 提交任务
+    elif request.method == 'POST':
+        try:
+            jsonobj = {
+                'comment_id':str(uuid.uuid1()),
+                'mission_id':request.form['mission_id'],
+                'openid':request.form['openid'],
+                'content':request.form['content']
+                }
+
+            result = db_obj.dbpost('api/comment/',jsonobj)
     else:
         pass
 
