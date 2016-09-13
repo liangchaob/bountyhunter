@@ -441,6 +441,16 @@ def usercenter_published():
 @app.route('/wechat/mission/<mission_id>', methods = ['GET', 'POST'])
 def mission(mission_id):
     if request.method == 'GET':
+        # 参数接收获取code
+        query = request.args 
+        code = query.get('code', '')  
+        state = query.get('state', '')
+        nsukey = query.get('nsukey', '')
+        # 获取用户信息
+        userinfo = getUserInfo(code,state,nsukey)
+        # 从资料中提取具体信息
+        openid = userinfo.get('openid')
+
         # return 'hehe'
         result = db_obj.dbget('api/mission/id/' + mission_id)
         # 如果任务处于待修改或发布状态
@@ -451,7 +461,7 @@ def mission(mission_id):
         else:
         # result = {'comment':result}
         # return jsonify(result)
-            return render_template('mission_bidding.html',mission_obj=result)
+            return render_template('mission_bidding.html',mission_obj=result,openid=openid)
 
 
 
@@ -483,7 +493,17 @@ def bid_mission():
         return render_template('bid_mission.html')
     else:
         pass
-         # 确认完成
+
+# 评论
+@app.route('/wechat/comment', methods = ['GET', 'POST'])
+def comment_mission():
+    if request.method == 'POST':
+        return render_template('bid_mission.html')
+    else:
+        pass
+
+
+# 确认完成
 @app.route('/wechat/work_mission', methods = ['GET', 'POST'])
 def work_mission():
     if request.method == 'GET':
