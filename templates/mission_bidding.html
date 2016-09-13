@@ -105,7 +105,7 @@
             <div class="weui_cell_bd weui_cell_primary" id="wordCount">
                 <textarea class="weui_textarea chackTextarea" placeholder="请输入评论" rows="3" maxlength="100"></textarea>
                 <!-- <div class="weui_textarea_counter"></div> -->
-                <div class="weui_textarea_counter"><span class="wordwrap"><var class="word">100</var></span>/100</div>
+                <div class="weui_textarea_counter"><span class="wordwrap"><var class="word">0</var></span>/100</div>
             </div>
         </div>
     </div>
@@ -194,8 +194,8 @@
 
         //先选出 textarea 和 统计字数 dom 节点
         var wordCount = $("#wordCount"),
-                textArea = wordCount.find("textarea"),
-                word = wordCount.find(".word");
+        textArea = wordCount.find("textarea"),
+        word = wordCount.find(".word");
         //调用
         statInputNum(textArea,word);
 
@@ -213,7 +213,8 @@
         numItem.text(curLength);
         textArea.on('input propertychange', function () {
             var _value = $(this).val().replace(/\n/gi,"");
-            numItem.text(max - _value.length);
+            // numItem.text(max - _value.length);
+            numItem.text(_value.length);
         });
     };
 
