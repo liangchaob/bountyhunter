@@ -41,7 +41,8 @@
         <div class="weui_cells_title"><i class="iconfont">&#xe63d;</i>&nbsp;审批中</div>
         <div class="weui_cells weui_cells_access">
         {% for item in state_1 %}
-            <a class="weui_cell" href="/wechat/mission/{{item.mission_id}}">
+            <!-- <a class="weui_cell" href="/wechat/mission/{{item.mission_id}}"> -->
+                <a class="weui_cell" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmission%2F{{item.mission_id}}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">
                 <div class="weui_cell_bd weui_cell_primary">
                     <p>{{ item.name }}</p>
                 </div>
@@ -57,7 +58,8 @@
         <div class="weui_cells_title"><i class="iconfont">&#xe627;</i>&nbsp;待修改</div>
         <div class="weui_cells weui_cells_access">
         {% for item in state_0 %}
-            <a class="weui_cell" href="/wechat/mission/{{item.mission_id}}">
+                <a class="weui_cell" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmission%2F{{item.mission_id}}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">
+            <!-- <a class="weui_cell" href="/wechat/mission/{{item.mission_id}}"> -->
                 <div class="weui_cell_bd weui_cell_primary">
                     <p>{{ item.name }}</p>
                 </div>
@@ -73,7 +75,8 @@
         <div class="weui_cells_title"><i class="iconfont">&#xe613;</i>&nbsp;竞标中</div>
         <div class="weui_cells weui_cells_access">
         {% for item in state_2 %}
-            <a class="weui_cell" href="/wechat/mission/{{item.mission_id}}">
+            <!-- <a class="weui_cell" href="/wechat/mission/{{item.mission_id}}"> -->
+                <a class="weui_cell" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmission%2F{{item.mission_id}}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">
                 <div class="weui_cell_bd weui_cell_primary">
                     <p>{{ item.name }}</p>
                 </div>
