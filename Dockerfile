@@ -1,5 +1,5 @@
 # Using a compact OS
-FROM daocloud.io/ubuntu:14.04
+FROM daocloud.io/liangchaob/ubuntu-liangchaob:latest
 
 MAINTAINER Liangchaob <liangchaob@163.com> 
 
