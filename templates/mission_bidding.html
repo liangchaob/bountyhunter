@@ -119,7 +119,7 @@
 
         <div class="weui_panel_hd">评论</div>
         <div class="weui_panel_bd">
-            <p id="comments"></p>
+            <!-- <p id="comments"></p> -->
             <div class="weui_media_box weui_media_text">
                 <h4 class="weui_media_title">标题一</h4>
                 <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
@@ -232,15 +232,14 @@
             type:"post",
             // dataType:"json",
             success:function(result){
-                // temp = result['commentlist'];
-                // console.log(temp);
-                // console.log(result);
-                // console.log(JSON.parse(result));
-                console.log(result['commentlist']);
+                temp = result['commentlist'];
 
                 for (i in temp) {
-                    temp[i];
-                    $('#comments').append('Some text')
+                    t=temp[i];
+                    $('#comments').append('<div class="weui_media_box weui_media_text">'+
+                        '<h4 class="weui_media_title">'+ t['openid'] +'</h4>'+
+                        '<p class="weui_media_desc">'+t["content"]+'</p>'+
+                        '</div>')
                 }
             },
             error:function(){
