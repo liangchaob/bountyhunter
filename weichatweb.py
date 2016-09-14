@@ -512,6 +512,7 @@ def comment():
                 }
 
             mission_id = request.form['mission_id']
+            print mission_id
 
             result = db_obj.dbpost('api/comment/',jsonobj)
             return 'ok'
