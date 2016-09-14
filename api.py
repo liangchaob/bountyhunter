@@ -110,7 +110,7 @@ commentobj.add_argument('comment_id', type=str)
 commentobj.add_argument('mission_id', type=str)
 commentobj.add_argument('openid', type=str)
 commentobj.add_argument('content', type=str)
-
+commentobj.add_argument('currenttime', type=str)
 
 
 

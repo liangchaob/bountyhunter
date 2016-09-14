@@ -25,6 +25,7 @@ from wechat_sdk.exceptions import ParseError
 
 import json
 import uuid
+import time
 
 
 APPID = 'wxa9312a82e8138370'
@@ -508,7 +509,8 @@ def comment():
                 'comment_id':str(uuid.uuid1()),
                 'mission_id':request.form['mission_id'],
                 'openid':request.form['openid'],
-                'content':request.form['content']
+                'content':request.form['content'],
+                'currenttime':time.asctime(time.localtime(time.time()))
                 }
 
             mission_id = request.form['mission_id']
