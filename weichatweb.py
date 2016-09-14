@@ -514,9 +514,9 @@ def comment():
             mission_id = request.form['mission_id']
             print mission_id
 
-
+            # 更新数据库
             result = db_obj.dbpost('api/comment/',jsonobj)
-
+            # 根据任务获取评价
             result_mission = db_obj.dbget('api/comment/mission/' + mission_id)
 
             commentlist = []

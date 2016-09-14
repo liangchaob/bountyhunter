@@ -119,6 +119,7 @@
 
         <div class="weui_panel_hd">评论</div>
         <div class="weui_panel_bd">
+            <p id="comments"></p>
             <div class="weui_media_box weui_media_text">
                 <h4 class="weui_media_title">标题一</h4>
                 <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
@@ -232,6 +233,10 @@
             success:function(result){
                 temp = result;
                 console.log(result);
+                for (var i = 0; i < result.get('comment').length; i++) {
+                    result.get('comment')[i];
+                    $('#comments').append('Some text')
+                }
             },
             error:function(){
                 // alert("error")
