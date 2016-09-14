@@ -514,8 +514,10 @@ def comment():
             mission_id = request.form['mission_id']
             print mission_id
 
+
             result = db_obj.dbpost('api/comment/',jsonobj)
-            return 'ok'
+            result = db_obj.dbget('api/comment/mission/'+mission_id)
+            return result
             # return redirect(url_for('mission',mission_id=mission_id))
 
         except Exception, e:
