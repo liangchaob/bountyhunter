@@ -519,13 +519,14 @@ def comment():
 
             result_mission = db_obj.dbget('api/comment/mission/' + mission_id)
 
-            # commentlist = []
-            # for i in result_mission:
-            #     commentlist.append(i)
-            # result = { 'commentlist':commentlist }
+            commentlist = []
+            for i in result_mission:
+                commentlist.append(i)
+
+            commentobj = { 'commentlist':commentlist }
             # print result
 
-            return str(result)
+            return str(commentobj)
             # return redirect(url_for('mission',mission_id=mission_id))
 
         except Exception, e:
