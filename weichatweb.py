@@ -516,7 +516,13 @@ def comment():
 
 
             result = db_obj.dbpost('api/comment/',jsonobj)
-            result = db_obj.dbget('api/comment/mission/'+mission_id)
+            result_mission = db_obj.dbget('api/comment/mission/' + mission_id)
+            
+            commentlist = []
+            for i in result_mission:
+                commentlist.append(i)
+            result = { 'commentlist':commentlist }
+
             return result
             # return redirect(url_for('mission',mission_id=mission_id))
 
