@@ -223,12 +223,12 @@
         $.ajax({
             url:"http://bountyunions.applinzi.com/wechat/comment",
             data:{
-                'mission_id':$('#openid').val(),
-                'openid':$('#mission_id').val(),
+                'openid':$('#openid').val(),
+                'mission_id':$('#mission_id').val(),
                 'content':$('#content').val(),
                 },
             type:"post",
-            dataType:"json",
+            // dataType:"json",
             success:function(result){
                 temp = result;
                 console.log(result);
