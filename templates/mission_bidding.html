@@ -231,8 +231,9 @@
             type:"post",
             // dataType:"json",
             success:function(result){
-                temp = result['comment'];
-                // console.log(result);
+                temp = result['commentlist'];
+                console.log(result);
+                console.log(result['commentlist']);
 
                 for (i in temp) {
                     temp[i];
