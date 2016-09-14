@@ -316,7 +316,9 @@ api.add_resource(MissionByPublisher, '/api/mission/publisher/<string:publisher>'
 api.add_resource(Skills, '/api/skill/')
 api.add_resource(Skill, '/api/skill/<string:skill_id>')
 api.add_resource(Comments, '/api/comment/')
-api.add_resource(Comment, '/api/comment/<string:comment_id>')
+# api.add_resource(Comment, '/api/comment/<string:comment_id>')
+api.add_resource(CommentById, '/api/comment/id/<string:comment_id>')
+api.add_resource(CommentByMission, '/api/comment/mission/<string:mission_id>')
 api.add_resource(Feedbacks, '/api/feedback/')
 api.add_resource(Feedback, '/api/feedback/<string:feedback_id>')
 

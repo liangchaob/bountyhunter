@@ -220,9 +220,47 @@
 
     // 刷新页面
     $('#btn_comment').click(function(){
-        $('#comment').submit().delay(200)
-        .top.window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmission%2F{{mission_obj.mission_id}}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        $.ajax({
+            url:"http://liangchaob-bountyapi.daoapp.io/api/comment/",
+            data:"",
+            type:"get",
+            dataType:"json",
+            success:function(result){
+                temp = result;
+                console.log(result)
+            },
+            error:function(){
+                // alert("error")
+            }
+        });
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
