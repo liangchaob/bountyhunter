@@ -526,7 +526,7 @@ def comment():
             commentobj = { 'commentlist':commentlist }
             # print result
 
-            return str(commentobj)
+            return commentobj
             # return redirect(url_for('mission',mission_id=mission_id))
 
         except Exception, e:

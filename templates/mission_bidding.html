@@ -221,6 +221,7 @@
 
     // 刷新页面
     $('#btn_comment').click(function(){
+        // var temp;
         $.ajax({
             url:"http://bountyunions.applinzi.com/wechat/comment",
             data:{
@@ -231,10 +232,11 @@
             type:"post",
             // dataType:"json",
             success:function(result){
-                temp = result['commentlist'];
-                console.log(temp);
+                // temp = result['commentlist'];
+                // console.log(temp);
                 console.log(result);
-                console.log(result['commentlist']);
+                console.log(JSON.parse(result));
+                // console.log(result['commentlist']);
 
                 for (i in temp) {
                     temp[i];
