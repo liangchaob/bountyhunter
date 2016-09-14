@@ -96,8 +96,8 @@
 
 <!-- 评论表单 -->
 <form action="/wechat/comment" method="post" id="comment">
-    <input type="hidden" name="openid" value="{{ openid }}">
-    <input type="hidden" name="mission_id" value="{{ mission_obj.mission_id }}">
+    <input type="hidden" name="openid" value="{{ openid }}" id="openid">
+    <input type="hidden" name="mission_id" value="{{ mission_obj.mission_id }}" id="mission_id">
     <div class="weui_panel weui_panel_access">
         <div class="weui_cells_title">发表评论</div>
         <div class="weui_cells weui_cells_form">
@@ -222,12 +222,16 @@
     $('#btn_comment').click(function(){
         $.ajax({
             url:"http://liangchaob-bountyapi.daoapp.io/api/comment/",
-            data:"",
-            type:"get",
+            data:{
+                'mission_id':request.form['mission_id'],
+                'openid':request.form['openid'],
+                'content':$('.chackTextarea').val(),
+                },
+            type:"post",
             dataType:"json",
             success:function(result){
                 temp = result;
-                console.log(result)
+                console.log(result);
             },
             error:function(){
                 // alert("error")
