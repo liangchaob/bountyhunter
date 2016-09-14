@@ -758,7 +758,6 @@ def t10():
         # return render_template('mission.html',mission_obj=result)
 
 
-# 9eeaa838-78b2-11e6-8cfa-d5fca37bf494
 
 
 
