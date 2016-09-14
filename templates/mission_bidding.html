@@ -231,10 +231,11 @@
             type:"post",
             // dataType:"json",
             success:function(result){
-                temp = result;
-                console.log(result);
-                for (var i = 0; i < result.get('comment').length; i++) {
-                    result.get('comment')[i];
+                temp = result['comment'];
+                // console.log(result);
+
+                for (var i = 0; i < temp.length; i++) {
+                    temp[i];
                     $('#comments').append('Some text')
                 }
             },
