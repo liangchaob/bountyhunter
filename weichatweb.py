@@ -26,7 +26,8 @@ from wechat_sdk.exceptions import ParseError
 import json
 import uuid
 import time
-
+# 排序相关
+import operator
 
 APPID = 'wxa9312a82e8138370'
 APPSECRET = '3f87fbd58c9013a0b0190bda28a4acc5'
@@ -465,6 +466,7 @@ def mission(mission_id):
         # return 'hehe'
         resultofmission = db_obj.dbget('api/mission/id/' + mission_id)
         resultofcomment = db_obj.dbget('api/comment/mission/' + mission_id)
+        resultofcomment = sorted(resultofcomment, key = operator.itemgetter('currenttime'),reverse=True)
         # 如果任务处于待修改或发布状态
         if resultofmission['state'] == '0' or resultofmission['state'] == '1':
             return render_template('mission_edit.html',mission_obj=resultofmission,openid=openid)
@@ -558,8 +560,8 @@ def comment():
                 commentlist.append(i)
                 userinfo = db_obj.dbget('api/user/' + openid)
 
-
-
+            # 按时间翻转顺序
+            commentlist = sorted(commentlist, key = operator.itemgetter('currenttime'),reverse=True)
             commentobj = { 'commentlist':commentlist }
             # print result
 

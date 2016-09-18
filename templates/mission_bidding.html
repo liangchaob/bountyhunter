@@ -19,6 +19,10 @@
             font-size: smaller;
             color: #979797;
         }
+        .publish_time{
+            font-size: smaller;
+            color: #979797;
+        }
     </style>
 
 
@@ -128,8 +132,9 @@
             {% if comment_obj!='' %}
                 {% for item in comment_obj %}
                 <div class="weui_media_box weui_media_text">
-                    <h4 class="weui_media_title"> {{item.openid}}</h4>
-                    <p class="weui_media_desc">{{item.content}}</p>
+                    <h4 class="weui_media_desc"> {{item.openid}}</h4>
+                    <p class="weui_media_title">{{item.content}}</p>
+                    <p class="publish_time">{{item.currenttime}}</p>
                  </div>
                 {% endfor %}
             {% endif %}
