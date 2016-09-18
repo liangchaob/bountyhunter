@@ -464,16 +464,16 @@ def mission(mission_id):
 
         # return 'hehe'
         resultofmission = db_obj.dbget('api/mission/id/' + mission_id)
-        # resultofcomment = db_obj.dbget('api/comment/mission/' + mission_id)
+        resultofcomment = db_obj.dbget('api/comment/mission/' + mission_id)
         # 如果任务处于待修改或发布状态
         if resultofmission['state'] == '0' or resultofmission['state'] == '1':
             return render_template('mission_edit.html',mission_obj=resultofmission,openid=openid)
         elif resultofmission['state'] == '2':
-            return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid)
+            return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid,comment_obj=resultofcomment)
         else:
         # result = {'comment':result}
         # return jsonify(result)
-            return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid)
+            return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid,comment_obj=resultofcomment)
     else:
         pass
 
