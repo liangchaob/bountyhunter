@@ -181,11 +181,18 @@
 
 
 <!-- toast -->
-<div id="toast" style="display: none;">
+<div id="toastsuccess" style="display: none;">
     <div class="weui_mask_transparent"></div>
     <div class="weui_toast">
         <i class="weui_icon_toast"></i>
-        <p class="weui_toast_content">已完成</p>
+        <p class="weui_toast_content">已提交</p>
+    </div>
+</div>
+<div id="toastfailed" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">提交内容不能为空</p>
     </div>
 </div>
 
@@ -302,11 +309,17 @@ $.ajax({
             });
             // 将输入框重新置空
             $('#content').val('');
-
-
-
+            // 显示提示
+            $('#toast').show();
+                setTimeout(function () {
+                    $('#toastsuccess').hide();
+                }, 2000);
         }else{
-
+            // 显示提示
+            $('#toast').show();
+                setTimeout(function () {
+                    $('#toastfailed').hide();
+                }, 2000);
         }
 
     });
