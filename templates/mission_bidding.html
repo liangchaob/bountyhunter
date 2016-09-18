@@ -171,14 +171,23 @@
     <div class="weui_btn_area">
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
     </div>
+    <div class="weui_btn_area">
+        <a class="weui_btn weui_btn_primary" href="javascript:;" id="showtoast">toast</a>
+    </div>
 
 </div>
 
 
 
 
-
-
+<!-- toast -->
+<div id="toast" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">已完成</p>
+    </div>
+</div>
 
 
 
@@ -196,6 +205,16 @@
 <!-- 表单尾 -->
 </form>
 <script type="text/javascript">
+
+$('#showtoast').click(function() {
+                $('#toast').show();
+                setTimeout(function () {
+                    $('#toast').hide();
+                }, 2000);
+            })
+
+
+
 
 
 $.ajax({
@@ -255,32 +274,41 @@ $.ajax({
 
     // 刷新页面
     $('#btn_comment').click(function(){
-        // var temp;
-        $.ajax({
-            url:"http://bountyunions.applinzi.com/wechat/comment",
-            data:{
-                'openid':$('#openid').val(),
-                'mission_id':$('#mission_id').val(),
-                'content':$('#content').val(),
+        // 如果预提交内容不为空
+        if ($('#content').val() != '') {
+            // var temp;
+            $.ajax({
+                url:"http://bountyunions.applinzi.com/wechat/comment",
+                data:{
+                    'openid':$('#openid').val(),
+                    'mission_id':$('#mission_id').val(),
+                    'content':$('#content').val(),
+                    },
+                type:"post",
+                // dataType:"json",
+                success:function(result){
+                    temp = result['commentlist'];
+                    for (i in temp) {
+                        t=temp[i];
+                        $('#comments').append('<div class="weui_media_box weui_media_text">'+
+                            '<h4 class="weui_media_title">'+ t['openid'] +'</h4>'+
+                            '<p class="weui_media_desc">'+t["content"]+'</p>'+
+                            '</div>')
+                    }
                 },
-            type:"post",
-            // dataType:"json",
-            success:function(result){
-                temp = result['commentlist'];
-                for (i in temp) {
-                    t=temp[i];
-                    $('#comments').append('<div class="weui_media_box weui_media_text">'+
-                        '<h4 class="weui_media_title">'+ t['openid'] +'</h4>'+
-                        '<p class="weui_media_desc">'+t["content"]+'</p>'+
-                        '</div>')
+                error:function(){
+                    // alert("error")
                 }
-            },
-            error:function(){
-                // alert("error")
-            }
-        });
-        // 将输入框重新置空
-        $('#content').val('');
+            });
+            // 将输入框重新置空
+            $('#content').val('');
+
+
+
+        }else{
+
+        }
+
     });
 
 
@@ -296,6 +324,10 @@ $.ajax({
   // function formsubmit(){
   //   $("form").submit();
   // }
+
+
+
+
 
 
 
