@@ -463,16 +463,17 @@ def mission(mission_id):
         openid = userinfo.get('openid')
 
         # return 'hehe'
-        result = db_obj.dbget('api/mission/id/' + mission_id)
+        resultofmission = db_obj.dbget('api/mission/id/' + mission_id)
+        # resultofcomment = db_obj.dbget('api/comment/mission/' + mission_id)
         # 如果任务处于待修改或发布状态
-        if result['state'] == '0' or result['state'] == '1':
-            return render_template('mission_edit.html',mission_obj=result,openid=openid)
-        elif result['state'] == '2':
-            return render_template('mission_bidding.html',mission_obj=result,openid=openid)
+        if resultofmission['state'] == '0' or resultofmission['state'] == '1':
+            return render_template('mission_edit.html',mission_obj=resultofmission,openid=openid)
+        elif resultofmission['state'] == '2':
+            return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid)
         else:
         # result = {'comment':result}
         # return jsonify(result)
-            return render_template('mission_bidding.html',mission_obj=result,openid=openid)
+            return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid)
     else:
         pass
 
@@ -510,10 +511,30 @@ def bid_mission():
 # 评论
 @app.route('/wechat/comment', methods = ['GET', 'POST'])
 def comment():
-    # if request.method == 'POST':
-    #     return render_template('bid_mission.html')
+    if request.method == 'GET':
+        try:
+            jsonobj = {
+                'mission_id':request.form['mission_id']
+                }
+            mission_id = request.form['mission_id']
+            # 根据任务获取评价
+            result_mission = db_obj.dbget('api/comment/mission/' + mission_id)
+
+            commentlist = []
+            for i in result_mission:
+                commentlist.append(i)
+                userinfo = db_obj.dbget('api/user/' + openid)
+
+            commentobj = { 'commentlist':commentlist }
+            # print result
+
+            return jsonify(commentobj)
+            # return redirect(url_for('mission',mission_id=mission_id))
+
+        except Exception, e:
+            pass
     # 提交任务
-    if request.method == 'POST':
+    elif request.method == 'POST':
         try:
             jsonobj = {
                 'comment_id':str(uuid.uuid1()),
@@ -548,36 +569,6 @@ def comment():
         except Exception, e:
             pass
             # return redirect(url_for('mission',mission_id=mission_id))
-    elif request.method == 'GET':
-        try:
-            # 接收参数只有missionid
-            jsonobj = {
-                'mission_id':request.form['mission_id']
-                }
-            mission_id = request.form['mission_id']
-            print mission_id
-
-            # 根据任务获取评价
-            result_mission = db_obj.dbget('api/comment/mission/' + mission_id)
-
-            # 筛出列表
-            commentlist = []
-            for i in result_mission:
-                commentlist.append(i)
-                # userinfo = db_obj.dbget('api/user/' + openid)
-
-
-
-            commentobj = { 'commentlist':commentlist }
-            # print result
-
-            return jsonify(commentobj)
-            # return redirect(url_for('mission',mission_id=mission_id))
-
-        except Exception, e:
-            pass
-            # return redirect(url_for('mission',mission_id=mission_id))
-
     else:
         pass
         # return redirect(url_for('mission',mission_id=mission_id))

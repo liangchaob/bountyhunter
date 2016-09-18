@@ -125,6 +125,8 @@
 
         <div class="weui_panel_hd">评论</div>
         <div class="weui_panel_bd" id="comments">
+
+
             <!-- <p id="comments"></p> -->
 <!--             <div class="weui_media_box weui_media_text">
                 <h4 class="weui_media_title">标题一</h4>
@@ -235,7 +237,7 @@ $.ajax({
         temp = result['commentlist'];
         for (i in temp) {
             t=temp[i];
-            $('#comments').append('<div class="weui_media_box weui_media_text">'+
+            $('#comments').html('<div class="weui_media_box weui_media_text">'+
                 '<h4 class="weui_media_title">'+ t['openid'] +'</h4>'+
                 '<p class="weui_media_desc">'+t["content"]+'</p>'+
                 '</div>')
@@ -295,7 +297,7 @@ $.ajax({
                     temp = result['commentlist'];
                     for (i in temp) {
                         t=temp[i];
-                        $('#comments').append('<div class="weui_media_box weui_media_text">'+
+                        $('#comments').html('<div class="weui_media_box weui_media_text">'+
                             '<h4 class="weui_media_title">'+ t['openid'] +'</h4>'+
                             '<p class="weui_media_desc">'+t["content"]+'</p>'+
                             '</div>')
