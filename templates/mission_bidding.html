@@ -125,7 +125,7 @@
 
         <div class="weui_panel_hd">评论</div>
         <div class="weui_panel_bd" id="comments">
-            {% if resultofcomment %}
+            {% if resultofcomment!='' %}
                 {% for item in resultofcomment %}
                 <div class="weui_media_box weui_media_text">
                     <h4 class="weui_media_title"> {{item.openid}}</h4>
@@ -302,10 +302,12 @@ $('#showtoast').click(function() {
                 type:"post",
                 // dataType:"json",
                 success:function(result){
+                    // 先置空
+                    $('#comments').html('');
                     temp = result['commentlist'];
                     for (i in temp) {
                         t=temp[i];
-                        $('#comments').html('<div class="weui_media_box weui_media_text">'+
+                        $('#comments').append('<div class="weui_media_box weui_media_text">'+
                             '<h4 class="weui_media_title">'+ t['openid'] +'</h4>'+
                             '<p class="weui_media_desc">'+t["content"]+'</p>'+
                             '</div>')
