@@ -474,7 +474,7 @@ def mission(mission_id):
         resultofcomment = sorted(resultofcomment, key = operator.itemgetter('currenttime'),reverse=True)
         # 格式转换
         commentlist = []
-        for i in result_mission:
+        for i in resultofcomment:
             i['currenttime'] = t2S(i['currenttime'])
             commentlist.append(i)
 
