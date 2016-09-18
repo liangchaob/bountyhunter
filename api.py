@@ -259,7 +259,7 @@ class Comments(Resource):
             collection_comment.remove()
         except Exception, e:
             pass
-        return args
+        return 'clear success!'
 
 
 

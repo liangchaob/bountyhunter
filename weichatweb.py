@@ -548,6 +548,36 @@ def comment():
         except Exception, e:
             pass
             # return redirect(url_for('mission',mission_id=mission_id))
+    elif request.method == 'GET':
+        try:
+            # 接收参数只有missionid
+            jsonobj = {
+                'mission_id':request.form['mission_id']
+                }
+            mission_id = request.form['mission_id']
+            print mission_id
+
+            # 根据任务获取评价
+            result_mission = db_obj.dbget('api/comment/mission/' + mission_id)
+
+            # 筛出列表
+            commentlist = []
+            for i in result_mission:
+                commentlist.append(i)
+                # userinfo = db_obj.dbget('api/user/' + openid)
+
+
+
+            commentobj = { 'commentlist':commentlist }
+            # print result
+
+            return jsonify(commentobj)
+            # return redirect(url_for('mission',mission_id=mission_id))
+
+        except Exception, e:
+            pass
+            # return redirect(url_for('mission',mission_id=mission_id))
+
     else:
         pass
         # return redirect(url_for('mission',mission_id=mission_id))

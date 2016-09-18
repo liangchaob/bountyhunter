@@ -227,11 +227,9 @@ $('#showtoast').click(function() {
 $.ajax({
     url:"http://bountyunions.applinzi.com/wechat/comment",
     data:{
-        'openid':$('#openid').val(),
-        'mission_id':$('#mission_id').val(),
-        'content':$('#content').val(),
+        'mission_id':$('#mission_id').val()
         },
-    type:"post",
+    type:"get",
     // dataType:"json",
     success:function(result){
         temp = result['commentlist'];
