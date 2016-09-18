@@ -54,6 +54,11 @@ def codefix(s):
     s = s.decode('UTF-8')
     return s
 
+# 时间格式转换
+def t2S(t):
+    # 将字符串型的time.time()转换为标准格式化时间
+    return time.asctime(time.localtime(float(t)))
+
 
 # 获取用户基本信息
 def getUserInfo(code,state,nsukey):
@@ -467,15 +472,21 @@ def mission(mission_id):
         resultofmission = db_obj.dbget('api/mission/id/' + mission_id)
         resultofcomment = db_obj.dbget('api/comment/mission/' + mission_id)
         resultofcomment = sorted(resultofcomment, key = operator.itemgetter('currenttime'),reverse=True)
+        # 格式转换
+        commentlist = []
+        for i in result_mission:
+            i['currenttime'] = t2S(i['currenttime'])
+            commentlist.append(i)
+
         # 如果任务处于待修改或发布状态
         if resultofmission['state'] == '0' or resultofmission['state'] == '1':
             return render_template('mission_edit.html',mission_obj=resultofmission,openid=openid)
         elif resultofmission['state'] == '2':
-            return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid,comment_obj=resultofcomment)
+            return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid,comment_obj=commentlist)
         else:
         # result = {'comment':result}
         # return jsonify(result)
-            return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid,comment_obj=resultofcomment)
+            return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid,comment_obj=commentlist)
     else:
         pass
 
@@ -513,37 +524,37 @@ def bid_mission():
 # 评论
 @app.route('/wechat/comment', methods = ['GET', 'POST'])
 def comment():
-    if request.method == 'GET':
-        try:
-            jsonobj = {
-                'mission_id':request.form['mission_id']
-                }
-            mission_id = request.form['mission_id']
-            # 根据任务获取评价
-            result_mission = db_obj.dbget('api/comment/mission/' + mission_id)
+    # if request.method == 'GET':
+    #     try:
+    #         jsonobj = {
+    #             'mission_id':request.form['mission_id']
+    #             }
+    #         mission_id = request.form['mission_id']
+    #         # 根据任务获取评价
+    #         result_mission = db_obj.dbget('api/comment/mission/' + mission_id)
 
-            commentlist = []
-            for i in result_mission:
-                commentlist.append(i)
-                userinfo = db_obj.dbget('api/user/' + openid)
+    #         commentlist = []
+    #         for i in result_mission:
+    #             commentlist.append(i)
+    #             userinfo = db_obj.dbget('api/user/' + openid)
 
-            commentobj = { 'commentlist':commentlist }
-            # print result
+    #         commentobj = { 'commentlist':commentlist }
+    #         # print result
 
-            return jsonify(commentobj)
-            # return redirect(url_for('mission',mission_id=mission_id))
+    #         return jsonify(commentobj)
+    #         # return redirect(url_for('mission',mission_id=mission_id))
 
-        except Exception, e:
-            pass
+    #     except Exception, e:
+    #         pass
     # 提交任务
-    elif request.method == 'POST':
+    if request.method == 'POST':
         try:
             jsonobj = {
                 'comment_id':str(uuid.uuid1()),
                 'mission_id':request.form['mission_id'],
                 'openid':request.form['openid'],
                 'content':request.form['content'],
-                'currenttime':time.asctime(time.localtime(time.time()))
+                'currenttime':str(time.time())
                 }
 
             mission_id = request.form['mission_id']
@@ -554,14 +565,14 @@ def comment():
             result = db_obj.dbpost('api/comment/',jsonobj)
             # 根据任务获取评价
             result_mission = db_obj.dbget('api/comment/mission/' + mission_id)
-
+            # 按时间翻转顺序
+            result_mission = sorted(result_mission, key = operator.itemgetter('currenttime'),reverse=True)
             commentlist = []
             for i in result_mission:
+                i['currenttime'] = t2S(i['currenttime'])
                 commentlist.append(i)
                 userinfo = db_obj.dbget('api/user/' + openid)
 
-            # 按时间翻转顺序
-            commentlist = sorted(commentlist, key = operator.itemgetter('currenttime'),reverse=True)
             commentobj = { 'commentlist':commentlist }
             # print result
 

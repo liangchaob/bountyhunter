@@ -6,4 +6,4 @@ import requests
 # r=requests.get('http://liangchaob-bountyapi.daoapp.io/api/comment/')
 
 r = requests.delete("http://liangchaob-bountyapi.daoapp.io/api/comment/")
-print r.text
+# print r.text
