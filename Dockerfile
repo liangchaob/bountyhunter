@@ -39,7 +39,7 @@ RUN pip install wechat-sdk==0.6.3
 RUN pip install wheel==0.24.0
 RUN pip install wsgiref==0.1.2
 RUN pip install xmltodict==0.9.2
-
+RUN pip install qiniu==7.0.8
 
 
 # Add stuff into daocloud server

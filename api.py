@@ -85,7 +85,7 @@ userobj.add_argument('mobile', type=str)
 
 
 
-# 用户对象
+# 任务对象
 missionobj = reqparse.RequestParser()
 missionobj.add_argument('mission_id', type=str)
 missionobj.add_argument('name', type=str)
@@ -104,7 +104,7 @@ missionobj.add_argument('feedback', type=str)
 
 
 
-# 用户对象
+# 评价对象
 commentobj = reqparse.RequestParser()
 commentobj.add_argument('comment_id', type=str)
 commentobj.add_argument('mission_id', type=str)

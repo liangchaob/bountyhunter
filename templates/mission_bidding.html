@@ -233,7 +233,6 @@
             // dataType:"json",
             success:function(result){
                 temp = result['commentlist'];
-
                 for (i in temp) {
                     t=temp[i];
                     $('#comments').append('<div class="weui_media_box weui_media_text">'+
@@ -246,33 +245,9 @@
                 // alert("error")
             }
         });
+        // 将输入框重新置空
+        $('#content').val('');
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

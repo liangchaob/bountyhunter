@@ -70,6 +70,16 @@ def getUserInfo(code,state,nsukey):
     return userinfo
 
 
+
+# 获取用户基本信息
+def getUserInfoByOpenid():
+    # 通过openid获取用户资料
+    url_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN"
+    req_userinfo = requests.get(url_userinfo)
+    userinfo = req_userinfo.json()
+    # 返回用户基本信息
+    return userinfo
+
 # 数据库操作
 class dbOpt(object):
     """docstring for dbOpt"""
@@ -514,6 +524,7 @@ def comment():
                 }
 
             mission_id = request.form['mission_id']
+            openid = request.form['openid']
             print mission_id
 
             # 更新数据库
@@ -524,6 +535,9 @@ def comment():
             commentlist = []
             for i in result_mission:
                 commentlist.append(i)
+                userinfo = db_obj.dbget('api/user/' + openid)
+
+
 
             commentobj = { 'commentlist':commentlist }
             # print result
