@@ -253,6 +253,15 @@ class Comments(Resource):
             pass
         return args
 
+    def delete(self):
+        # args = commentobj.parse_args()
+        try:
+            collection_comment.remove()
+        except Exception, e:
+            pass
+        return args
+
+
 
 # 单任务通过id查询
 class CommentById(Resource):
