@@ -196,6 +196,34 @@
 <!-- 表单尾 -->
 </form>
 <script type="text/javascript">
+
+
+$.ajax({
+    url:"http://bountyunions.applinzi.com/wechat/comment",
+    data:{
+        'openid':$('#openid').val(),
+        'mission_id':$('#mission_id').val(),
+        'content':$('#content').val(),
+        },
+    type:"post",
+    // dataType:"json",
+    success:function(result){
+        temp = result['commentlist'];
+        for (i in temp) {
+            t=temp[i];
+            $('#comments').append('<div class="weui_media_box weui_media_text">'+
+                '<h4 class="weui_media_title">'+ t['openid'] +'</h4>'+
+                '<p class="weui_media_desc">'+t["content"]+'</p>'+
+                '</div>')
+        }
+    },
+    error:function(){
+        // alert("error")
+    }
+});
+
+
+
 // 字数统计
     $(function(){
 
