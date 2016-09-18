@@ -171,9 +171,9 @@
     <div class="weui_btn_area">
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
     </div>
-    <div class="weui_btn_area">
+<!--     <div class="weui_btn_area">
         <a class="weui_btn weui_btn_primary" href="javascript:;" id="showtoast">toast</a>
-    </div>
+    </div> -->
 
 </div>
 
@@ -310,13 +310,13 @@ $.ajax({
             // 将输入框重新置空
             $('#content').val('');
             // 显示提示
-            $('#toast').show();
+            $('#toastsuccess').show();
                 setTimeout(function () {
                     $('#toastsuccess').hide();
                 }, 2000);
         }else{
             // 显示提示
-            $('#toast').show();
+            $('#toastfailed').show();
                 setTimeout(function () {
                     $('#toastfailed').hide();
                 }, 2000);
