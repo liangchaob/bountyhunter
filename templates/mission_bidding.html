@@ -126,20 +126,20 @@
         </div>
 
         <br>
-
+        
+        {% if comment_obj!=[] %}
         <div class="weui_panel_hd">评论</div>
         <div class="weui_panel_bd" id="comments">
-            {% if comment_obj!=[] %}
-                {% for item in comment_obj %}
-                <div class="weui_media_box weui_media_text">
-                    <h4 class="weui_media_desc"> {{item.openid}}</h4>
-                    <p class="weui_media_title">{{item.content}}</p>
-                    <p class="publish_time">{{item.currenttime}}</p>
-                 </div>
-                {% endfor %}
-            {% else %}
-                <!-- <div class="weui_panel_hd">当前评论为空</div> -->
-            {% endif %}
+            {% for item in comment_obj %}
+            <div class="weui_media_box weui_media_text">
+                <h4 class="weui_media_desc"> {{item.openid}}</h4>
+                <p class="weui_media_title">{{item.content}}</p>
+                <p class="publish_time">{{item.currenttime}}</p>
+             </div>
+            {% endfor %}
+        {% else %}
+            <!-- <div class="weui_panel_hd">当前评论为空</div> -->
+        {% endif %}
 
 
 
