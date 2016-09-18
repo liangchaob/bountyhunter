@@ -125,8 +125,8 @@
 
         <div class="weui_panel_hd">评论</div>
         <div class="weui_panel_bd" id="comments">
-            {% if resultofcomment!='' %}
-                {% for item in resultofcomment %}
+            {% if comment_obj!='' %}
+                {% for item in comment_obj %}
                 <div class="weui_media_box weui_media_text">
                     <h4 class="weui_media_title"> {{item.openid}}</h4>
                     <p class="weui_media_desc">{{item.content}}</p>
