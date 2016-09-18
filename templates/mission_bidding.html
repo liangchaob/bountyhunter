@@ -129,7 +129,7 @@
 
         <div class="weui_panel_hd">评论</div>
         <div class="weui_panel_bd" id="comments">
-            {% if comment_obj!='' %}
+            {% if comment_obj!=[] %}
                 {% for item in comment_obj %}
                 <div class="weui_media_box weui_media_text">
                     <h4 class="weui_media_desc"> {{item.openid}}</h4>
