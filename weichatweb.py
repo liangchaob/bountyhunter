@@ -549,7 +549,7 @@ def bid_mission():
             result_mission = db_obj.dbput('api/mission/id/' + mission_id, putdata = update)
 
             # 返回竞标用户列表
-            return jsonify(bidder_list)
+            return jsonify(update)
 
         except Exception, e:
             pass

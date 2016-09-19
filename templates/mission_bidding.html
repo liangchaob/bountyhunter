@@ -380,9 +380,10 @@ function forBidding() {
         type:"post",
         // dataType:"json",
         success:function(result){
+            list = result['bidder']
             // 先置空
             $('#bidder').html('');
-            for (i in result) {
+            for (i in list) {
                 $('#bidder').append('<p>'+i+'</p>')
             }
         },
