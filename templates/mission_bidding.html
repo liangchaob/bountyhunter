@@ -228,6 +228,21 @@
     </div>
 </div>
 
+<!-- toast -->
+<div id="biddingsuccess" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">竞标成功</p>
+    </div>
+</div>
+<div id="biddingfailed" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">竞标失败</p>
+    </div>
+</div>
 
 
 
@@ -350,9 +365,9 @@ $('#showtoast').click(function() {
         }else{
             // 显示提示
             $('#toastfailed').show();
-                setTimeout(function () {
-                    $('#toastfailed').hide();
-                }, 2000);
+            setTimeout(function () {
+                $('#toastfailed').hide();
+            }, 2000);
         }
 
     });
@@ -388,12 +403,21 @@ function forBidding() {
             for (i in list) {
                 $('#bidder').append('<p>'+list[i]+'</p>')
             };
+            // 显示提示
+            hideDialog();
+            $('#biddingsuccess').show();
+            setTimeout(function () {
+                $('#biddingsuccess').hide();
+            }, 2000);
         },
         error:function(){
-            // alert("error")
+            // 显示提示
+            $('#biddingfailed').show();
+            setTimeout(function () {
+                $('#biddingfailed').hide();
+            }, 2000);
         }
     });
-    hideDialog();
 }
 
 </script>
