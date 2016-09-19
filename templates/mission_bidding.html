@@ -89,13 +89,13 @@
             </section>
             {% endif %}
             <section>
-                <h3 class="title">竞标人:</h3>
-                <div id="bidder">
-                {% if mission_obj.bidder %}
-                {% for i in mission_obj.bidder %}
-                <p>{{ i }}</p>
-                {% endfor %}
-                </div>
+            <h3 class="title">竞标人:</h3>
+            <div id="bidder">
+            {% if mission_obj.bidder %}
+            {% for i in mission_obj.bidder %}
+            <p>{{ i }}</p>
+            {% endfor %}
+            </div>
             {% endif %}
             </section>
 
@@ -200,8 +200,14 @@
 
 
     <!-- 提交按钮 -->
+
+    {% if openid in mission_obj.bidder %}
     <div class="weui_btn_area" id="btn_main">
+        {% if openid in mission_obj.bidder %}
+        <a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">已竞标</a>
+        {% else %}
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
+        {% endif %}
         <!-- <a class="weui_btn weui_btn_disabled weui_btn_primary" href="javascript:;" id="showTooltips">竞标</a> -->
     </div>
 <!--     <div class="weui_btn_area">
