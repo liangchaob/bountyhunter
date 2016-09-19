@@ -259,7 +259,20 @@ def wechat_auth():
 @app.route('/wechat/missionhall', methods = ['GET', 'POST'])
 def mission_hall():
     if request.method == 'GET':
-        return render_template('mission_hall.html')
+        # 数据提取
+        result = db_obj.dbget('api/mission/')
+
+        # 竞标阶段
+        state_2 = []
+
+        for item in result:
+            if item["state"] == '2':
+                state_2.append(item)
+            else:
+                pass
+
+
+        return render_template('mission_hall.html',missions=state_2)
     else:
         pass
 
