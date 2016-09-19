@@ -88,12 +88,14 @@
                 <p>{{mission_obj.deadline}}</p>
             </section>
             {% endif %}
-            <section id="bidder">
+            <section>
                 <h3 class="title">竞标人:</h3>
-            {% if mission_obj.bidder %}
+                <div id="bidder">
+                {% if mission_obj.bidder %}
                 {% for i in mission_obj.bidder %}
                 <p>{{ i }}</p>
                 {% endfor %}
+                </div>
             {% endif %}
             </section>
 
