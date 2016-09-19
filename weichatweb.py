@@ -547,9 +547,11 @@ def bid_mission():
 
             # 更新数据库
             result_mission = db_obj.dbput('api/mission/id/' + mission_id, putdata = update)
+            # 查数据库
+            result_mission = db_obj.dbget('api/mission/id/' + mission_id)
 
             # 返回竞标用户列表
-            return jsonify(update)
+            return jsonify(result_mission)
 
         except Exception, e:
             pass

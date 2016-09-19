@@ -380,17 +380,18 @@ function forBidding() {
         type:"post",
         // dataType:"json",
         success:function(result){
-            list = result['bidder']
+            list = result['bidder'];
             // 先置空
             $('#bidder').html('');
             for (i in list) {
-                $('#bidder').append('<p>'+i+'</p>')
-            }
+                $('#bidder').append('<p>'+list[i]+'</p>')
+            };
         },
         error:function(){
             // alert("error")
         }
     });
+    hideDialog();
 }
 
 </script>
