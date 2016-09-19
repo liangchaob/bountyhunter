@@ -200,8 +200,9 @@
 
 
     <!-- 提交按钮 -->
-    <div class="weui_btn_area">
+    <div class="weui_btn_area" id="btn_main">
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
+        <!-- <a class="weui_btn weui_btn_disabled weui_btn_primary" href="javascript:;" id="showTooltips">竞标</a> -->
     </div>
 <!--     <div class="weui_btn_area">
         <a class="weui_btn weui_btn_primary" href="javascript:;" id="showtoast">toast</a>
@@ -409,6 +410,7 @@ function forBidding() {
             setTimeout(function () {
                 $('#biddingsuccess').hide();
             }, 2000);
+            $('#btn_main').html('<a class="weui_btn weui_btn_disabled weui_btn_primary" href="javascript:;" id="showTooltips">已竞标</a>')
         },
         error:function(){
             // 显示提示
