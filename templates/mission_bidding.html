@@ -202,12 +202,17 @@
     <!-- 提交按钮 -->
 
     <div class="weui_btn_area" id="btn_main">
+    {% if mission_obj.bidder %}
         {% if openid in mission_obj.bidder %}
         <a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">已竞标</a>
         {% else %}
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
         {% endif %}
         <!-- <a class="weui_btn weui_btn_disabled weui_btn_primary" href="javascript:;" id="showTooltips">竞标</a> -->
+    {% else %}
+    <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
+    {% endif %}
+
     </div>
 <!--     <div class="weui_btn_area">
         <a class="weui_btn weui_btn_primary" href="javascript:;" id="showtoast">toast</a>
