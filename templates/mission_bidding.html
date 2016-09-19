@@ -90,7 +90,7 @@
             {% endif %}
             <section id="bidder">
                 <h3 class="title">竞标人:</h3>
-            {% if mission_obj.bidder!=[] %}
+            {% if mission_obj.bidder %}
                 {% for i in mission_obj.bidder %}
                 <p>{{ i }}</p>
                 {% endfor %}
