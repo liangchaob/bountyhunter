@@ -172,6 +172,16 @@ class Missions(Resource):
             pass
         return args
 
+    def delete(self):
+        # args = commentobj.parse_args()
+        try:
+            collection_mission.remove()
+        except Exception, e:
+            pass
+        return 'clear success!'
+
+
+
 # 单任务通过id查询
 class MissionById(Resource):
     def get(self, mission_id):
@@ -195,6 +205,14 @@ class MissionById(Resource):
         except Exception, e:
             pass
         return result
+
+    def delete(self, mission_id):
+        # 操作库
+        try:
+            collection_mission.remove({'mission_id':mission_id})
+        except Exception, e:
+            pass
+        return 'delete '+mission_id+' success!'
 
 # 单任务通过用户查询
 class MissionByPublisher(Resource):
