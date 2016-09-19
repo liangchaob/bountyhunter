@@ -253,6 +253,36 @@ def wechat_auth():
             print 'Invalid Body Text'
             return 'nothing'
 
+
+
+# 查看表单
+@app.route('/wechat/missionhall', methods = ['GET', 'POST'])
+def mission_hall():
+    if request.method == 'GET':
+        return render_template('mission_hall.html')
+    else:
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 新任务
 @app.route('/wechat/new_mission', methods = ['GET', 'POST'])
 def new_mission():
