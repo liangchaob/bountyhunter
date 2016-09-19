@@ -296,7 +296,7 @@ def new_mission():
                 'bounty':request.form['bounty'],
                 'state':1,
                 'comment':'',
-                'bidder':'',
+                # 'bidder':'',
                 'publisher':request.form['publisher'],
                 'acceptor':'',
                 'feedback':''
