@@ -540,10 +540,10 @@ def bid_mission():
             # 获取原有数据
 
             # 查原数据库
-            result_mission = db_obj.dbget('api/mission/id/' + mission_id)
-            bidder_list = result_mission['bidder']
-            bidder_list.append(openid)
-            update = {'bidder':bidder_list}
+            # result_mission = db_obj.dbget('api/mission/id/' + mission_id)
+            # bidder_list = result_mission['bidder']
+            # bidder_list.append(openid)
+            update = {'bidder':openid}
 
             # 更新数据库
             result_mission = db_obj.dbput('api/mission/id/' + mission_id, putdata = update)
