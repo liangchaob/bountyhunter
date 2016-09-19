@@ -30,28 +30,23 @@
             <div class="weui_panel_bd">
             {% for item in missions %}
 
-                <a href="{{item.mission_id}}" class="weui_media_box weui_media_appmsg">
+                <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmission%2F{{item.mission_id}}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"" class="weui_media_box weui_media_appmsg">
                     <div class="weui_media_bd">
 
-                    {% for i in item.skill_need %}
-                        {% if i=="network" %}
-                        <span class="skilltag">网络</span>
-                        {% elif i=="server" %}
-                        <span class="skilltag">服务器</span>
-                        {% elif i=="os" %}
-                        <span class="skilltag">操作系统</span>
-                        {% elif i=="database" %}
-                        <span class="skilltag">数据库</span>
-                        {% elif i=="virtual" %}
-                        <span class="skilltag">虚拟化</span>
-                        {% else %}
-                        {% endif %}
-                    {% endfor %}
-
-
-
-
-
+                        {% for i in item.skill_need %}
+                            {% if i=="network" %}
+                            <span class="skilltag">网络</span>
+                            {% elif i=="server" %}
+                            <span class="skilltag">服务器</span>
+                            {% elif i=="os" %}
+                            <span class="skilltag">操作系统</span>
+                            {% elif i=="database" %}
+                            <span class="skilltag">数据库</span>
+                            {% elif i=="virtual" %}
+                            <span class="skilltag">虚拟化</span>
+                            {% else %}
+                            {% endif %}
+                        {% endfor %}
                         <h4 class="weui_media_title">{{item.name}}</h4>
                         <p class="weui_media_desc">{{item.description}}</p>
                     </div>
