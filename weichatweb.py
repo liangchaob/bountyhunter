@@ -199,7 +199,7 @@ def wechat_auth():
                             'title': u'IT类项目',
                             'picurl': u'http://o7m541j22.bkt.clouddn.com/justdoit.jpg',
                             'description': u'Cisco、Oracle、Linux相关',
-                            'url': u'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmissionhall&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
+                            'url': u'https://open.weixin.qq.com/connect/oauth2/authorize'+u'?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmissionhall&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
                         },{
                             'title': u'非IT类项目',
                             'picurl': u'http://o7m541j22.bkt.clouddn.com/biznetwork.png',
@@ -339,7 +339,7 @@ def new_mission():
                 'bounty':request.form['bounty'],
                 'state':1,
                 'comment':'',
-                # 'bidder':'',
+                'bidder':request.values.getlist('bidder'),
                 'publisher':request.form['publisher'],
                 'acceptor':'',
                 'feedback':''
