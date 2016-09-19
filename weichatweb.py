@@ -512,14 +512,51 @@ def edit_mission():
     else:
         pass
 # 竞标
-@app.route('/wechat/bid_mission', methods = ['GET', 'POST'])
+# @app.route('/wechat/bid_mission', methods = ['GET', 'POST'])
+# def bid_mission():
+#     if request.method == 'GET':
+#         return render_template('bid_mission.html')
+#     elif request.method == 'POST':
+#         return render_template('bid_mission.html')
+#     else:
+#         pass
+
+
+
+# 竞标
+@app.route('/wechat/bidding', methods = ['GET', 'POST'])
 def bid_mission():
-    if request.method == 'GET':
-        return render_template('bid_mission.html')
-    elif request.method == 'POST':
-        return render_template('bid_mission.html')
+    # 提交任务
+    if request.method == 'POST':
+        try:
+            jsonobj = {
+                'mission_id':request.form['mission_id'],
+                'openid':request.form['openid']
+                }
+
+            mission_id = request.form['mission_id']
+            openid = request.form['openid']
+            print mission_id
+            # 获取原有数据
+
+            # 查原数据库
+            result_mission = db_obj.dbget('api/mission/id/' + mission_id)
+            bidder_list = result_mission['bidder']
+            bidder_list.append(openid)
+            update = {'bidder':bidder_list}
+
+            # 更新数据库
+            result_mission = db_obj.dbput('api/mission/id/' + mission_id, putdata = update)
+
+            # 返回竞标用户列表
+            return jsonify(bidder_list)
+
+        except Exception, e:
+            pass
     else:
         pass
+
+
 
 # 评论
 @app.route('/wechat/comment', methods = ['GET', 'POST'])

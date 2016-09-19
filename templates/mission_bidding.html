@@ -88,6 +88,17 @@
                 <p>{{mission_obj.deadline}}</p>
             </section>
             {% endif %}
+            <section id="bidder">
+                <h3 class="title">竞标人:</h3>
+            {% if mission_obj.bidder!=[] %}
+                {% for i in mission_obj.bidder %}
+                <p>{{ i }}</p>
+                {% endfor %}
+            {% endif %}
+            </section>
+
+
+
         </article>
     </div>
 </div>
@@ -177,10 +188,10 @@
         <div class="weui_mask"></div>
         <div class="weui_dialog">
             <div class="weui_dialog_hd"><strong class="weui_dialog_title">确认提示</strong></div>
-            <div class="weui_dialog_bd">确认提交当前信息么？</div>
+            <div class="weui_dialog_bd">确认参与竞标么？</div>
             <div class="weui_dialog_ft">
                 <a href="javascript:hideDialog();" class="weui_btn_dialog default">取消</a>
-                <a href="javascript:formsubmit();" class="weui_btn_dialog primary">确定</a>
+                <a href="javascript:forBidding();" class="weui_btn_dialog primary">确定</a>
             </div>
         </div>
     </div>
@@ -358,11 +369,28 @@ $('#showtoast').click(function() {
   //   $("form").submit();
   // }
 
-
-
-
-
-
+// 竞标ajax
+function forBidding() {
+    $.ajax({
+        url:"http://bountyunions.applinzi.com/wechat/bidding",
+        data:{
+            'openid':$('#openid').val(),
+            'mission_id':$('#mission_id').val()
+            },
+        type:"post",
+        // dataType:"json",
+        success:function(result){
+            // 先置空
+            $('#bidder').html('');
+            for (i in result) {
+                $('#bidder').append('<p>'+i+'</p>')
+            }
+        },
+        error:function(){
+            // alert("error")
+        }
+    });
+}
 
 </script>
 
