@@ -166,8 +166,16 @@ class Missions(Resource):
 
     def post(self):
         args = missionobj.parse_args()
+        args = dict(args)
+        result = {}
+        for i in dict(args):
+            if args[i] != '' and args[i] != None:
+                result[i] = args[i]
+            else:
+                pass
+
         try:
-            collection_mission.insert_one(dict(args))
+            collection_mission.insert_one(result)
         except Exception, e:
             pass
         return args
