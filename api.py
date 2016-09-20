@@ -202,10 +202,10 @@ class MissionById(Resource):
 
         # 入库
         # 留言列表筛选
-        if result['commit'] !='' and result['commit'] != None:
+        if result.get('commit') !='' and result.get('commit') != None:
             collection_mission.update({'mission_id':mission_id},{'$push':result})
         # 竞标列表筛选
-        elif result['bidder'] !='' and result['bidder'] != None:
+        elif result.get('bidder') !='' and result.get('bidder') != None:
             collection_mission.update({'mission_id':mission_id},{'$push':result})
         else:
             try:
