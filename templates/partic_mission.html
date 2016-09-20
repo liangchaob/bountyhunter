@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/example.css',_external=True) }}"/>
+    <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script>
+    <title>已参与</title>
+    <style type="text/css">
+        a:hover {color: #ae9f9f;} 
+        a:visited {color: #ae9f9f;} 
+        a:link {color: #ae9f9f;} 
+        a {color: #ae9f9f;}
+        /*引用阿里巴巴的图库*/
+        @font-face {
+            font-family: 'iconfont';
+            src: url('{{ url_for('static',filename='fonts/iconfont.eot',_external=True) }}'); /* IE9*/
+            src: url('{{ url_for('static',filename='fonts/iconfont.woff',_external=True) }}') format('woff'), 
+            url('{{ url_for('static',filename='fonts/iconfont.ttf',_external=True) }}') format('truetype'),
+            url('{{ url_for('static',filename='fonts/iconfont.svg',_external=True) }}') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont{
+            font-family:"iconfont" !important;
+            font-size:16px;font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 个人信息 -->
+<!-- <input type="hidden" name="publisher" value="{{ openid }}"> -->
+<!-- 外围框 -->
+<div class="bd">
+
+    <p style="font-size:0px; visibility: none;">用户id:{{ openid }}</p>
+
+    {% if state_2 %}
+        <div class="weui_cells_title"><i class="iconfont">&#xe613;</i>&nbsp;竞标中</div>
+        <div class="weui_cells weui_cells_access">
+        {% for item in state_2 %}
+            <!-- <a class="weui_cell" href="/wechat/mission/{{item.mission_id}}"> -->
+                <a class="weui_cell" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmission%2F{{item.mission_id}}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>{{ item.name }}</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    {% else %}
+    {% endif %}
+
+
+    <div class="weui_cells_title"><i class="iconfont">&#xe62b;</i>&nbsp;工作中</div>
+    <div class="weui_cells weui_cells_access">
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>安装server2008</p>
+            </div>
+            <div class="weui_cell_ft">
+            </div>
+        </a>
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>上架cisco3750</p>
+            </div>
+            <div class="weui_cell_ft">
+            </div>
+        </a>
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>安装oracle rack</p>
+            </div>
+            <div class="weui_cell_ft">
+            </div>
+        </a>
+    </div>
+
+
+    <div class="weui_cells_title"><i class="iconfont">&#xe637;</i>&nbsp;已完成</div>
+    <div class="weui_cells weui_cells_access">
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>安装redhat6.0</p>
+            </div>
+            <div class="weui_cell_ft">
+            </div>
+        </a>
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>调试4台华为交换机</p>
+            </div>
+            <div class="weui_cell_ft">
+            </div>
+        </a>
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>交换机划分vlan</p>
+            </div>
+            <div class="weui_cell_ft">
+            </div>
+        </a>
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>解决ad域策略问题</p>
+            </div>
+            <div class="weui_cell_ft">
+            </div>
+        </a>
+    </div>
+    <br>
+
+</div>
+
+
+</body>
+</html>

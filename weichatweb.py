@@ -497,6 +497,71 @@ def usercenter_published():
 
 
 
+# 已参与
+@app.route('/wechat/usercenter_participation', methods = ['GET', 'POST'])
+def usercenter_participation():
+
+    if request.method == 'GET':
+        # 参数接收获取code
+        query = request.args 
+        code = query.get('code', '')  
+        state = query.get('state', '')
+        nsukey = query.get('nsukey', '')
+
+        # 获取用户信息
+        userinfo = getUserInfo(code,state,nsukey)
+
+        # 从资料中提取具体信息
+        nickname = userinfo.get('nickname')
+        openid = userinfo.get('openid')
+        sex = userinfo.get('sex')
+        province = userinfo.get('province')
+        city = userinfo.get('city')
+        country = userinfo.get('country')
+        headimgurl = userinfo.get('headimgurl')
+
+        # 修正编码格式
+        nickname = codefix(nickname)
+        province = codefix(province)
+        city = codefix(city)
+        country = codefix(country)
+
+        # 数据提取
+        result = db_obj.dbget('api/mission/publisher/' + openid)
+
+        # 审核阶段
+        state_0 = []
+        # 发布阶段
+        state_1 = []
+        # 竞标阶段
+        state_2 = []
+        # 工作阶段
+        state_3 = []
+        # 评价阶段
+        state_4 = []
+
+        for item in result:
+            if item["state"] == '0':
+                state_0.append(item)
+            elif item["state"] == '1':
+                state_1.append(item)
+            elif item["state"] == '2':
+                state_2.append(item)
+            elif item["state"] == '3':
+                state_3.append(item)
+            elif item["state"] == '4':
+                state_4.append(item)
+            else:
+                pass
+
+        # return render_template('published_mission.html',openid = openid)
+        return render_template('published_mission.html',openid=openid, state_0=state_0,state_1=state_1, state_2=state_2, state_3=state_3,state_4=state_4)
+
+
+
+
+
+
 
 @app.route('/wechat/mission/<mission_id>', methods = ['GET', 'POST'])
 def mission(mission_id):
@@ -582,14 +647,15 @@ def bid_mission():
             print mission_id
             # 获取原有数据
 
-            # 查原数据库
-            result_mission = db_obj.dbget('api/mission/id/' + mission_id)
-            bidder_list = result_mission['bidder']
-            if bidder_list != None:
-                bidder_list.append(openid)
-                update = {'bidder':bidder_list}
-            else:
-                update = {'bidder':[openid]}
+            # # 查原数据库
+            # result_mission = db_obj.dbget('api/mission/id/' + mission_id)
+            # bidder_list = result_mission['bidder']
+            # if bidder_list != None:
+            #     bidder_list.append(openid)
+            #     update = {'bidder':bidder_list}
+            # else:
+            #     update = {'bidder':[openid]}
+            update = {'bidder':[openid]}
 
 
             # 更新数据库
@@ -642,13 +708,16 @@ def comment():
                 'content':request.form['content'],
                 'currenttime':str(time.time())
                 }
-
+            comment_id = jsonobj['comment_id']
             mission_id = request.form['mission_id']
             openid = request.form['openid']
             print mission_id
 
             # 更新数据库
+            # 更新comment表
             result = db_obj.dbpost('api/comment/',jsonobj)
+            # 更新mission表
+            result2mission = db_obj.dbpost('api/mission/id/' + mission_id,{'comment':jsonobj['comment_id']})
             # 根据任务获取评价
             result_mission = db_obj.dbget('api/comment/mission/' + mission_id)
             # 按时间翻转顺序

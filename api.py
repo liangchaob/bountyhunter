@@ -199,12 +199,22 @@ class MissionById(Resource):
                 result[i] = args[i]
             else:
                 pass
+
         # 入库
-        try:
-            collection_mission.update({'mission_id':mission_id},{'$set':result})
-        except Exception, e:
-            pass
+        # 留言列表筛选
+        if result['commit'] !='' and result['commit'] != None:
+            collection_mission.update({'mission_id':mission_id},{'$push':result})
+        # 竞标列表筛选
+        elif result['bidder'] !='' and result['bidder'] != None:
+            collection_mission.update({'mission_id':mission_id},{'$push':result})
+        else:
+            try:
+                collection_mission.update({'mission_id':mission_id},{'$set':result})
+            except Exception, e:
+                pass
+
         return result
+
 
     def delete(self, mission_id):
         # 操作库
@@ -222,6 +232,15 @@ class MissionByPublisher(Resource):
         for item in result:
             t.append(item)
         return t
+
+# 单任务通过参与人查询
+# class MissionByParticipant(Resource):
+#     def get(self, participant):
+#         result = collection_mission.find({'publisher':publisher},{'_id':0})
+#         t = []
+#         for item in result:
+#             t.append(item)
+#         return t
 
     # def put(self, publisher):
     #     # 获取参数
@@ -340,6 +359,7 @@ api.add_resource(User, '/api/user/<string:user_id>')
 api.add_resource(Missions, '/api/mission/')
 api.add_resource(MissionById, '/api/mission/id/<string:mission_id>')
 api.add_resource(MissionByPublisher, '/api/mission/publisher/<string:publisher>')
+api.add_resource(MissionByParticipant, '/api/mission/participant/<string:participant>')
 api.add_resource(Skills, '/api/skill/')
 api.add_resource(Skill, '/api/skill/<string:skill_id>')
 api.add_resource(Comments, '/api/comment/')
