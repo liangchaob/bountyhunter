@@ -91,6 +91,13 @@
             {% else %}
             {% endif %}
 
+            <!-- 确定是否已经有了雇佣者 -->
+            {% if mission_obj.acceptor %}
+            <!-- 如果有则置1，没有则置0 -->
+            {% hired=1 %}
+            {% else %}
+            {% hired=0 %}
+            {% endif %}
 
 
 
@@ -100,10 +107,19 @@
             <section>
             <h3 class="title">竞标人:</h3>
             <div id="bidder">
-            {% for i in mission_obj.bidder %}
-            <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}?mission_id={{mission_obj.mission_id}}&publisher={{mission_obj.publisher}}&current_user={{openid}}&hired={{hired}}">{{i}}</a>
-            <br>
-            {% endfor %}
+            <!-- 确定是否已经有了雇佣者 -->
+            {% if mission_obj.acceptor %}
+                {% for i in mission_obj.bidder %}
+                <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}?mission_id={{mission_obj.mission_id}}&publisher={{mission_obj.publisher}}&current_user={{openid}}&hired=1">{{i}}</a>
+                <br>
+                {% endfor %}
+            {% else %}
+                {% for i in mission_obj.bidder %}
+                <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}?mission_id={{mission_obj.mission_id}}&publisher={{mission_obj.publisher}}&current_user={{openid}}&hired=0">{{i}}</a>
+                <br>
+                {% endfor %}
+            {% endif %}
+
             </div>
             
             </section>
@@ -116,7 +132,7 @@
             <section>
             <h3 class="title">中标者:</h3>
             <div id="bidder">
-            <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}?mission_id={{mission_obj.mission_id}}&publisher={{mission_obj.publisher}}&current_user={{openid}}">{{mission_obj.acceptor}}</a>
+            <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}?mission_id={{mission_obj.mission_id}}&publisher={{mission_obj.publisher}}&current_user={{openid}}&hired=1">{{mission_obj.acceptor}}</a>
             <br>
             </div>
             </section>
