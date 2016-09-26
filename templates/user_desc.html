@@ -32,7 +32,7 @@
 <body>
 
 <!-- 个人信息 -->
-<!-- <input type="hidden" name="publisher" value="{{ openid }}"> -->
+<!-- <input type="hidden" name="publisher" value=""> -->
 <!-- 外围框 -->
 <div class="bd">
 
@@ -44,12 +44,12 @@
     <div class="weui_cells weui_cells_access">
         <a href="javascript:void(0);" class="weui_cell weui_media_box weui_media_appmsg">
             <div class="weui_media_hd">
-                <img class="weui_media_appmsg_thumb" src="{{ headimgurl }}" alt="">
+                <img class="weui_media_appmsg_thumb" src="" alt="">
             </div>
             <div class="weui_media_bd">
-                <h4 class="weui_media_title">{{ nickname }}</h4>
+                <h4 class="weui_media_title">{{ user_obj.openid }}</h4>
                 <h6>&nbsp;</h6>
-                <p class="weui_media_desc"><i class="iconfont">&#xe618;</i>&nbsp;{{ province }}</p>
+                <p class="weui_media_desc"><i class="iconfont">&#xe618;</i>&nbsp;北京</p>
                 <!-- <p class="weui_media_desc">{{ province }}</p> -->
             </div>
         </a>
