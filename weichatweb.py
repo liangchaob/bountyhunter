@@ -655,7 +655,7 @@ def bid_mission():
             #     update = {'bidder':bidder_list}
             # else:
             #     update = {'bidder':[openid]}
-            update = {'bidder':[openid]}
+            update = {'bidder':openid}
 
 
             # 更新数据库
