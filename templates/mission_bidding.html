@@ -75,14 +75,14 @@
                 {% endfor %}
                 </p>
             </section>
-            {% if mission_obj.bounty!='' %}
+            {% if mission_obj.bounty!=None %}
             <section>
                 <h3 class="title">任务悬赏:</h3>
                 <p>{{mission_obj.bounty}}</p>
             </section>
             {% endif %}
 
-            {% if mission_obj.deadline!='' %}
+            {% if mission_obj.deadline!=None %}
             <section>
                 <h3 class="title">截止日期:</h3>
                 <p>{{mission_obj.deadline}}</p>
