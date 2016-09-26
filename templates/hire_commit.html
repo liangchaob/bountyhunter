@@ -1,0 +1,38 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+   
+        <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/weui.css',_external=True) }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/example.css',_external=True) }}">
+        <title>雇佣成功</title>
+    </head>
+    <body>
+        <div class="container" id="container">
+            <div class="msg">
+                <div class="weui_msg">
+                    <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+                    <div class="weui_text_area">
+                        <h2 class="weui_msg_title">雇佣成功</h2>
+                        <p class="weui_msg_desc">您已经雇佣</p>
+                        <p class="weui_msg_desc">{{mission_id}}</p>
+                        <p class="weui_msg_desc">为您完成</p>
+                        <p class="weui_msg_desc">{{mission_name}}</p>
+                    </div>
+                    <div class="weui_opr_area">
+                        <p class="weui_btn_area">
+                            <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fuser_center&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect" class="weui_btn weui_btn_default">查看</a>
+                            
+                            <a href="javascript:WeixinJSBridge.call('closeWindow');" class="weui_btn weui_btn_primary">退出</a>
+                        </p>
+                    </div>
+<!--                     <div class="weui_extra_area">
+                        <a href="">查看详情</a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

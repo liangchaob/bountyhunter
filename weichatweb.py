@@ -999,23 +999,11 @@ def t12():
     # 确定雇佣人
     if request.method == 'POST':
         try:
-            jsonobj = {
-                'mission_id':request.form['mission_id'],
-                'acceptor':request.form['acceptor']
-                }
-
             mission_id = request.form['mission_id']
             acceptor = request.form['acceptor']
-
             update = {'mission_id':mission_id,'acceptor':acceptor,'state':'3'}
-
-
             # 更新数据库
             result_mission = db_obj.dbput('api/mission/id/' + mission_id, putdata = update)
-            # 查数据库
-            # result_mission = db_obj.dbget('api/mission/id/' + mission_id)
-
-            # 返回竞标用户列表
             return 'success'
 
         except Exception, e:
@@ -1023,6 +1011,41 @@ def t12():
     else:
         pass
 
+
+# 确认雇佣
+@app.route('/test/hire', methods = ['GET', 'POST'])
+def t13():
+    # 确定雇佣人
+    if request.method == 'POST':
+        try:
+            mission_id = request.form['mission_id']
+            acceptor = request.form['acceptor']
+            update = {'mission_id':mission_id,'acceptor':acceptor,'state':'3'}
+            # 更新数据库
+            result_mission = db_obj.dbput('api/mission/id/' + mission_id, putdata = update)
+            return 'success'
+
+        except Exception, e:
+            pass
+    else:
+        pass
+
+# 提交指定雇佣人选
+@app.route('/test/hire_commit', methods = ['GET', 'POST'])
+def t14():
+    if request.method == 'GET':
+        mission_id = request.form['mission_id']
+        acceptor = request.form['acceptor']
+        # 查询数据库
+        result = db_obj.dbget('api/mission/id/' + mission_id)
+        mission_name = result.get('name')
+        return render_template('hire_commit.html',mission_id=mission_id,acceptor=acceptor,mission_name=mission_name)
+
+
+    elif request.method == 'POST':
+        pass
+    else:
+        pass
 
 
 
