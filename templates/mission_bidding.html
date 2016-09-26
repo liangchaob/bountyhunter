@@ -95,7 +95,7 @@
             <div id="bidder">
             {% if mission_obj.bidder %}
             {% for i in mission_obj.bidder %}
-            <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}">{{i}}</a>
+            <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}?mission={{mission_obj.mission_id}}">{{i}}</a>
             <br>
             {% endfor %}
             </div>
