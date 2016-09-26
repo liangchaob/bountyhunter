@@ -1001,7 +1001,7 @@ def t12():
         try:
             jsonobj = {
                 'mission_id':request.form['mission_id'],
-                'acceptor' = request.form['acceptor']
+                'acceptor':request.form['acceptor']
                 }
 
             mission_id = request.form['mission_id']
