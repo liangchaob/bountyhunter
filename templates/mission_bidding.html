@@ -208,7 +208,7 @@
         {% if openid in mission_obj.bidder%}
         <a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">已竞标</a>
         <!-- 如果自己本身是发布者 -->
-        {% elif openid==mission_obj.publisher %}
+        {% elif openid is mission_obj.publisher %}
         <a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">竞标</a>
         {% else %}
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
