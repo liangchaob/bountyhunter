@@ -95,7 +95,8 @@
             <div id="bidder">
             {% if mission_obj.bidder %}
             {% for i in mission_obj.bidder %}
-            <p>{{ i }}</p>
+            <a href="/test/userdesc/{{i}}">{{i}}</a>
+
             {% endfor %}
             </div>
             {% endif %}
