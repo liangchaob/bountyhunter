@@ -222,6 +222,7 @@ function forHire() {
         // dataType:"json",
         success:function(result){
             if (result=='success') {
+                $('#dialog').hide();
                 // 显示toast
                 $('#hiresuccess').show();
                 setTimeout(function () {
