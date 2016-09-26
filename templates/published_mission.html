@@ -88,31 +88,23 @@
     {% else %}
     {% endif %}
 
-
+    
+    {% if state_3 %}
     <div class="weui_cells_title"><i class="iconfont">&#xe62b;</i>&nbsp;工作中</div>
     <div class="weui_cells weui_cells_access">
-        <a class="weui_cell" href="javascript:;">
+    {% for item in state_3 %}
+        <!-- <a class="weui_cell" href="/wechat/mission/{{item.mission_id}}"> -->
+            <a class="weui_cell" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa9312a82e8138370&redirect_uri=http%3A%2F%2Fbountyunions.applinzi.com%2Fwechat%2Fmission%2F{{item.mission_id}}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">
             <div class="weui_cell_bd weui_cell_primary">
-                <p>安装server2008</p>
+                <p>{{ item.name }}</p>
             </div>
             <div class="weui_cell_ft">
             </div>
         </a>
-        <a class="weui_cell" href="javascript:;">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>上架cisco3750</p>
-            </div>
-            <div class="weui_cell_ft">
-            </div>
-        </a>
-        <a class="weui_cell" href="javascript:;">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>安装oracle rack</p>
-            </div>
-            <div class="weui_cell_ft">
-            </div>
-        </a>
+    {% endfor %}
     </div>
+    {% else %}
+    {% endif %}
 
 
     <div class="weui_cells_title"><i class="iconfont">&#xe637;</i>&nbsp;已完成</div>
