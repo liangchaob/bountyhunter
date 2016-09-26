@@ -91,16 +91,6 @@
             {% else %}
             {% endif %}
 
-            <!-- 确定是否已经有了雇佣者 -->
-            {% if mission_obj.acceptor %}
-            <!-- 如果有则置1，没有则置0 -->
-            {% hired=1 %}
-            {% else %}
-            {% hired=0 %}
-            {% endif %}
-
-
-
 
             <!-- 如果有竞标者 -->
             {% if mission_obj.bidder %}
