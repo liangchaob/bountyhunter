@@ -995,13 +995,13 @@ def t11(openid):
 
 # 确认雇佣
 @app.route('/test/hire', methods = ['GET', 'POST'])
-def t12(openid):
+def t12():
     # 确定雇佣人
     if request.method == 'POST':
         try:
             jsonobj = {
                 'mission_id':request.form['mission_id'],
-                'openid':request.form['openid']
+                'acceptor' = request.form['acceptor']
                 }
 
             mission_id = request.form['mission_id']
