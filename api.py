@@ -209,12 +209,20 @@ class MissionById(Resource):
                 pass
 
         # 入库
+        # # 留言列表筛选
+        # if result.get('commit') !='' and result.get('commit') != None:
+        #     collection_mission.update({'mission_id':mission_id},{'$push':result})
+        # # 竞标列表筛选
+        # elif result.get('bidder') !='' and result.get('bidder') != None:
+        #     collection_mission.update({'mission_id':mission_id},{'$push':result})
+
+
         # 留言列表筛选
-        if result.get('commit') !='' and result.get('commit') != None:
+        # 如果是留言或者竞标参与，则用push方法应用列表更新
+        if result.get('commit') != None or result.get('bidder') != None:
             collection_mission.update({'mission_id':mission_id},{'$push':result})
-        # 竞标列表筛选
-        elif result.get('bidder') !='' and result.get('bidder') != None:
-            collection_mission.update({'mission_id':mission_id},{'$push':result})
+
+
         else:
             try:
                 collection_mission.update({'mission_id':mission_id},{'$set':result})
