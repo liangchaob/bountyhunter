@@ -96,7 +96,7 @@ missionobj.add_argument('skill_need', type=str ,action='append')
 missionobj.add_argument('bounty', type=str)
 missionobj.add_argument('state', type=str)
 missionobj.add_argument('comment', type=str)
-missionobj.add_argument('bidder', type=str ,action='append')
+missionobj.add_argument('bidder', type=str)
 missionobj.add_argument('publisher', type=str)
 missionobj.add_argument('acceptor', type=str)
 missionobj.add_argument('feedback', type=str)
@@ -219,7 +219,7 @@ class MissionById(Resource):
 
         # 留言列表筛选
         # 如果是留言或者竞标参与，则用push方法应用列表更新
-        if result.get('commit') != None or result.get('bidder') != None:
+        if result.get('bidder') != None:
             collection_mission.update({'mission_id':mission_id},{'$push':result})
 
 
