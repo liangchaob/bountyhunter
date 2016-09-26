@@ -203,10 +203,7 @@
 
     <div class="weui_btn_area" id="btn_main">
     <!-- 确定用户状态来控制按钮状态 -->
-    <!-- 如果自己本身是发布者 -->
-    {% elif openid == mission_obj.publisher %}
-    <a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">无法竞标自发布项目</a>
-    {% else %}
+
         <!-- 判断当前任务是否里面有竞标者 -->
         {% if mission_obj.bidder %}
             <!-- 如果已经竞标过了 -->
@@ -218,7 +215,13 @@
         {% else %}
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
         {% endif %}
-    {% endif %}
+
+
+
+
+
+
+
 
 
 
