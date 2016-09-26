@@ -1034,8 +1034,11 @@ def t13():
 @app.route('/test/hire_commit', methods = ['GET', 'POST'])
 def t14():
     if request.method == 'GET':
-        mission_id = request.form['mission_id']
-        acceptor = request.form['acceptor']
+        # 参数接收
+        query = request.args   
+        mission_id = query.get('mission_id', '')
+        acceptor = query.get('acceptor', '')
+
         # 查询数据库
         result = db_obj.dbget('api/mission/id/' + mission_id)
         mission_name = result.get('name')
