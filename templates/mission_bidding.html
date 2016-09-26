@@ -95,7 +95,7 @@
             <div id="bidder">
             {% if mission_obj.bidder %}
             {% for i in mission_obj.bidder %}
-            <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}?mission_id={{mission_obj.mission_id}}&publisher={{mission_obj.publisher}}">{{i}}</a>
+            <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}?mission_id={{mission_obj.mission_id}}&publisher={{mission_obj.publisher}}&current_user={{openid}}">{{i}}</a>
             <br>
             {% endfor %}
             </div>
@@ -206,7 +206,7 @@
 
     <div class="weui_btn_area" id="btn_main">
     {% if openid==mission_obj.publisher %}
-    <a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">无法竞标自发布项目</a>
+    <!-- <a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">无法竞标自发布项目</a> -->
     {% else %}
 
     <!-- 确定用户状态来控制按钮状态 -->

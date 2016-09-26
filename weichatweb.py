@@ -974,25 +974,43 @@ def t10():
         return jsonify(result)
         # return render_template('mission.html',mission_obj=result)
 
-# test
+# 查看用户信息
 @app.route('/test/userdesc/<openid>', methods = ['GET', 'POST'])
 def t11(openid):
     if request.method == 'GET':
         # 参数接收
         query = request.args 
         publisher = query.get('publisher', '')  
-        mission_id = query.get('mission_id', '')  
+        mission_id = query.get('mission_id', '')
+        current_user = query.get('current_user', '')
 
         # return 'hehe'
         result = db_obj.dbget('api/user/'+openid)
         result = dict(result)
         # return jsonify(result)
         # 渲染用户信息界面
-        return render_template('user_desc.html',user_obj=result,publisher=publisher,mission_id=mission_id)
+        return render_template('user_desc.html',user_obj=result,publisher=publisher,mission_id=mission_id,current_user=current_user)
     else:
         pass
 
+# 确认雇佣
+@app.route('/test/hire', methods = ['GET', 'POST'])
+def t12(openid):
+    if request.method == 'GET':
+        # 参数接收
+        query = request.args 
+        publisher = query.get('publisher', '')  
+        mission_id = query.get('mission_id', '')
+        current_user = query.get('current_user', '') 
 
+        # return 'hehe'
+        result = db_obj.dbget('api/user/'+openid)
+        result = dict(result)
+        # return jsonify(result)
+        # 渲染用户信息界面
+        return render_template('user_desc.html',user_obj=result,publisher=publisher,mission_id=mission_id,current_user=current_user)
+    else:
+        pass
 
 
 

@@ -38,6 +38,10 @@
 
     <p style="font-size:0px; visibility: none;">发布者id:{{publisher}}</p>
     <p style="font-size:0px; visibility: none;">任务id:{{mission_id}}</p>
+    <p style="font-size:0px; visibility: none;">当前用户id:{{current_user}}</p>
+    <h1>发布者id:{{publisher}}</h1>
+    <h1>任务id:{{mission_id}}</h1>
+    <h1>当前用户id:{{current_user}}</h1>
 
 
 <!-- <div class="weui_panel weui_panel_access"> -->
@@ -142,7 +146,7 @@
             <div class="weui_dialog_bd">确认要雇佣他来完成项目么？</div>
             <div class="weui_dialog_ft">
                 <a href="javascript:hideDialog();" class="weui_btn_dialog default">取消</a>
-                <a href="javascript:forBidding();" class="weui_btn_dialog primary">确定</a>
+                <a href="javascript:forHire();" class="weui_btn_dialog primary">确定</a>
             </div>
         </div>
     </div>
@@ -151,7 +155,10 @@
 
     <!-- 按钮 -->
     <div class="weui_btn_area" id="btn_main">
+    {% if current_user==publisher %}
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">雇佣</a>
+    {% else %}
+    {% endif %}
         <a class="weui_btn weui_btn_default" href="javascript:history.back(-1);" id="showTooltips">返回</a>
     </div>
 
@@ -168,6 +175,42 @@ function hideDialog(){
 $("#dialog").css("display","none");
 }
 
+// 雇佣的ajax
+function forHire() {
+
+    $.ajax({
+        url:"http://bountyunions.applinzi.com/test/Hire",
+        data:{
+            'openid':$('#openid').val(),
+            'mission_id':$('#mission_id').val()
+            },
+        type:"post",
+        // dataType:"json",
+        success:function(result){
+            list = result['bidder'];
+            // 先置空
+            $('#bidder').html('');
+            for (i in list) {
+                $('#bidder').append('<p>'+list[i]+'</p>')
+            };
+            // 显示提示
+            hideDialog();
+            $('#biddingsuccess').show();
+            setTimeout(function () {
+                $('#biddingsuccess').hide();
+            }, 2000);
+            $('#btn_main').html('<a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">已竞标</a>')
+        },
+        error:function(){
+            // 显示提示
+            $('#biddingfailed').show();
+            setTimeout(function () {
+                $('#biddingfailed').hide();
+            }, 2000);
+        }
+    });
+
+}
 </script>
 
 
