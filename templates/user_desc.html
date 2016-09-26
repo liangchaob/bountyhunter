@@ -215,8 +215,8 @@ function forHire() {
     $.ajax({
         url:"http://bountyunions.applinzi.com/test/hire",
         data:{
-            'mission_id':{{mission_id}},
-            'acceptor':{{user_obj.openid}}
+            'mission_id':'{{mission_id}}',
+            'acceptor':'{{user_obj.openid}}'
             },
         type:"post",
         // dataType:"json",
