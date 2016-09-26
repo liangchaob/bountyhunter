@@ -974,7 +974,17 @@ def t10():
         return jsonify(result)
         # return render_template('mission.html',mission_obj=result)
 
-
+# test
+@app.route('/test/userdesc/<openid>', methods = ['GET', 'POST'])
+def t11(openid):
+    if request.method == 'GET':
+        # return 'hehe'
+        result = db_obj.dbget('api/user/'+openid)
+        result = dict(result)
+        return jsonify(result)
+        # return render_template('mission.html',mission_obj=result)
+    else:
+        pass
 
 
 
