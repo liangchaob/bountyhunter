@@ -981,8 +981,9 @@ def t11(openid):
         # return 'hehe'
         result = db_obj.dbget('api/user/'+openid)
         result = dict(result)
-        return jsonify(result)
-        # return render_template('mission.html',mission_obj=result)
+        # return jsonify(result)
+        # 渲染用户信息界面
+        return render_template('user_desc.html',user_obj=result)
     else:
         pass
 
