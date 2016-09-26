@@ -1041,7 +1041,6 @@ def t14():
         mission_name = result.get('name')
         return render_template('hire_commit.html',mission_id=mission_id,acceptor=acceptor,mission_name=mission_name)
 
-
     elif request.method == 'POST':
         pass
     else:
