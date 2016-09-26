@@ -983,13 +983,14 @@ def t11(openid):
         publisher = query.get('publisher', '')  
         mission_id = query.get('mission_id', '')
         current_user = query.get('current_user', '')
+        hired = query.get('hired', '')
 
         # return 'hehe'
         result = db_obj.dbget('api/user/'+openid)
         result = dict(result)
         # return jsonify(result)
         # 渲染用户信息界面
-        return render_template('user_desc.html',user_obj=result,publisher=publisher,mission_id=mission_id,current_user=current_user)
+        return render_template('user_desc.html',user_obj=result,publisher=publisher,mission_id=mission_id,current_user=current_user,hired=hired)
     else:
         pass
 
