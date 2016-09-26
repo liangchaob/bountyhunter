@@ -141,7 +141,7 @@
     <!-- 按钮 -->
     <div class="weui_btn_area" id="btn_main">
     {% if current_user==publisher %}
-        <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">雇佣</a>
+        <div id="btn_main_var"><a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">雇佣</a></div>
     {% else %}
     {% endif %}
         <a class="weui_btn weui_btn_default" href="javascript:history.back(-1);" id="showTooltips">返回</a>
@@ -228,7 +228,7 @@ function forHire() {
                 setTimeout(function () {
                     $('#hiresuccess').hide();
                 }, 2000);
-                $('#btn_main').html('<a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">已雇佣</a>')
+                $('#btn_main_var').html('<a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" >已雇佣</a>')
             }else{};
         },
         error:function(){
