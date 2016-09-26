@@ -38,11 +38,7 @@
 
     <p style="font-size:0px; visibility: none;">发布者id:{{publisher}}</p>
     <p style="font-size:0px; visibility: none;">任务id:{{mission_id}}</p>
-    <p style="font-size:0px; visibility: none;">当前用户id:{{current_user}}</p>
-    <h1>发布者id:{{publisher}}</h1>
-    <h1>任务id:{{mission_id}}</h1>
-    <h1>当前用户id:{{current_user}}</h1>
-
+    <p style="font-size:0px; visibility: none;">当前登录用户id:{{current_user}}</p>
 
 <!-- <div class="weui_panel weui_panel_access"> -->
     <!-- <div class="weui_panel_bd"> -->
@@ -166,6 +162,40 @@
 
 
 
+<!-- toast -->
+<div id="hiresuccess" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">雇佣成功</p>
+    </div>
+</div>
+<div id="hirefailed" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">雇佣失败</p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
     
 function showDialog(){
@@ -179,33 +209,28 @@ $("#dialog").css("display","none");
 function forHire() {
 
     $.ajax({
-        url:"http://bountyunions.applinzi.com/test/Hire",
+        url:"http://bountyunions.applinzi.com/test/hire",
         data:{
-            'openid':$('#openid').val(),
-            'mission_id':$('#mission_id').val()
+            'mission_id':{{mission_id}},
+            'acceptor':{{user_obj.openid}}
             },
         type:"post",
         // dataType:"json",
         success:function(result){
-            list = result['bidder'];
-            // 先置空
-            $('#bidder').html('');
-            for (i in list) {
-                $('#bidder').append('<p>'+list[i]+'</p>')
-            };
-            // 显示提示
-            hideDialog();
-            $('#biddingsuccess').show();
-            setTimeout(function () {
-                $('#biddingsuccess').hide();
-            }, 2000);
-            $('#btn_main').html('<a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">已竞标</a>')
+            if (result=='success') {
+                // 显示toast
+                $('#hiresuccess').show();
+                setTimeout(function () {
+                    $('#hiresuccess').hide();
+                }, 2000);
+                $('#btn_main').html('<a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">已雇佣</a>')
+            }else{};
         },
         error:function(){
             // 显示提示
-            $('#biddingfailed').show();
+            $('#hirefailed').show();
             setTimeout(function () {
-                $('#biddingfailed').hide();
+                $('#hirefailed').hide();
             }, 2000);
         }
     });

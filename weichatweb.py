@@ -996,19 +996,30 @@ def t11(openid):
 # 确认雇佣
 @app.route('/test/hire', methods = ['GET', 'POST'])
 def t12(openid):
-    if request.method == 'GET':
-        # 参数接收
-        query = request.args 
-        publisher = query.get('publisher', '')  
-        mission_id = query.get('mission_id', '')
-        current_user = query.get('current_user', '') 
+    # 确定雇佣人
+    if request.method == 'POST':
+        try:
+            jsonobj = {
+                'mission_id':request.form['mission_id'],
+                'openid':request.form['openid']
+                }
 
-        # return 'hehe'
-        result = db_obj.dbget('api/user/'+openid)
-        result = dict(result)
-        # return jsonify(result)
-        # 渲染用户信息界面
-        return render_template('user_desc.html',user_obj=result,publisher=publisher,mission_id=mission_id,current_user=current_user)
+            mission_id = request.form['mission_id']
+            acceptor = request.form['acceptor']
+
+            update = {'mission_id':mission_id,'acceptor':acceptor,'state':'3'}
+
+
+            # 更新数据库
+            result_mission = db_obj.dbput('api/mission/id/' + mission_id, putdata = update)
+            # 查数据库
+            # result_mission = db_obj.dbget('api/mission/id/' + mission_id)
+
+            # 返回竞标用户列表
+            return 'success'
+
+        except Exception, e:
+            pass
     else:
         pass
 
