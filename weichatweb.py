@@ -591,6 +591,8 @@ def mission(mission_id):
             return render_template('mission_edit.html',mission_obj=resultofmission,openid=openid)
         elif resultofmission['state'] == '2':
             return render_template('mission_bidding.html',mission_obj=resultofmission,openid=openid,comment_obj=commentlist)
+        elif resultofmission['state'] == '3':
+            return render_template('mission_working.html',mission_obj=resultofmission,openid=openid,comment_obj=commentlist)
         else:
         # result = {'comment':result}
         # return jsonify(result)

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="newMissionApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/example.css',_external=True) }}"/>
+    <script src="{{ url_for('static',filename='js/jquery.js',_external=True) }}"></script>
+    <!-- <script src="{{ url_for('static',filename='js/angular.js',_external=True) }}"></script> -->
+    <!-- <script src="{{ url_for('static',filename='js/angular-route.js',_external=True) }}"></script> -->
+    <!-- <script src="{{ url_for('static',filename='js/angular-animate.js',_external=True) }}"></script> -->
+    <!-- <script src="{{ url_for('static',filename='js/toast.js',_external=True) }}"></script> -->
+    <!-- <script src="{{ url_for('static',filename='js/app.js',_external=True) }}"></script> -->
+    <!-- <script src="{{ url_for('static',filename='js/router.min.js',_external=True) }}"></script> -->
+    <!-- <script src="{{ url_for('static',filename='js/example.js',_external=True) }}"></script> -->
+    <title>{{mission_obj.name}}</title>
+    <style>
+        .title{
+            font-size: smaller;
+            color: #979797;
+        }
+        .publish_time{
+            font-size: smaller;
+            color: #979797;
+        }
+    </style>
+
+
+
+</head>
+<body>
+<!-- <div ng-if="homeShow"> -->
+
+<div class="page">
+    <div class="hd">
+        <h1 class="page_title">{{mission_obj.name}}</h1>
+        <div style="text-align: center">
+          <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">发布</button>
+          <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">审核</button>
+          <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">竞标</button>
+          <button class="weui_btn weui_btn_mini weui_btn_primary" disabled="disabled">工作</button>
+          <button class="weui_btn weui_btn_mini weui_btn_default" disabled="disabled">评价</button>
+        </div>
+    </div>
+
+
+
+    <div class="bd">
+        <article class="weui_article">
+            <!-- <h1>大标题</h1> -->
+            <section>
+                <h3 class="title">任务类型:</h3>
+                <p>{{mission_obj.mission_type}}</p>
+            </section>
+            <section>
+                <h3 class="title">任务描述:</h3>
+                <p>{{mission_obj.description}}</p>
+            </section>
+            <section>
+                <h3 class="title">技能需求:</h3>
+                <p>
+                {% for item in mission_obj.skill_need %}
+                    {% if item=="network" %}
+                    网络;
+                    {% elif item=="server" %}
+                    服务器;
+                    {% elif item=="os" %}
+                    操作系统;
+                    {% elif item=="database" %}
+                    数据库;
+                    {% elif item=="virtual" %}
+                    虚拟化;
+                    {% else %}
+                    {% endif %}
+                {% endfor %}
+                </p>
+            </section>
+            {% if mission_obj.bounty %}
+            <section>
+                <h3 class="title">任务悬赏:</h3>
+                <p>{{mission_obj.bounty}}</p>
+            </section>
+            {% else %}
+            {% endif %}
+
+            {% if mission_obj.deadline %}
+            <section>
+                <h3 class="title">截止日期:</h3>
+                <p>{{mission_obj.deadline}}</p>
+            </section>
+            {% else %}
+            {% endif %}
+
+
+            <!-- 如果有竞标者 -->
+            {% if mission_obj.bidder %}
+            <section>
+            <h3 class="title">竞标人:</h3>
+            <div id="bidder">
+            <!-- 确定是否已经有了雇佣者 -->
+            {% if mission_obj.acceptor %}
+                {% for i in mission_obj.bidder %}
+                <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}?mission_id={{mission_obj.mission_id}}&publisher={{mission_obj.publisher}}&current_user={{openid}}&hired=1">{{i}}</a>
+                <br>
+                {% endfor %}
+            {% else %}
+                {% for i in mission_obj.bidder %}
+                <a href="http://bountyunions.applinzi.com/test/userdesc/{{i}}?mission_id={{mission_obj.mission_id}}&publisher={{mission_obj.publisher}}&current_user={{openid}}&hired=0">{{i}}</a>
+                <br>
+                {% endfor %}
+            {% endif %}
+
+            </div>
+            
+            </section>
+            {% else %}
+            {% endif %}
+
+
+            <!-- 如果有中标者 -->
+            {% if mission_obj.acceptor %}
+            <section>
+            <h3 class="title">中标者:</h3>
+            <div id="bidder">
+            <a href="http://bountyunions.applinzi.com/test/userdesc/{{mission_obj.acceptor}}?mission_id={{mission_obj.mission_id}}&publisher={{mission_obj.publisher}}&current_user={{openid}}&hired=1">{{mission_obj.acceptor}}</a>
+            <br>
+            </div>
+            </section>
+            {% else %}
+            {% endif %}
+
+
+        </article>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 评论表单 -->
+<form action="/wechat/comment" method="post" id="comment">
+    <input type="hidden" name="openid" value="{{ openid }}" id="openid">
+    <input type="hidden" name="mission_id" value="{{ mission_obj.mission_id }}" id="mission_id">
+    <div class="weui_panel weui_panel_access">
+        <div class="weui_cells_title">发表评论</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary" id="wordCount">
+                    <textarea class="weui_textarea chackTextarea" placeholder="请输入评论" rows="3" maxlength="100" name="content" id="content"></textarea>
+                    <!-- <div class="weui_textarea_counter"></div> -->
+                    <div class="weui_textarea_counter"><span class="wordwrap"><var class="word">100</var></span>/100</div>
+                </div>
+            </div>
+        </div>
+        <div class="bd spacing">
+            <div class="button_sp_area">
+                <a class="weui_btn weui_btn_mini weui_btn_default" style="float:right;margin:10px;" id="btn_comment">提交</a>
+            </div>
+        </div>
+
+        <br>
+
+        
+        <div class="weui_panel_hd">评论</div>
+        <div class="weui_panel_bd" id="comments">
+        {% if comment_obj!=[] %}
+            {% for item in comment_obj %}
+            <div class="weui_media_box weui_media_text">
+                <h4 class="weui_media_desc"> {{item.openid}}</h4>
+                <p class="weui_media_title">{{item.content}}</p>
+                <p class="publish_time">{{item.currenttime}}</p>
+             </div>
+            {% endfor %}
+        {% else %}
+            <!-- <div class="weui_panel_hd">当前评论为空</div> -->
+        {% endif %}
+
+
+
+            <!-- <p id="comments"></p> -->
+<!--             <div class="weui_media_box weui_media_text">
+                <h4 class="weui_media_title">标题一</h4>
+                <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+            </div>
+            <div class="weui_media_box weui_media_text">
+                <h4 class="weui_media_title">标题二</h4>
+                <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+            </div> -->
+        </div>
+        <!-- <a href="javascript:void(0);" class="weui_panel_ft">查看更多</a> -->
+    </div>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- 确认对话框 -->
+    <div class="weui_dialog_confirm" style="display: none;" id="dialog">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">确认提示</strong></div>
+            <div class="weui_dialog_bd">确认参与竞标么？</div>
+            <div class="weui_dialog_ft">
+                <a href="javascript:hideDialog();" class="weui_btn_dialog default">取消</a>
+                <a href="javascript:forBidding();" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 提交按钮 -->
+
+    <div class="weui_btn_area" id="btn_main">
+    {% if openid==mission_obj.publisher %}
+    <!-- <a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">无法竞标自发布项目</a> -->
+    {% else %}
+
+    <!-- 确定用户状态来控制按钮状态 -->
+
+        <!-- 判断当前任务是否里面有竞标者 -->
+        {% if mission_obj.bidder %}
+            <!-- 如果已经竞标过了 -->
+            {% if openid in mission_obj.bidder%}
+            <a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">已竞标</a>
+            {% else %}
+            <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
+            {% endif %}
+        {% else %}
+        <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
+        {% endif %}
+
+    {% endif %}
+    <a class="weui_btn weui_btn_default" href="javascript:history.back(-1);" id="showTooltips">返回</a>
+
+
+
+
+
+
+
+    </div>
+<!--     <div class="weui_btn_area">
+        <a class="weui_btn weui_btn_primary" href="javascript:;" id="showtoast">toast</a>
+    </div> -->
+
+</div>
+
+
+
+
+<!-- toast -->
+<div id="toastsuccess" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">已提交</p>
+    </div>
+</div>
+<div id="toastfailed" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">提交内容为空</p>
+    </div>
+</div>
+
+<!-- toast -->
+<div id="biddingsuccess" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">竞标成功</p>
+    </div>
+</div>
+<div id="biddingfailed" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">竞标失败</p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="view" ng-view ng-if="viewShow"></div> -->
+
+
+
+
+<!-- 表单尾 -->
+</form>
+<script type="text/javascript">
+
+$('#showtoast').click(function() {
+                $('#toast').show();
+                setTimeout(function () {
+                    $('#toast').hide();
+                }, 2000);
+            });
+
+
+
+
+
+// $.ajax({
+//     url:"http://bountyunions.applinzi.com/wechat/comment",
+//     data:{
+//         'mission_id':$('#mission_id').val()
+//         },
+//     type:"get",
+//     // dataType:"json",
+//     success:function(result){
+//         temp = result['commentlist'];
+//         for (i in temp) {
+//             t=temp[i];
+//             $('#comments').html('<div class="weui_media_box weui_media_text">'+
+//                 '<h4 class="weui_media_title">'+ t['openid'] +'</h4>'+
+//                 '<p class="weui_media_desc">'+t["content"]+'</p>'+
+//                 '</div>')
+//         }
+//     },
+//     error:function(){
+//         // alert("error")
+//     }
+// });
+
+
+
+// 字数统计
+    $(function(){
+
+        //先选出 textarea 和 统计字数 dom 节点
+        var wordCount = $("#wordCount"),
+        textArea = wordCount.find("textarea"),
+        word = wordCount.find(".word");
+        //调用
+        statInputNum(textArea,word);
+
+    });
+    /*
+     * 剩余字数统计
+     * 注意 最大字数只需要在放数字的节点哪里直接写好即可 如：<var class="word">200</var>
+     */
+    function statInputNum(textArea,numItem) {
+        var max = numItem.text(),
+                curLength;
+        textArea[0].setAttribute("maxlength", max);
+        curLength = textArea.val().length;
+        numItem.text(max - curLength);
+        // numItem.text(curLength);
+        textArea.on('input propertychange', function () {
+            var _value = $(this).val().replace(/\n/gi,"");
+            numItem.text(max - _value.length);
+            // numItem.text(_value.length);
+        });
+    };
+
+    // 刷新页面
+    $('#btn_comment').click(function(){
+        // 如果预提交内容不为空
+        if ($('#content').val() != '') {
+            // var temp;
+            $.ajax({
+                url:"http://bountyunions.applinzi.com/wechat/comment",
+                data:{
+                    'openid':$('#openid').val(),
+                    'mission_id':$('#mission_id').val(),
+                    'content':$('#content').val(),
+                    },
+                type:"post",
+                // dataType:"json",
+                success:function(result){
+                    // 先置空
+                    $('#comments').html('');
+                    temp = result['commentlist'];
+                    for (i in temp) {
+                        t=temp[i];
+                        $('#comments').append('<div class="weui_media_box weui_media_text">'+
+                            '<h4 class="weui_media_desc">'+ t['openid'] +'</h4>'+
+                            '<p class="weui_media_title">'+t["content"]+'</p>'+
+                            '<p class="publish_time">'+t["currenttime"]+'</p>'+
+                            '</div>')
+                    }
+                },
+                error:function(){
+                    // alert("error")
+                }
+            });
+            // 将输入框重新置空
+            $('#content').val('');
+            // 显示提示
+            $('#toastsuccess').show();
+                setTimeout(function () {
+                    $('#toastsuccess').hide();
+                }, 2000);
+        }else{
+            // 显示提示
+            $('#toastfailed').show();
+            setTimeout(function () {
+                $('#toastfailed').hide();
+            }, 2000);
+        }
+
+    });
+
+
+
+
+
+  function showDialog(){
+    $("#dialog").css("display","block");
+  }
+  function hideDialog(){
+    $("#dialog").css("display","none");
+  }
+  // function formsubmit(){
+  //   $("form").submit();
+  // }
+
+// 竞标ajax
+function forBidding() {
+    $.ajax({
+        url:"http://bountyunions.applinzi.com/wechat/bidding",
+        data:{
+            'openid':$('#openid').val(),
+            'mission_id':$('#mission_id').val()
+            },
+        type:"post",
+        // dataType:"json",
+        success:function(result){
+            list = result['bidder'];
+            // 先置空
+            $('#bidder').html('');
+            for (i in list) {
+                $('#bidder').append('<p>'+list[i]+'</p>')
+            };
+            // 显示提示
+            hideDialog();
+            $('#biddingsuccess').show();
+            setTimeout(function () {
+                $('#biddingsuccess').hide();
+            }, 2000);
+            $('#btn_main').html('<a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">已竞标</a>')
+        },
+        error:function(){
+            // 显示提示
+            $('#biddingfailed').show();
+            setTimeout(function () {
+                $('#biddingfailed').hide();
+            }, 2000);
+        }
+    });
+}
+
+</script>
+
+
+</body>
+</html>
