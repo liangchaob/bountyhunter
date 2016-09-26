@@ -205,10 +205,9 @@
     <h1>{{openid}}</h1>
     <h2>{{mission_obj.publisher}}</h2>
     {% if openid==mission_obj.publisher %}
-    <h1>yes</h1>
+    <a class="weui_btn weui_btn_disabled weui_btn_default" href="javascript:;" id="showTooltips">无法竞标自发布项目</a>
     {% else %}
-    <h1>no</h1>
-    {% endif %}
+
     <!-- 确定用户状态来控制按钮状态 -->
 
         <!-- 判断当前任务是否里面有竞标者 -->
@@ -222,6 +221,8 @@
         {% else %}
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">竞标</a>
         {% endif %}
+        
+    {% endif %}
 
 
 
