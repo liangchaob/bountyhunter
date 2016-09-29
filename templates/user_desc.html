@@ -143,7 +143,7 @@
     <h1>{{current_user}}</h1>
     <h2>{{publisher}}</h2>
     <h3>{{hired}}</h3>
-    {% if current_user!=publisher and hired==0 %}
+    {% if current_user==publisher and hired==0 %}
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">雇佣</a>
 
     {% else %}
