@@ -345,7 +345,9 @@ def new_mission():
                 'feedback':''
                 }
 
-            result = db_obj.dbpost('api/mission/',jsonobj)
+
+            result_mission = db_obj.dbpost('api/mission/',jsonobj)
+            result_user = db_obj.dbpost('api/user/'+jsonobj.get('publisher'),{'mission_published':jsonobj.get('mission_id')})
 
             # # 更新数据库
             # headers = {'content-type': 'application/json'}

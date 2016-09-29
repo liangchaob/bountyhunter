@@ -148,11 +148,15 @@ class User(Resource):
                 result[i] = args[i]
             else:
                 pass
-        # 入库
-        try:
-            collection_user.update({'openid':user_id},{'$set':result})
-        except Exception, e:
-            pass
+        # push更新
+        if result.get('mission_published') != None or result.get('mission_accept') != None:
+            collection_user.update({'openid':user_id},{'$push':result})
+        else:
+            # 入库
+            try:
+                collection_user.update({'openid':user_id},{'$set':result})
+            except Exception, e:
+                pass
         return result
 
         
