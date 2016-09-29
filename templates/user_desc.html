@@ -140,7 +140,7 @@
 
     <!-- 按钮 -->
     <div class="weui_btn_area" id="btn_main">
-    {% if current_user==publisher and hired==0 %}
+    {% if current_user!=publisher and hired==0 %}
         <a class="weui_btn weui_btn_primary" href="javascript:showDialog();" id="showTooltips">雇佣</a>
 
     {% else %}
