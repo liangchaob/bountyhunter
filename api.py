@@ -124,8 +124,16 @@ class Users(Resource):
 
     def post(self):
         args = userobj.parse_args()
+        # 把空值筛除
+        args = dict(args)
+        result = {}
+        for i in args:
+            if args[i] != '' and args[i] != None:
+                result[i] = args[i]
+            else:
+                pass
         try:
-            collection_user.insert_one(dict(args))
+            collection_user.insert_one(result)
         except Exception, e:
             pass
         return args
@@ -158,6 +166,14 @@ class User(Resource):
             except Exception, e:
                 pass
         return result
+
+    def delete(self, user_id):
+        # 操作库
+        try:
+            collection_user.remove({'openid':user_id})
+        except Exception, e:
+            pass
+        return 'delete ' + user_id +' success!'
 
         
 # 全部任务

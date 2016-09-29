@@ -16,83 +16,91 @@ sys.setdefaultencoding( "utf-8" )
 
 
 import requests
-# 新建用户
-payload={
-    'openid':2,
-    'intro':'',
-    'role':'admin',
-    'feedback':'',
-    'level':'',
-    'skill':'',
-    'mission_published':'',
-    'mission_accept':'',
-    'state':'',
-    'spent':'',
-    'income':'',
-    'email':'',
-    'mobile':''
-    }
+# # 新建用户
+# payload={
+#     'openid':2,
+#     'intro':'',
+#     'role':'admin',
+#     'feedback':'',
+#     'level':'',
+#     'skill':'',
+#     'mission_published':'',
+#     'mission_accept':'',
+#     'state':'',
+#     'spent':'',
+#     'income':'',
+#     'email':'',
+#     'mobile':''
+#     }
 
 
 
 
-r=requests.post('http://0.0.0.0:8080/api/user/',data=payload)
+# r=requests.post('http://0.0.0.0:8080/api/user/',data=payload)
 
 
-print r.text
+# print r.text
 
 
-# 激活用户
-payload={
-    'openid':2,
-    'intro':'tt',
-    'role':'user',
-    'feedback':'',
-    'level':'',
-    'skill':'',
-    'mission_published':'',
-    'mission_accept':'',
-    'state':'',
-    'spent':'',
-    'income':'',
-    'email':'',
-    'mobile':''
-    }
+# # 激活用户
+# payload={
+#     'openid':2,
+#     'intro':'tt',
+#     'role':'user',
+#     'feedback':'',
+#     'level':'',
+#     'skill':'',
+#     'mission_published':'',
+#     'mission_accept':'',
+#     'state':'',
+#     'spent':'',
+#     'income':'',
+#     'email':'',
+#     'mobile':''
+#     }
 
-r=requests.put('http://0.0.0.0:8080/api/user/2',data=payload)
-
-
-print r.text
+# r=requests.put('http://0.0.0.0:8080/api/user/2',data=payload)
 
 
-
+# print r.text
 
 
 
 
+
+
+
+
+# # 新建项目
+# payload={
+#     'mission_id':'004',
+#     'name':'测试项目4',
+#     'mission_type':'IT',
+#     'deadline':'',
+#     'description':'就是个简单的测试4',
+#     'skill_need':['测试'],
+#     'bounty':'',
+#     'state':1,
+#     'comment':'',
+#     'bidder':'',
+#     'publisher':'3',
+#     'acceptor':'',
+#     'feedback':''
+#     }
+
+# r=requests.post('http://0.0.0.0:8080/api/mission/',data=payload)
+
+
+# print r.text
 
 # 新建项目
 payload={
-    'mission_id':'004',
-    'name':'测试项目4',
-    'mission_type':'IT',
-    'deadline':'',
-    'description':'就是个简单的测试4',
-    'skill_need':['测试'],
-    'bounty':'',
-    'state':1,
-    'comment':'',
-    'bidder':'',
-    'publisher':'3',
-    'acceptor':'',
-    'feedback':''
+    'openid':'ochhNv8DvvAGrhOK1-L4Khc41npg'
     }
 
-r=requests.post('http://0.0.0.0:8080/api/mission/',data=payload)
-
+r=requests.delete('http://liangchaob-bountyapi.daoapp.io/api/user/'+payload.get('openid'),data=payload)
 
 print r.text
-
 
 
 
