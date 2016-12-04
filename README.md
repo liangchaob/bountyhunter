@@ -29,15 +29,17 @@
 
 # 用例
 
-![WechatIMG42.png](https://ooo.0o0.ooo/2016/12/04/58443771bcc43.png)
-![WechatIMG41.png](https://ooo.0o0.ooo/2016/12/04/58443771b9eb9.png)
-![WechatIMG40.png](https://ooo.0o0.ooo/2016/12/04/5844377199c6b.png)
-
 - 甲方：
 登录微信-->进入公众账号—>点击『发项目』—>确认获取用户权限—>进入表单—>填写项目信息—>发布
 
 - 乙方：
 登录微信-->进入公众账号—>输入项目号显示项目详细信息—>点击项目链接—>确认获取用户权限—>查看项目信息—>选择是否承接—>确认并退出
+
+
+![WechatIMG42.png](https://ooo.0o0.ooo/2016/12/04/58443771bcc43.png)
+![WechatIMG41.png](https://ooo.0o0.ooo/2016/12/04/58443771b9eb9.png)
+![WechatIMG40.png](https://ooo.0o0.ooo/2016/12/04/5844377199c6b.png)
+
 
 # 二维码
 ![0.jpeg](https://ooo.0o0.ooo/2016/12/04/5844352053043.jpeg)
