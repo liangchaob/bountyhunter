@@ -16,7 +16,7 @@ python-dateutil==2.5.3
 pytz==2016.4
 requests==2.6.0
 six==1.10.0
-urllib3==1.7.1
+urllib3==1.26.5
 virtualenv==14.0.6
 wechat-sdk==0.6.3
 wheel==0.24.0
