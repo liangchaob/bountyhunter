@@ -7,7 +7,7 @@ aniso8601==1.1.0
 argparse==1.2.1
 chardet==2.0.1
 colorama==0.2.5
-html5lib==0.999
+html5lib==0.999999999
 itsdangerous==0.24
 psutil==4.3.0
 pycrypto==2.6.1
